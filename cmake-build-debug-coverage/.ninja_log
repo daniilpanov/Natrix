@@ -1,0 +1,20 @@
+# ninja log v5
+0	868	1675689679066236672	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.o	ac3384cf26ddde41
+0	889	1675689679090236679	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.o	62e85fbd0b9974a6
+889	972	1675689679174236700	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.o	500d69a1a8d9253f
+868	1755	1675689679954236900	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/RepetitionHistory.cpp.o	efdd709e015f5101
+972	1937	1675689680138236946	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.o	10b159d4f2a0e558
+0	2414	1675689680614237068	CMakeFiles/Natrix.dir/src/main.cpp.o	7255703983594992
+1938	2517	1675689680718237095	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/MoveList.cpp.o	c7addf8c1b2a1484
+1755	2761	1675689680962237157	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/PsLegalMoveMaskGen.cpp.o	c1048b235e687116
+2415	3205	1675689681406237271	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.o	444c4eb45ab3720c
+2517	3518	1675689681718237351	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.o	4f6350cb7ad7da1c
+2761	3607	1675689681806237373	CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.o	c65f602016bfae1a
+3205	3985	1675689682186237470	CMakeFiles/Natrix.dir/src/Engine/AI/MoveSorter.cpp.o	5a7cd1ae588fec65
+3518	4021	1675689682222237480	CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.o	105cad3904fb6b38
+3607	4260	1675689682458237539	CMakeFiles/Natrix.dir/src/Engine/AI/TranspositionTable.cpp.o	aa7c8311aea1a01
+3986	5117	1675689683318237759	CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.o	bcee462482f5dac2
+4260	5833	1675689684034237943	CMakeFiles/Natrix.dir/src/UI/UICore.cpp.o	5b794899cae16e12
+4021	6060	1675689684258238000	CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.o	2c84dd81a88ef8b0
+5117	7506	1675689685706238371	CMakeFiles/Natrix.dir/src/Natrix.cpp.o	e5f543d404166244
+7506	14613	1675689692810240188	Natrix	9060ac9043ef1120

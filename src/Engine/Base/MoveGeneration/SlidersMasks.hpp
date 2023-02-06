@@ -18,7 +18,7 @@ namespace SlidersMasks {
     };
 
 
-    static consteval Bitboard calc_mask(uint8_t p, int8_t direction) {
+    static constexpr Bitboard calc_mask(uint8_t p, int8_t direction) {
         Bitboard mask = 0;
 
         int8_t x = p % 8;
@@ -46,7 +46,7 @@ namespace SlidersMasks {
     }
 
 
-    static consteval std::array<std::array<Bitboard, 8>, 64> calc_masks() {
+    static constexpr std::array<std::array<Bitboard, 8>, 64> calc_masks() {
         std::array<std::array<Bitboard, 8>, 64> masks{};
 
         for (uint8_t i = 0; i < 64; i = i + 1) {

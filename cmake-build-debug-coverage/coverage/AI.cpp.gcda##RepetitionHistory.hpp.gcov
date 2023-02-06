@@ -1,0 +1,153 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/RepetitionHistory.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <vector>
+        -:    2:#include "ZobristHash.hpp"
+        -:    3:
+        -:    4:
+        -:    5:#pragma once
+        -:    6:
+        -:    7:
+    #####:    8:class RepetitionHistory {
+    %%%%%:    8-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:    8-block  1
+branch  2 never executed
+branch  3 never executed
+    $$$$$:    8-block  2
+branch  4 never executed
+branch  5 never executed
+    $$$$$:    8-block  3
+    %%%%%:    8-block  4
+branch  6 never executed
+branch  7 never executed
+    %%%%%:    8-block  5
+    %%%%%:    8-block  6
+branch  8 never executed
+branch  9 never executed
+    %%%%%:    8-block  7
+    $$$$$:    8-block  8
+branch 10 never executed
+branch 11 never executed
+    $$$$$:    8-block  9
+    $$$$$:    8-block 10
+branch 12 never executed
+branch 13 never executed
+    $$$$$:    8-block 11
+    %%%%%:    8-block 12
+branch 14 never executed
+branch 15 never executed
+    %%%%%:    8-block 13
+call   16 never executed
+    %%%%%:    8-block 14
+branch 17 never executed
+branch 18 never executed
+    %%%%%:    8-block 15
+    $$$$$:    8-block 16
+branch 19 never executed
+branch 20 never executed
+    $$$$$:    8-block 17
+call   21 never executed
+    $$$$$:    8-block 18
+branch 22 never executed
+branch 23 never executed
+    %%%%%:    8-block 19
+branch 24 never executed
+branch 25 never executed
+    %%%%%:    8-block 20
+call   26 never executed
+    %%%%%:    8-block 21
+branch 27 never executed
+branch 28 never executed
+    %%%%%:    8-block 22
+    $$$$$:    8-block 23
+branch 29 never executed
+branch 30 never executed
+    $$$$$:    8-block 24
+call   31 never executed
+    $$$$$:    8-block 25
+branch 32 never executed
+branch 33 never executed
+    %%%%%:    8-block 26
+branch 34 never executed
+branch 35 never executed
+    %%%%%:    8-block 27
+call   36 never executed
+    %%%%%:    8-block 28
+branch 37 never executed
+branch 38 never executed
+    %%%%%:    8-block 29
+branch 39 never executed
+branch 40 never executed
+    %%%%%:    8-block 30
+branch 41 never executed
+branch 42 never executed
+    %%%%%:    8-block 31
+    $$$$$:    8-block 32
+branch 43 never executed
+branch 44 never executed
+    $$$$$:    8-block 33
+call   45 never executed
+    $$$$$:    8-block 34
+branch 46 never executed
+branch 47 never executed
+    $$$$$:    8-block 35
+    $$$$$:    8-block 36
+branch 48 never executed
+branch 49 never executed
+    %%%%%:    8-block 37
+branch 50 never executed
+branch 51 never executed
+    %%%%%:    8-block 38
+call   52 never executed
+    %%%%%:    8-block 39
+branch 53 never executed
+branch 54 never executed
+    %%%%%:    8-block 40
+branch 55 never executed
+branch 56 never executed
+    %%%%%:    8-block 41
+branch 57 never executed
+branch 58 never executed
+    %%%%%:    8-block 42
+    $$$$$:    8-block 43
+branch 59 never executed
+branch 60 never executed
+    $$$$$:    8-block 44
+call   61 never executed
+    $$$$$:    8-block 45
+branch 62 never executed
+branch 63 never executed
+    $$$$$:    8-block 46
+    $$$$$:    8-block 47
+branch 64 never executed
+branch 65 never executed
+    %%%%%:    8-block 48
+branch 66 never executed
+branch 67 never executed
+    %%%%%:    8-block 49
+    %%%%%:    8-block 50
+branch 68 never executed
+branch 69 never executed
+    %%%%%:    8-block 51
+    $$$$$:    8-block 52
+branch 70 never executed
+branch 71 never executed
+    $$$$$:    8-block 53
+call   72 never executed
+    $$$$$:    8-block 54
+branch 73 never executed
+branch 74 never executed
+        -:    9:public:
+        -:   10:    RepetitionHistory();
+        -:   11:
+        -:   12:    void add_position(ZobristHash hash);
+        -:   13:
+        -:   14:    void clear();
+        -:   15:
+        -:   16:    uint8_t get_repetition_number(ZobristHash hash);
+        -:   17:private:
+        -:   18:    std::vector<ZobristHash> _hashes;
+        -:   19:};

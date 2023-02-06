@@ -1,0 +1,259 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/MoveGeneration/PsLegalMoveMaskGen.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/PsLegalMoveMaskGen.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/PsLegalMoveMaskGen.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "PsLegalMoveMaskGen.hpp"
+        -:    2:
+        -:    3:
+function _ZN18PsLegalMoveMaskGen26generate_pawn_default_maskE6Piecesh called 93012 returned 100% blocks executed 100%
+   186024:    4:Bitboard PsLegalMoveMaskGen::generate_pawn_default_mask(Pieces pieces, uint8_t side) {
+    93012:    5:    if (side == Pieces::White) {
+    93012:    5-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+    93012:    6:        return (pieces._piece_bitboards[Pieces::White][Pieces::Pawn] << 8) & pieces._empty;
+    46506:    6-block  0
+    46506:    6-block  1
+        -:    7:    }
+    93012:    8:    return (pieces._piece_bitboards[Pieces::Black][Pieces::Pawn] >> 8) & pieces._empty;
+    46506:    8-block  0
+    46506:    8-block  1
+        -:    9:}
+function _ZN18PsLegalMoveMaskGen23generate_pawn_long_maskE6Piecesh called 93012 returned 100% blocks executed 100%
+    93012:   10:Bitboard PsLegalMoveMaskGen::generate_pawn_long_mask(Pieces pieces, uint8_t side) {
+    93012:   11:    Bitboard default_mask = PsLegalMoveMaskGen::generate_pawn_default_mask(pieces, side);
+    93012:   11-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+        -:   12:
+    93012:   13:    if (side == Pieces::White) {
+    93012:   13-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+    46506:   14:        return ((default_mask & BitboardRows::Rows[2]) << 8) & pieces._empty;
+    46506:   14-block  0
+        -:   15:    }
+    46506:   16:    return ((default_mask & BitboardRows::Rows[5]) >> 8) & pieces._empty;
+    46506:   16-block  0
+        -:   17:}
+function _ZN18PsLegalMoveMaskGen32generate_pawn_left_captures_maskE6Pieceshb called 93012 returned 100% blocks executed 100%
+  2799801:   18:Bitboard PsLegalMoveMaskGen::generate_pawn_left_captures_mask(Pieces pieces, uint8_t side, bool include_all_possible_captures) {
+  2799801:   19:    if (side == Pieces::White) {
+branch  0 taken 1318185 (fallthrough)
+branch  1 taken 1388604
+    93012:   19-block  0
+branch  2 taken 46506 (fallthrough)
+branch  3 taken 46506
+  1364691:   20:        Bitboard mask = (pieces._piece_bitboards[Pieces::White][Pieces::Pawn] << 7) & BitboardColumns::InversionColumns[7];
+  1318185:   20-block  0
+    46506:   20-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   21:        if (!include_all_possible_captures) mask = mask & pieces._side_bitboards[Pieces::Black];
+    46506:   21-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   21-block  1
+        -:   22:
+  1364691:   23:        return mask;
+  1318185:   23-block  0
+    46506:   23-block  1
+        -:   24:    }
+        -:   25:
+  1435110:   26:    Bitboard mask = (pieces._piece_bitboards[Pieces::Black][Pieces::Pawn] >> 9) & BitboardColumns::InversionColumns[7];
+  1388604:   26-block  0
+    46506:   26-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+  1435110:   27:    if (!include_all_possible_captures) mask = mask & pieces._side_bitboards[Pieces::White];
+  1388604:   27-block  0
+    46506:   27-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   27-block  2
+        -:   28:    return mask;
+        -:   29:}
+function _ZN18PsLegalMoveMaskGen33generate_pawn_right_captures_maskE6Pieceshb called 93012 returned 100% blocks executed 100%
+  2799801:   30:Bitboard PsLegalMoveMaskGen::generate_pawn_right_captures_mask(Pieces pieces, uint8_t side, bool include_all_possible_captures) {
+  2799801:   31:    if (side == Pieces::White) {
+branch  0 taken 1318185 (fallthrough)
+branch  1 taken 1388604
+    93012:   31-block  0
+branch  2 taken 46506 (fallthrough)
+branch  3 taken 46506
+  1364691:   32:        Bitboard mask = (pieces._piece_bitboards[Pieces::White][Pieces::Pawn] << 9) & BitboardColumns::InversionColumns[0];
+  1318185:   32-block  0
+    46506:   32-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   33:        if (!include_all_possible_captures) mask = mask & pieces._side_bitboards[Pieces::Black];
+    46506:   33-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   33-block  1
+        -:   34:
+  1364691:   35:        return mask;
+  1318185:   35-block  0
+    46506:   35-block  1
+        -:   36:    }
+        -:   37:
+  1435110:   38:    Bitboard mask = (pieces._piece_bitboards[Pieces::Black][Pieces::Pawn] >> 7) & BitboardColumns::InversionColumns[0];
+  1388604:   38-block  0
+    46506:   38-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+  1435110:   39:    if (!include_all_possible_captures) mask = mask & pieces._side_bitboards[Pieces::White];
+  1388604:   39-block  0
+    46506:   39-block  1
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 0
+    46506:   39-block  2
+        -:   40:    return mask;
+        -:   41:}
+function _ZN18PsLegalMoveMaskGen20generate_knight_maskE6Pieceshhb called 184300 returned 100% blocks executed 60%
+  2891065:   42:Bitboard PsLegalMoveMaskGen::generate_knight_mask(Pieces pieces, uint8_t p, uint8_t side, bool only_captures) {
+   184300:   43:    if (only_captures) {
+   184300:   43-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 184300
+ 2706765*:   44:        return KnightMasks::Masks[p] & pieces._side_bitboards[Pieces::inverse(side)];
+call    0 returned 2706765
+    %%%%%:   44-block  0
+call    1 never executed
+        -:   45:    }
+   184300:   46:    return KnightMasks::Masks[p] & pieces._inversion_side_bitboards[side];
+   184300:   46-block  0
+        -:   47:}
+function _ZN18PsLegalMoveMaskGen20generate_bishop_maskE6Pieceshhb called 5662057 returned 100% blocks executed 100%
+  5662057:   48:Bitboard PsLegalMoveMaskGen::generate_bishop_mask(Pieces pieces, uint8_t p, uint8_t side, bool only_captures) {
+  5662057:   49:    Bitboard nw = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::NorthWest, false);
+  5662057:   50:    Bitboard ne = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::NorthEast, false);
+  5662057:   51:    Bitboard sw = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::SouthWest, true);
+  5662057:   52:    Bitboard se = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::SouthEast, true);
+        -:   53:
+  5662057:   54:    return nw | ne | sw | se;
+        -:   55:}
+function _ZN18PsLegalMoveMaskGen18generate_rook_maskE6Pieceshhb called 5637292 returned 100% blocks executed 100%
+  5637292:   56:Bitboard PsLegalMoveMaskGen::generate_rook_mask(Pieces pieces, uint8_t p, uint8_t side, bool only_captures) {
+  5637292:   57:    Bitboard n = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::North, false);
+  5637292:   58:    Bitboard s = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::South, true);
+  5637292:   59:    Bitboard w = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::West, true);
+  5637292:   60:    Bitboard e = PsLegalMoveMaskGen::_calc_ray(pieces, p, side, only_captures, SlidersMasks::Direction::East, false);
+        -:   61:
+  5637292:   62:    return n | s | w | e;
+        -:   63:}
+function _ZN18PsLegalMoveMaskGen19generate_queen_maskE6Pieceshhb called 2772124 returned 100% blocks executed 100%
+  2772124:   64:Bitboard PsLegalMoveMaskGen::generate_queen_mask(Pieces pieces, uint8_t p, uint8_t side, bool only_captures) {
+  2772124:   65:    Bitboard bishop_mask = PsLegalMoveMaskGen::generate_bishop_mask(pieces, p, side, only_captures);
+  2772124:   66:    Bitboard rook_mask = PsLegalMoveMaskGen::generate_rook_mask(pieces, p, side, only_captures);
+        -:   67:
+  2772124:   68:    return bishop_mask | rook_mask;
+        -:   69:}
+function _ZN18PsLegalMoveMaskGen18generate_king_maskE6Pieceshhb called 93012 returned 100% blocks executed 60%
+  2768857:   70:Bitboard PsLegalMoveMaskGen::generate_king_mask(Pieces pieces, uint8_t p, uint8_t side, bool only_captures) {
+    93012:   71:    if (only_captures) {
+    93012:   71-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 93012
+ 2675845*:   72:        return KingMasks::Masks[p] & pieces._side_bitboards[Pieces::inverse(side)];
+call    0 returned 2675845
+    %%%%%:   72-block  0
+call    1 never executed
+        -:   73:    }
+    93012:   74:    return KingMasks::Masks[p] & pieces._inversion_side_bitboards[side];
+    93012:   74-block  0
+        -:   75:}
+function _ZN18PsLegalMoveMaskGen9in_dangerE6Pieceshh called 2706789 returned 100% blocks executed 96%
+  2706789:   76:bool PsLegalMoveMaskGen::in_danger(Pieces pieces, uint8_t p, uint8_t side) {
+  2706789:   77:    Bitboard opposite_pawns_left_captures = PsLegalMoveMaskGen::generate_pawn_left_captures_mask(pieces, Pieces::inverse(side), true);
+  2706789:   77-block  0
+call    0 returned 2706789
+  2706789:   78:    Bitboard opposite_pawns_right_captures = PsLegalMoveMaskGen::generate_pawn_right_captures_mask(pieces, Pieces::inverse(side), true);
+  2706789:   78-block  0
+call    0 returned 2706789
+  2706789:   79:    Bitboard opposite_pawns_captures = opposite_pawns_left_captures | opposite_pawns_right_captures;
+        -:   80:
+  2706789:   81:    if (BitboardOperations::get_bit(opposite_pawns_captures, p)) return true;
+  2706789:   81-block  0
+branch  0 taken 2706765 (fallthrough)
+branch  1 taken 24
+        -:   82:
+  2706765:   83:    if (PsLegalMoveMaskGen::generate_knight_mask(pieces, p, side, true) & pieces._piece_bitboards[Pieces::inverse(side)][Pieces::Knight]) return true;
+  2706765:   83-block  0
+call    0 returned 2706765
+call    1 returned 2706765
+branch  2 taken 2704640 (fallthrough)
+branch  3 taken 2125
+  2704640:   84:    if (PsLegalMoveMaskGen::generate_bishop_mask(pieces, p, side, true) & pieces._piece_bitboards[Pieces::inverse(side)][Pieces::Bishop]) return true;
+  2704640:   84-block  0
+call    0 returned 2704640
+branch  1 taken 2679144 (fallthrough)
+branch  2 taken 25496
+  2679144:   85:    if (PsLegalMoveMaskGen::generate_rook_mask(pieces, p, side, true) & pieces._piece_bitboards[Pieces::inverse(side)][Pieces::Rook]) return true;
+  2679144:   85-block  0
+call    0 returned 2679144
+branch  1 taken 2679128 (fallthrough)
+branch  2 taken 16
+  2679128:   86:    if (PsLegalMoveMaskGen::generate_queen_mask(pieces, p, side, true) & pieces._piece_bitboards[Pieces::inverse(side)][Pieces::Queen]) return true;
+  2679128:   86-block  0
+call    0 returned 2679128
+branch  1 taken 2675845 (fallthrough)
+branch  2 taken 3283
+ 2675845*:   87:    if (PsLegalMoveMaskGen::generate_king_mask(pieces, p, side, true) & pieces._piece_bitboards[Pieces::inverse(side)][Pieces::King]) return true;
+  2675845:   87-block  0
+call    0 returned 2675845
+call    1 returned 2675845
+branch  2 taken 0 (fallthrough)
+branch  3 taken 2675845
+    %%%%%:   87-block  1
+        -:   88:
+        -:   89:    return false;
+        -:   90:}
+function _ZN18PsLegalMoveMaskGen9_calc_rayE6Pieceshhbhb called 45197396 returned 100% blocks executed 100%
+ 45197396:   91:Bitboard PsLegalMoveMaskGen::_calc_ray(Pieces pieces, uint8_t p, uint8_t side, bool only_captures, uint8_t direction, bool bsr) {
+ 45197396:   92:    Bitboard blockers = SlidersMasks::Masks[p][direction] & pieces._all;
+ 45197396:   92-block  0
+branch  0 taken 19078742 (fallthrough)
+branch  1 taken 26118654
+        -:   93:
+ 45197396:   94:    if (blockers == 0) {
+ 45197396:   94-block  0
+branch  0 taken 19078742 (fallthrough)
+branch  1 taken 26118654
+ 19078742:   95:        if (only_captures) return 0;
+ 19078742:   95-block  0
+branch  0 taken 17951764 (fallthrough)
+branch  1 taken 1126978
+ 17951764:   95-block  1
+ 45197396:   96:        return SlidersMasks::Masks[p][direction];
+        -:   97:    }
+        -:   98:
+ 26118654:   99:    uint8_t blocking_square;
+        -:  100:
+ 26118654:  101:    if (bsr) blocking_square = BitboardOperations::bsr(blockers);
+ 26118654:  101-block  0
+branch  0 taken 13111119 (fallthrough)
+branch  1 taken 13007535
+ 13111119:  101-block  1
+ 13007535:  102:    else blocking_square = BitboardOperations::bsf(blockers);
+ 13007535:  102-block  0
+        -:  103:
+ 26118654:  104:    Bitboard moves;
+        -:  105:
+ 26118654:  106:    if (only_captures) moves = 0;
+ 26118654:  106-block  0
+branch  0 taken 1102258 (fallthrough)
+branch  1 taken 25016396
+  1102258:  107:    else moves = SlidersMasks::Masks[p][direction] ^ SlidersMasks::Masks[blocking_square][direction];
+  1102258:  107-block  0
+        -:  108:
+ 26118654:  109:    if (BitboardOperations::get_bit(pieces._side_bitboards[side], blocking_square)) BitboardOperations::set_0(moves, blocking_square);
+ 26118654:  109-block  0
+branch  0 taken 25874889 (fallthrough)
+branch  1 taken 243765
+ 25874889:  109-block  1
+   243765:  110:    else BitboardOperations::set_1(moves, blocking_square);
+   243765:  110-block  0
+        -:  111:
+        -:  112:    return moves;
+        -:  113:}

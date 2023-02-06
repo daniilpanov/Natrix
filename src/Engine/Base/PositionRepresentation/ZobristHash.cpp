@@ -32,20 +32,20 @@ bool operator <(ZobristHash left, ZobristHash right) {
     return (left._hash < right._hash);
 }
 void ZobristHash::invert_piece(uint8_t square, uint8_t type, uint8_t side) {
-    this->_hash = this->_hash ^ ZobristHashConsteval::Constants[square][side][type];
+    this->_hash = this->_hash ^ ZobristHashconstexpr::Constants[square][side][type];
 }
 void ZobristHash::invert_move() {
-    this->_hash = this->_hash ^ ZobristHashConsteval::BlackMove;
+    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackMove;
 }
 void ZobristHash::invert_w_l_castling() {
-    this->_hash = this->_hash ^ ZobristHashConsteval::WhiteLongCastling;
+    this->_hash = this->_hash ^ ZobristHashconstexpr::WhiteLongCastling;
 }
 void ZobristHash::invert_w_s_castling() {
-    this->_hash = this->_hash ^ ZobristHashConsteval::WhiteShortCastling;
+    this->_hash = this->_hash ^ ZobristHashconstexpr::WhiteShortCastling;
 }
 void ZobristHash::invert_b_l_castling() {
-    this->_hash = this->_hash ^ ZobristHashConsteval::BlackLongCastling;
+    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackLongCastling;
 }
 void ZobristHash::invert_b_s_castling() {
-    this->_hash = this->_hash ^ ZobristHashConsteval::BlackShortCastling;
+    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackShortCastling;
 }

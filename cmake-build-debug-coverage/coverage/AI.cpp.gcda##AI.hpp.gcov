@@ -1,0 +1,42 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/AI.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <chrono>
+        -:    2:#include <future>
+        -:    3:#include <unistd.h>
+        -:    4:#include <iomanip>
+        -:    5:#include "../Base/MoveGeneration/LegalMoveGen.hpp"
+        -:    6:#include "MoveSorter.hpp"
+        -:    7:#include "TranspositionTable.hpp"
+        -:    8:#include "OpeningBook.hpp"
+        -:    9:
+        -:   10:
+        -:   11:#pragma once
+        -:   12:
+        -:   13:
+function _ZN2AIC2Ev called 1 returned 100% blocks executed 100%
+        1:   14:class AI {
+        1:   14-block  0
+call    0 returned 1
+        -:   15:public:
+        -:   16:    AI();
+        -:   17:    AI(const std::string& opening_book_path);
+        -:   18:
+        -:   19:    Move best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms);
+        -:   20:private:
+        -:   21:    OpeningBook _opening_book;
+        -:   22:
+        -:   23:    static std::tuple<int32_t, Move> _best_move(const Position& position, uint8_t side, int32_t depth, TranspositionTable &tt);
+        -:   24:
+        -:   25:    static std::tuple<int32_t, Move> _alpha_beta_min(Position position, int32_t alpha, int32_t beta, int32_t depth_left, int32_t depth_current, TranspositionTable &tt);
+        -:   26:    static std::tuple<int32_t, Move> _alpha_beta_max(Position position, int32_t alpha, int32_t beta, int32_t depth_left, int32_t depth_current, TranspositionTable &tt);
+        -:   27:
+        -:   28:    static int32_t _alpha_beta_min_only_captures(const Position& position, int32_t alpha, int32_t beta, int32_t depth_current);
+        -:   29:    static int32_t _alpha_beta_max_only_captures(const Position& position, int32_t alpha, int32_t beta, int32_t depth_current);
+        -:   30:
+        -:   31:    struct Infinity {
+        -:   32:        static constexpr int32_t Negative = -1e+9;
+        -:   33:        static constexpr int32_t Positive = 1e+9;
+        -:   34:    };
+        -:   35:};

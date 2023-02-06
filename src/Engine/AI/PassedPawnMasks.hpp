@@ -6,7 +6,7 @@
 
 
 namespace PassedPawnMasks {
-    static consteval std::array<Bitboard, 64> calc_white_passed_pawn_masks() {
+    static constexpr std::array<Bitboard, 64> calc_white_passed_pawn_masks() {
         std::array<Bitboard, 64> masks{};
 
         for (uint8_t x = 0; x < 8; x = x + 1) {
@@ -24,7 +24,7 @@ namespace PassedPawnMasks {
     }
 
 
-    static consteval std::array<Bitboard, 64> calc_black_passed_pawn_masks() {
+    static constexpr std::array<Bitboard, 64> calc_black_passed_pawn_masks() {
         std::array<Bitboard, 64> masks{};
 
         for (uint8_t x = 0; x < 8; x = x + 1) {

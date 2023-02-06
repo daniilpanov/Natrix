@@ -1,0 +1,2388 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Natrix.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Natrix.hpp"
+        -:    2:
+        -:    3:
+function _ZN6NatrixC2Ev called 1 returned 0% blocks executed 3%
+        1:    4:Natrix::Natrix() {
+        1:    4-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:    4-block  1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+    $$$$$:    4-block  2
+call    7 never executed
+    $$$$$:    4-block  3
+call    8 never executed
+    $$$$$:    4-block  4
+branch  9 never executed
+branch 10 never executed
+        3:    5:    this->_ai = {(std::string)Natrix::Root + "AI/opening_book.txt"};
+        1:    5-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:    5-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:    5-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:    5-block  3
+call    9 returned 1
+call   10 returned 1
+branch 11 taken 1 (fallthrough)
+branch 12 taken 0
+        1:    5-block  4
+branch 13 taken 0 (fallthrough)
+branch 14 taken 1
+    $$$$$:    5-block  5
+    $$$$$:    5-block  6
+branch 15 never executed
+branch 16 never executed
+    $$$$$:    5-block  7
+    $$$$$:    5-block  8
+        -:    6:
+        1:    7:    this->_random_side = time(nullptr) % 2;
+        1:    7-block  0
+call    0 returned 1
+        -:    8:
+        1:    9:    this->_brightness = 0;
+        -:   10:
+       1*:   11:    this->_ui = {SDL_INIT_EVERYTHING, IMG_INIT_PNG, MIX_INIT_MP3, 44100, MIX_DEFAULT_FORMAT, 1, 2048};
+call    0 returned 0
+branch  1 taken 0 (fallthrough)
+branch  2 taken 0 (throw)
+    %%%%%:   11-block  0
+call    3 never executed
+call    4 never executed
+        -:   12:
+    #####:   13:    int32_t display_x, display_y;
+    #####:   14:    std::tie(display_x, display_y) = UICore::get_display_resolution();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   14-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:   15:
+    #####:   16:    this->_ui.set_window(SDL_WINDOW_FULLSCREEN, 0, 0, display_x, display_y, "Natrix", (std::string)Natrix::Root + "UI/images/logotype.png");
+    %%%%%:   16-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   16-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   16-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   16-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   16-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   16-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   16-block  6
+    $$$$$:   16-block  7
+    $$$$$:   16-block  8
+    $$$$$:   16-block  9
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   16-block 10
+    $$$$$:   16-block 11
+    #####:   17:    this->_ui.set_renderer(SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC, (float)display_x / 1920.0f, (float)display_y / 1080.0f);
+    %%%%%:   17-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   18:
+    #####:   19:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/pawn.png", "white_pawn");
+    %%%%%:   19-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   19-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   19-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   19-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   19-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   19-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   19-block  6
+    $$$$$:   19-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   19-block  8
+    $$$$$:   19-block  9
+    $$$$$:   19-block 10
+    $$$$$:   19-block 11
+    #####:   20:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/knight.png", "white_knight");
+    %%%%%:   20-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   20-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   20-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   20-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   20-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   20-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   20-block  6
+    $$$$$:   20-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   20-block  8
+    $$$$$:   20-block  9
+    $$$$$:   20-block 10
+    $$$$$:   20-block 11
+    #####:   21:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/bishop.png", "white_bishop");
+    %%%%%:   21-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   21-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   21-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   21-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   21-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   21-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   21-block  6
+    $$$$$:   21-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   21-block  8
+    $$$$$:   21-block  9
+    $$$$$:   21-block 10
+    $$$$$:   21-block 11
+    #####:   22:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/rook.png", "white_rook");
+    %%%%%:   22-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   22-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   22-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   22-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   22-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   22-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   22-block  6
+    $$$$$:   22-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   22-block  8
+    $$$$$:   22-block  9
+    $$$$$:   22-block 10
+    $$$$$:   22-block 11
+    #####:   23:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/queen.png", "white_queen");
+    %%%%%:   23-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   23-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   23-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   23-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   23-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   23-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   23-block  6
+    $$$$$:   23-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   23-block  8
+    $$$$$:   23-block  9
+    $$$$$:   23-block 10
+    $$$$$:   23-block 11
+    #####:   24:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/white/king.png", "white_king");
+    %%%%%:   24-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   24-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   24-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   24-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   24-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   24-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   24-block  6
+    $$$$$:   24-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   24-block  8
+    $$$$$:   24-block  9
+    $$$$$:   24-block 10
+    $$$$$:   24-block 11
+    #####:   25:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/pawn.png", "black_pawn");
+    %%%%%:   25-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   25-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   25-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   25-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   25-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   25-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   25-block  6
+    $$$$$:   25-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   25-block  8
+    $$$$$:   25-block  9
+    $$$$$:   25-block 10
+    $$$$$:   25-block 11
+    #####:   26:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/knight.png", "black_knight");
+    %%%%%:   26-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   26-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   26-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   26-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   26-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   26-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   26-block  6
+    $$$$$:   26-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   26-block  8
+    $$$$$:   26-block  9
+    $$$$$:   26-block 10
+    $$$$$:   26-block 11
+    #####:   27:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/bishop.png", "black_bishop");
+    %%%%%:   27-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   27-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   27-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   27-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   27-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   27-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   27-block  6
+    $$$$$:   27-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   27-block  8
+    $$$$$:   27-block  9
+    $$$$$:   27-block 10
+    $$$$$:   27-block 11
+    #####:   28:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/rook.png", "black_rook");
+    %%%%%:   28-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   28-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   28-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   28-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   28-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   28-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   28-block  6
+    $$$$$:   28-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   28-block  8
+    $$$$$:   28-block  9
+    $$$$$:   28-block 10
+    $$$$$:   28-block 11
+    #####:   29:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/queen.png", "black_queen");
+    %%%%%:   29-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   29-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   29-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   29-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   29-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   29-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   29-block  6
+    $$$$$:   29-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   29-block  8
+    $$$$$:   29-block  9
+    $$$$$:   29-block 10
+    $$$$$:   29-block 11
+    #####:   30:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/black/king.png", "black_king");
+    %%%%%:   30-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   30-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   30-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   30-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   30-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   30-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   30-block  6
+    $$$$$:   30-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   30-block  8
+    $$$$$:   30-block  9
+    $$$$$:   30-block 10
+    $$$$$:   30-block 11
+        -:   31:
+    #####:   32:    this->_ui.load_texture((std::string)Natrix::Root + "UI/images/chessmen/half_knight.png", "half_knight");
+    %%%%%:   32-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   32-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   32-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   32-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   32-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   32-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   32-block  6
+    $$$$$:   32-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   32-block  8
+    $$$$$:   32-block  9
+    $$$$$:   32-block 10
+    $$$$$:   32-block 11
+        -:   33:
+    #####:   34:    this->_ui.load_sound((std::string)Natrix::Root + "UI/sounds/click.mp3", "click");
+    %%%%%:   34-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   34-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   34-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   34-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   34-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   34-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   34-block  6
+    $$$$$:   34-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   34-block  8
+    $$$$$:   34-block  9
+    $$$$$:   34-block 10
+    $$$$$:   34-block 11
+    #####:   35:    this->_ui.load_sound((std::string)Natrix::Root + "UI/sounds/message.mp3", "message");
+    %%%%%:   35-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   35-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   35-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   35-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   35-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   35-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   35-block  6
+    $$$$$:   35-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   35-block  8
+    $$$$$:   35-block  9
+    $$$$$:   35-block 10
+    $$$$$:   35-block 11
+    #####:   36:    this->_ui.load_sound((std::string)Natrix::Root + "UI/sounds/move.mp3", "move");
+    %%%%%:   36-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   36-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   36-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   36-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   36-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   36-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   36-block  6
+    $$$$$:   36-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   36-block  8
+    $$$$$:   36-block  9
+    $$$$$:   36-block 10
+    $$$$$:   36-block 11
+    #####:   37:    this->_ui.load_sound((std::string)Natrix::Root + "UI/sounds/capture.mp3", "capture");
+    %%%%%:   37-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   37-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   37-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   37-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   37-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   37-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   37-block  6
+    $$$$$:   37-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   37-block  8
+    $$$$$:   37-block  9
+    $$$$$:   37-block 10
+    $$$$$:   37-block 11
+        -:   38:
+    #####:   39:    this->_ui.load_font((std::string)Natrix::Root + "UI/fonts/cyrillicoldface.ttf", 18, "font_small");
+    %%%%%:   39-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   39-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   39-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   39-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   39-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   39-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   39-block  6
+    $$$$$:   39-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   39-block  8
+    $$$$$:   39-block  9
+    $$$$$:   39-block 10
+    $$$$$:   39-block 11
+    #####:   40:    this->_ui.load_font((std::string)Natrix::Root + "UI/fonts/cyrillicoldface.ttf", 41, "font_large");
+    %%%%%:   40-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   40-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   40-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   40-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   40-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   40-block  5
+branch 14 never executed
+branch 15 never executed
+    $$$$$:   40-block  6
+    $$$$$:   40-block  7
+branch 16 never executed
+branch 17 never executed
+    $$$$$:   40-block  8
+    $$$$$:   40-block  9
+    $$$$$:   40-block 10
+    $$$$$:   40-block 11
+    #####:   41:}
+    %%%%%:   41-block  0
+function _ZN6Natrix5startEv called 0 returned 0% blocks executed 0%
+    #####:   42:void Natrix::start() {
+    #####:   43:    this->_menu();
+    %%%%%:   43-block  0
+call    0 never executed
+    #####:   44:}
+function _ZN6Natrix5_menuEv called 0 returned 0% blocks executed 0%
+    #####:   45:void Natrix::_menu() {
+    #####:   46:    SDL_Event event;
+        -:   47:
+    #####:   48:    int32_t mouse_x, mouse_y;
+        -:   49:
+    #####:   50:    uint8_t human_side;
+        -:   51:
+    #####:   52:    bool up_brightness = true;
+    #####:   53:    bool down_brightness = false;
+    %%%%%:   53-block  0
+        -:   54:
+    #####:   55:    for (; ;) {
+    #####:   56:        while (SDL_PollEvent(&event)) {
+    %%%%%:   56-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   57:            if (event.type == SDL_KEYDOWN) {
+    %%%%%:   57-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   58:                if (event.key.keysym.sym == SDLK_ESCAPE) this->_ui.quit(0);
+    %%%%%:   58-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   58-block  1
+call    2 never executed
+        -:   59:            }
+    #####:   60:            else if (event.type == SDL_MOUSEBUTTONDOWN and !down_brightness and !up_brightness) {
+    %%%%%:   60-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   60-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   61:                std::tie(mouse_x, mouse_y) = this->_ui.get_mouse_position();
+    %%%%%:   61-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   62:
+    #####:   63:                if (mouse_x >= Natrix::PlayAsWhiteButton::X and mouse_x < Natrix::PlayAsWhiteButton::X + Natrix::PlayAsWhiteButton::Width and mouse_y >= Natrix::PlayAsWhiteButton::Y and mouse_y < Natrix::PlayAsWhiteButton::Y + Natrix::PlayAsWhiteButton::Height) {
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   63-block  0
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   63-block  1
+branch  4 never executed
+branch  5 never executed
+    #####:   64:                    down_brightness = true;
+    #####:   65:                    human_side = Pieces::White;
+    #####:   66:                    this->_ui.play_sound("click", 0, 0);
+    %%%%%:   66-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   66-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   66-block  2
+    $$$$$:   66-block  3
+    $$$$$:   66-block  4
+call    6 never executed
+        -:   67:                }
+    #####:   68:                else if (mouse_x >= Natrix::PlayAsBlackButton::X and mouse_x < Natrix::PlayAsBlackButton::X + Natrix::PlayAsBlackButton::Width and mouse_y >= Natrix::PlayAsBlackButton::Y and mouse_y < Natrix::PlayAsBlackButton::Y + Natrix::PlayAsBlackButton::Height) {
+    %%%%%:   68-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   68-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   68-block  2
+branch  4 never executed
+branch  5 never executed
+    #####:   69:                    down_brightness = true;
+    #####:   70:                    human_side = Pieces::Black;
+    #####:   71:                    this->_ui.play_sound("click", 0, 0);
+    %%%%%:   71-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   71-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   71-block  2
+    $$$$$:   71-block  3
+    $$$$$:   71-block  4
+call    6 never executed
+        -:   72:                }
+    #####:   73:                else if (mouse_x >= Natrix::PlayAsRandomButton::X and mouse_x < Natrix::PlayAsRandomButton::X + Natrix::PlayAsRandomButton::Width and mouse_y >= Natrix::PlayAsRandomButton::Y and mouse_y < Natrix::PlayAsRandomButton::Y + Natrix::PlayAsRandomButton::Height) {
+    %%%%%:   73-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   73-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   73-block  2
+branch  4 never executed
+branch  5 never executed
+    #####:   74:                    down_brightness = true;
+    #####:   75:                    human_side = this->_random_side;
+    #####:   76:                    this->_random_side = Pieces::inverse(this->_random_side);
+    %%%%%:   76-block  0
+call    0 never executed
+    #####:   77:                    this->_ui.play_sound("click", 0, 0);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   77-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   77-block  1
+    $$$$$:   77-block  2
+    $$$$$:   77-block  3
+call    6 never executed
+        -:   78:                }
+        -:   79:            }
+        -:   80:        }
+        -:   81:
+    #####:   82:        this->_ui.clear();
+    %%%%%:   82-block  0
+call    0 never executed
+    #####:   83:        this->_ui.draw_rectangle(0, 0, 1920, 1080, 22, 21, 18, 255);
+call    0 never executed
+    #####:   84:        this->_ui.draw_rectangle(20, 20, 1600, 650, 0, 0, 0, 255 / 4);
+call    0 never executed
+    #####:   85:        this->_ui.draw_text("font_large", "Выберите сторону", 65, 40, 255, 255, 255, 255);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   85-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   85-block  1
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   85-block  2
+branch  9 never executed
+branch 10 never executed
+    $$$$$:   85-block  3
+    $$$$$:   85-block  4
+    $$$$$:   85-block  5
+    $$$$$:   85-block  6
+call   11 never executed
+    #####:   86:        this->_ui.draw_texture((std::string) Natrix::PlayAsWhiteButton::TextureName, Natrix::PlayAsWhiteButton::X, Natrix::PlayAsWhiteButton::Y, false, 1, 1);
+    %%%%%:   86-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   86-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   86-block  2
+    $$$$$:   86-block  3
+call    6 never executed
+    #####:   87:        this->_ui.draw_texture((std::string) Natrix::PlayAsBlackButton::TextureName, Natrix::PlayAsBlackButton::X, Natrix::PlayAsBlackButton::Y, false, 1, 1);
+    %%%%%:   87-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   87-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   87-block  2
+    $$$$$:   87-block  3
+call    6 never executed
+    #####:   88:        this->_ui.draw_texture((std::string) Natrix::PlayAsRandomButton::TextureName, Natrix::PlayAsRandomButton::X, Natrix::PlayAsRandomButton::Y, false, 1, 1);
+    %%%%%:   88-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   88-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   88-block  2
+    $$$$$:   88-block  3
+call    6 never executed
+    #####:   89:        this->_ui.draw_text("font_small", "Белые", Natrix::PlayAsWhiteButton::X + 45, Natrix::PlayAsWhiteButton::Y + 120, 255, 255, 255, 255);
+    %%%%%:   89-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   89-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   89-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    $$$$$:   89-block  3
+    $$$$$:   89-block  4
+call    9 never executed
+    #####:   90:        this->_ui.draw_text("font_small", "Черные", Natrix::PlayAsBlackButton::X + 45, Natrix::PlayAsBlackButton::Y + 120, 255, 255, 255, 255);
+    %%%%%:   90-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   90-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   90-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   90-block  3
+branch  9 never executed
+branch 10 never executed
+    $$$$$:   90-block  4
+    $$$$$:   90-block  5
+    $$$$$:   90-block  6
+    $$$$$:   90-block  7
+call   11 never executed
+    #####:   91:        this->_ui.draw_text("font_small", "Случайно", Natrix::PlayAsRandomButton::X + 35, Natrix::PlayAsRandomButton::Y + 120, 255, 255, 255, 255);
+    %%%%%:   91-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   91-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   91-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   91-block  3
+branch  9 never executed
+branch 10 never executed
+    $$$$$:   91-block  4
+    $$$$$:   91-block  5
+    $$$$$:   91-block  6
+    #####:   92:        this->_ui.draw_rectangle(0, 0, 1920, 1080, 0, 0, 0, (int) (255 * (1 - this->_brightness)));
+    %%%%%:   92-block  0
+call    0 never executed
+    #####:   93:        this->_ui.update();
+call    0 never executed
+        -:   94:
+    #####:   95:        if (up_brightness) {
+branch  0 never executed
+branch  1 never executed
+    #####:   96:            this->_brightness = this->_brightness + Natrix::BrightnessChangePerFrame;
+    #####:   97:            if (this->_brightness > 1) {
+    %%%%%:   97-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   98:                this->_brightness = 1;
+    #####:   99:                up_brightness = false;
+    %%%%%:   99-block  0
+        -:  100:            }
+        -:  101:        }
+    #####:  102:        if (down_brightness) {
+    %%%%%:  102-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  103:            this->_brightness = this->_brightness - Natrix::BrightnessChangePerFrame;
+    #####:  104:            if (this->_brightness < 0) {
+    %%%%%:  104-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  105:                this->_brightness = 0;
+    #####:  106:                this->_game(human_side, Pieces::inverse(human_side));
+    %%%%%:  106-block  0
+call    0 never executed
+call    1 never executed
+    #####:  107:                break;
+        -:  108:            }
+        -:  109:        }
+        -:  110:    }
+    #####:  111:}
+function _ZN6Natrix5_gameEhh called 0 returned 0% blocks executed 0%
+    #####:  112:void Natrix::_game(uint8_t human_side, uint8_t ai_side) {
+    #####:  113:    this->_position = {"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 255, true, true, true, true, 1};
+    %%%%%:  113-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  113-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  113-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  113-block  3
+branch  9 never executed
+branch 10 never executed
+    $$$$$:  113-block  4
+    $$$$$:  113-block  5
+call   11 never executed
+        -:  114:
+    #####:  115:    this->_sx0 = 255;
+    #####:  116:    this->_sy0 = 255;
+    #####:  117:    this->_sx1 = 255;
+    #####:  118:    this->_sy1 = 255;
+    #####:  119:    this->_sx2 = 255;
+    #####:  120:    this->_sy2 = 255;
+        -:  121:
+    #####:  122:    MoveList moves;
+    %%%%%:  122-block  0
+call    0 never executed
+    #####:  123:    Move move;
+call    0 never executed
+        -:  124:
+        -:  125:    SDL_Event event;
+        -:  126:
+        -:  127:    int32_t mouse_x, mouse_y;
+        -:  128:    uint8_t buff_x, buff_y, buff_p;
+        -:  129:    bool high_row, right_column;
+        -:  130:
+        -:  131:    bool up_brightness = true;
+        -:  132:    bool down_brightness = false;
+        -:  133:
+    #####:  134:    for (;;) {
+    #####:  135:        while (SDL_PollEvent(&event)) {
+branch  0 never executed
+branch  1 never executed
+    #####:  136:            if (event.type == SDL_KEYDOWN) {
+    %%%%%:  136-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  137:                if (event.key.keysym.sym == SDLK_ESCAPE) this->_ui.quit(0);
+    %%%%%:  137-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  137-block  1
+call    2 never executed
+        -:  138:            }
+    #####:  139:            else if (event.type == SDL_MOUSEBUTTONDOWN and !up_brightness and !down_brightness) {
+    %%%%%:  139-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  139-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  140:                std::tie(mouse_x, mouse_y) = this->_ui.get_mouse_position();
+    %%%%%:  140-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  141:
+    #####:  142:                if (mouse_x >= Natrix::ReturnToMenuButton::X and mouse_x < Natrix::ReturnToMenuButton::X + Natrix::ReturnToMenuButton::Width and mouse_y >= Natrix::ReturnToMenuButton::Y and mouse_y < Natrix::ReturnToMenuButton::Y + Natrix::ReturnToMenuButton::Height) {
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  142-block  0
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  142-block  1
+branch  4 never executed
+branch  5 never executed
+    #####:  143:                    down_brightness = true;
+    #####:  144:                    this->_ui.play_sound("click", 0, 0);
+    %%%%%:  144-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  144-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  144-block  2
+    $$$$$:  144-block  3
+    $$$$$:  144-block  4
+call    6 never executed
+        -:  145:                }
+    #####:  146:                else if (!this->_game_finished()) {
+    %%%%%:  146-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  147:                    if (mouse_x < 20 or mouse_x > 1044 or mouse_y < 36 or mouse_y > 1060) {
+    %%%%%:  147-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  147-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  147-block  2
+branch  4 never executed
+branch  5 never executed
+    #####:  148:                        buff_x = 255;
+    #####:  149:                        buff_y = 255;
+    %%%%%:  149-block  0
+call    0 never executed
+        -:  150:                    }
+        -:  151:                    else {
+    #####:  152:                        buff_x = (mouse_x - 20) / 128;
+    #####:  153:                        buff_y = 7 - (mouse_y - 36) / 128;
+    #####:  154:                        if (ai_side == Pieces::White) {
+    %%%%%:  154-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  155:                            buff_x = 7 - buff_x;
+    #####:  156:                            buff_y = 7 - buff_y;
+    %%%%%:  156-block  0
+        -:  157:                        }
+        -:  158:
+    #####:  159:                        high_row = (((mouse_y - 36) % 128) < 64);
+    #####:  160:                        right_column = (((mouse_x - 20) % 128) >= 64);
+        -:  161:
+    #####:  162:                        if (high_row) {
+    %%%%%:  162-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  163:                            if (right_column) buff_p = Move::Flag::PromoteToBishop;
+    %%%%%:  163-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  164:                            else buff_p = Move::Flag::PromoteToKnight;
+    %%%%%:  164-block  0
+        -:  165:                        }
+        -:  166:                        else {
+    #####:  167:                            if (right_column) buff_p = Move::Flag::PromoteToQueen;
+    %%%%%:  167-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  168:                            else buff_p = Move::Flag::PromoteToRook;
+    %%%%%:  168-block  0
+        -:  169:                        }
+        -:  170:
+    #####:  171:                        if (buff_x == this->_sx2 and buff_y == this->_sy2) {
+    %%%%%:  171-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  171-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  172:                            this->_sx2 = 255;
+    #####:  173:                            this->_sy2 = 255;
+    #####:  174:                            this->_ui.play_sound("move", 0, 0);
+    %%%%%:  174-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  174-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  174-block  2
+    $$$$$:  174-block  3
+    $$$$$:  174-block  4
+call    6 never executed
+        -:  175:                        }
+    #####:  176:                        else if (BitboardOperations::get_bit(this->_position._pieces._side_bitboards[human_side],buff_y * 8 + buff_x)) {
+    %%%%%:  176-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  177:                            this->_sx2 = buff_x;
+    #####:  178:                            this->_sy2 = buff_y;
+    #####:  179:                            this->_ui.play_sound("move", 0, 0);
+    %%%%%:  179-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  179-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  179-block  2
+    $$$$$:  179-block  3
+    $$$$$:  179-block  4
+call    6 never executed
+        -:  180:                        }
+    #####:  181:                        else if (this->_sx2 != 255 and this->_sy2 != 255) {
+    %%%%%:  181-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  181-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  182:                            moves = LegalMoveGen::generate(this->_position, human_side);
+    %%%%%:  182-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  182-block  1
+call    4 never executed
+        -:  183:
+    #####:  184:                            for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  184-block  0
+    %%%%%:  184-block  1
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  184-block  2
+    #####:  185:                                move = moves[i];
+    %%%%%:  185-block  0
+call    0 never executed
+        -:  186:
+    #####:  187:                                if (move._from == this->_sy2 * 8 + this->_sx2 and move._to == buff_y * 8 + buff_x and ((move._flag != Move::Flag::PromoteToKnight and move._flag != Move::Flag::PromoteToBishop and move._flag != Move::Flag::PromoteToRook and move._flag != Move::Flag::PromoteToQueen) or move._flag == buff_p)) {
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  187-block  0
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  187-block  1
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  187-block  2
+branch  6 never executed
+branch  7 never executed
+    #####:  188:                                    this->_position.move(move);
+    %%%%%:  188-block  0
+call    0 never executed
+    #####:  189:                                    this->_sx0 = move._from % 8;
+    #####:  190:                                    this->_sy0 = move._from / 8;
+    #####:  191:                                    this->_sx1 = move._to % 8;
+    #####:  192:                                    this->_sy1 = move._to / 8;
+    #####:  193:                                    this->_sx2 = 255;
+    #####:  194:                                    this->_sy2 = 255;
+        -:  195:
+    #####:  196:                                    if (this->_game_finished()) this->_ui.play_sound("message", 0, 0);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  196-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  196-block  1
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  196-block  2
+    $$$$$:  196-block  3
+    $$$$$:  196-block  4
+call    9 never executed
+        -:  197:                                    else {
+    #####:  198:                                        if (move._defender_type == 255 and move._flag != Move::Flag::EnPassantCapture) this->_ui.play_sound("move", 0, 0);
+    %%%%%:  198-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  198-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  198-block  2
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  198-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  198-block  4
+    $$$$$:  198-block  5
+    $$$$$:  198-block  6
+call   10 never executed
+    #####:  199:                                        else this->_ui.play_sound("capture", 0, 0);
+    %%%%%:  199-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  199-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  199-block  2
+    $$$$$:  199-block  3
+    $$$$$:  199-block  4
+call    6 never executed
+    #####:  200:                                        this->_draw_game(ai_side == Pieces::White);
+    %%%%%:  200-block  0
+call    0 never executed
+        -:  201:
+    #####:  202:                                        move = this->_ai.best_move(this->_position, ai_side, 250, 6 * 1e+3);
+call    0 never executed
+        -:  203:
+    #####:  204:                                        UICore::remove_events();
+call    0 never executed
+        -:  205:
+    #####:  206:                                        this->_position.move(move);
+call    0 never executed
+    #####:  207:                                        this->_sx0 = move._from % 8;
+    #####:  208:                                        this->_sy0 = move._from / 8;
+    #####:  209:                                        this->_sx1 = move._to % 8;
+    #####:  210:                                        this->_sy1 = move._to / 8;
+    #####:  211:                                        this->_sx2 = 255;
+    #####:  212:                                        this->_sy2 = 255;
+        -:  213:
+    #####:  214:                                        if (this->_game_finished()) this->_ui.play_sound("message", 0, 0);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  214-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  214-block  1
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  214-block  2
+    $$$$$:  214-block  3
+    $$$$$:  214-block  4
+call    9 never executed
+        -:  215:                                        else {
+    #####:  216:                                            if (move._defender_type == 255 and move._flag != Move::Flag::EnPassantCapture) this->_ui.play_sound("move", 0, 0);
+    %%%%%:  216-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  216-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  216-block  2
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  216-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  216-block  4
+    $$$$$:  216-block  5
+    $$$$$:  216-block  6
+call   10 never executed
+    #####:  217:                                            else this->_ui.play_sound("capture", 0, 0);
+    %%%%%:  217-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  217-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  217-block  2
+    $$$$$:  217-block  3
+    $$$$$:  217-block  4
+call    6 never executed
+        -:  218:                                        }
+        -:  219:                                    }
+        -:  220:
+        -:  221:                                    break;
+        -:  222:                                }
+        -:  223:                            }
+        -:  224:                        }
+        -:  225:
+    #####:  226:                        this->_draw_game(ai_side == Pieces::White);
+    %%%%%:  226-block  0
+call    0 never executed
+        -:  227:                    }
+        -:  228:                }
+        -:  229:            }
+        -:  230:        }
+        -:  231:
+    #####:  232:        if (up_brightness) {
+    %%%%%:  232-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  233:            this->_brightness = this->_brightness + Natrix::BrightnessChangePerFrame;
+    #####:  234:            if (this->_brightness > 1) {
+    %%%%%:  234-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  235:                this->_brightness = 1;
+    #####:  236:                up_brightness = false;
+    #####:  237:                if (ai_side == Pieces::White) {
+    %%%%%:  237-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  238:                    move = this->_ai.best_move(this->_position, Pieces::White, 250, 6 * 1e+3);
+    %%%%%:  238-block  0
+call    0 never executed
+        -:  239:
+    #####:  240:                    UICore::remove_events();
+call    0 never executed
+        -:  241:
+    #####:  242:                    this->_position.move(move);
+call    0 never executed
+    #####:  243:                    this->_sx0 = move._from % 8;
+    #####:  244:                    this->_sy0 = move._from / 8;
+    #####:  245:                    this->_sx1 = move._to % 8;
+    #####:  246:                    this->_sy1 = move._to / 8;
+        -:  247:
+    #####:  248:                    this->_ui.play_sound("move", 0, 0);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  248-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  248-block  1
+    $$$$$:  248-block  2
+        -:  249:                }
+        -:  250:            }
+    #####:  251:            this->_draw_game(ai_side == Pieces::White);
+    %%%%%:  251-block  0
+call    0 never executed
+        -:  252:        }
+    #####:  253:        if (down_brightness) {
+    %%%%%:  253-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  254:            this->_brightness = this->_brightness - Natrix::BrightnessChangePerFrame;
+    #####:  255:            if (this->_brightness < 0) {
+    %%%%%:  255-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  256:                this->_brightness = 0;
+    #####:  257:                this->_menu();
+    %%%%%:  257-block  0
+call    0 never executed
+    #####:  258:                break;
+        -:  259:            }
+    #####:  260:            this->_draw_game(ai_side == Pieces::White);
+    %%%%%:  260-block  0
+call    0 never executed
+        -:  261:        }
+        -:  262:
+    #####:  263:        SDL_Delay(20);
+    %%%%%:  263-block  0
+call    0 never executed
+        -:  264:    }
+    #####:  265:}
+function _ZN6Natrix10_draw_gameEb called 0 returned 0% blocks executed 0%
+    #####:  266:void Natrix::_draw_game(bool rotated) {
+    #####:  267:    this->_ui.clear();
+    %%%%%:  267-block  0
+call    0 never executed
+        -:  268:
+    #####:  269:    this->_draw_game_background();
+call    0 never executed
+    #####:  270:    this->_draw_game_board(rotated);
+call    0 never executed
+    #####:  271:    this->_draw_game_extra_information();
+call    0 never executed
+    #####:  272:    this->_draw_game_button();
+call    0 never executed
+    #####:  273:    this->_change_game_brightness();
+call    0 never executed
+        -:  274:
+    #####:  275:    this->_ui.update();
+call    0 never executed
+    #####:  276:}
+function _ZN6Natrix21_draw_game_backgroundEv called 0 returned 0% blocks executed 0%
+    #####:  277:void Natrix::_draw_game_background() {
+    #####:  278:    this->_ui.draw_rectangle(0, 0, 1920, 1080, 22, 21, 18, 255);
+    %%%%%:  278-block  0
+call    0 never executed
+    #####:  279:}
+function _ZN6Natrix16_draw_game_boardEb called 0 returned 0% blocks executed 0%
+    #####:  280:void Natrix::_draw_game_board(bool rotated) {
+    #####:  281:    uint8_t side;
+    #####:  282:    if (this->_white_move()) side = Pieces::White;
+    #####:  283:    else side = Pieces::Black;
+    %%%%%:  283-block  0
+        -:  284:
+    #####:  285:    MoveList moves = LegalMoveGen::generate(this->_position, side);
+    %%%%%:  285-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  285-block  1
+call    4 never executed
+    #####:  286:    Move move;
+    %%%%%:  286-block  0
+call    0 never executed
+        -:  287:
+    #####:  288:    std::array<std::tuple<uint8_t, uint8_t>, 64> shadows{};
+    #####:  289:    for (uint8_t i = 0; i < 64; i = i + 1) shadows[i] = std::make_tuple(255, 255);
+    %%%%%:  289-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  289-block  1
+    #####:  290:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  290-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  290-block  1
+    #####:  291:        move = moves[i];
+    %%%%%:  291-block  0
+call    0 never executed
+    #####:  292:        if (move._from == this->_sy2 * 8 + this->_sx2) shadows[move._to] = std::make_tuple(move._attacker_side, move._attacker_type);
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  292-block  0
+        -:  293:    }
+        -:  294:
+        -:  295:    int32_t pos_x;
+        -:  296:    int32_t pos_y;
+        -:  297:
+    #####:  298:    for (uint8_t x = 0; x < 8; x = x + 1) {
+    %%%%%:  298-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  298-block  1
+    #####:  299:        for (uint8_t y = 0; y < 8; y = y + 1) {
+    %%%%%:  299-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  300:            if (rotated) {
+    %%%%%:  300-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  301:                pos_x = 20 + 128 * (7 - x);
+    #####:  302:                pos_y = 36 + 128 * y;
+    %%%%%:  302-block  0
+        -:  303:            }
+        -:  304:            else {
+    #####:  305:                pos_x = 20 + 128 * x;
+    #####:  306:                pos_y = 36 + 128 * (7 - y);
+    %%%%%:  306-block  0
+        -:  307:            }
+        -:  308:
+    #####:  309:            if ((x == this->_sx0 and y == this->_sy0) or (x == this->_sx1 and y == this->_sy1) or (x == this->_sx2 and y == this->_sy2)) {
+    %%%%%:  309-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  309-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  309-block  2
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  309-block  3
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  309-block  4
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  309-block  5
+branch 10 never executed
+branch 11 never executed
+    #####:  310:                if ((x + y) % 2 == 0) this->_ui.draw_rectangle(pos_x, pos_y, 128, 128, 171, 162, 58, 255);
+    %%%%%:  310-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  310-block  1
+call    2 never executed
+    #####:  311:                else this->_ui.draw_rectangle(pos_x, pos_y, 128, 128, 206, 210, 107, 255);
+    %%%%%:  311-block  0
+call    0 never executed
+        -:  312:            }
+        -:  313:            else {
+    #####:  314:                if ((x + y) % 2 == 0) this->_ui.draw_rectangle(pos_x, pos_y, 128, 128, 181, 136, 99, 255);
+    %%%%%:  314-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  314-block  1
+call    2 never executed
+    #####:  315:                else this->_ui.draw_rectangle(pos_x, pos_y, 128, 128, 240, 217, 181, 255);
+    %%%%%:  315-block  0
+call    0 never executed
+        -:  316:            }
+        -:  317:
+    #####:  318:            if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::Pawn], y * 8 + x)) this->_ui.draw_texture("white_pawn", pos_x, pos_y, false, 1, 1);
+    %%%%%:  318-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  318-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  318-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  318-block  3
+    $$$$$:  318-block  4
+    $$$$$:  318-block  5
+call    8 never executed
+    #####:  319:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::Knight], y * 8 + x)) this->_ui.draw_texture("white_knight", pos_x, pos_y, false, 1, 1);
+    %%%%%:  319-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  319-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  319-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  319-block  3
+    $$$$$:  319-block  4
+    $$$$$:  319-block  5
+call    8 never executed
+    #####:  320:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::Bishop], y * 8 + x)) this->_ui.draw_texture("white_bishop", pos_x, pos_y, false, 1, 1);
+    %%%%%:  320-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  320-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  320-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  320-block  3
+    $$$$$:  320-block  4
+    $$$$$:  320-block  5
+call    8 never executed
+    #####:  321:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::Rook], y * 8 + x)) this->_ui.draw_texture("white_rook", pos_x, pos_y, false, 1, 1);
+    %%%%%:  321-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  321-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  321-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  321-block  3
+    $$$$$:  321-block  4
+    $$$$$:  321-block  5
+call    8 never executed
+    #####:  322:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::Queen], y * 8 + x)) this->_ui.draw_texture("white_queen", pos_x, pos_y, false, 1, 1);
+    %%%%%:  322-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  322-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  322-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  322-block  3
+    $$$$$:  322-block  4
+    $$$$$:  322-block  5
+call    8 never executed
+    #####:  323:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::King], y * 8 + x)) this->_ui.draw_texture("white_king", pos_x, pos_y, false, 1, 1);
+    %%%%%:  323-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  323-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  323-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  323-block  3
+    $$$$$:  323-block  4
+    $$$$$:  323-block  5
+call    8 never executed
+    #####:  324:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::Pawn], y * 8 + x)) this->_ui.draw_texture("black_pawn", pos_x, pos_y, false, 1, 1);
+    %%%%%:  324-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  324-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  324-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  324-block  3
+    $$$$$:  324-block  4
+    $$$$$:  324-block  5
+call    8 never executed
+    #####:  325:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::Knight], y * 8 + x)) this->_ui.draw_texture("black_knight", pos_x, pos_y, false, 1, 1);
+    %%%%%:  325-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  325-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  325-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  325-block  3
+    $$$$$:  325-block  4
+    $$$$$:  325-block  5
+call    8 never executed
+    #####:  326:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::Bishop], y * 8 + x)) this->_ui.draw_texture("black_bishop", pos_x, pos_y, false, 1, 1);
+    %%%%%:  326-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  326-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  326-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  326-block  3
+    $$$$$:  326-block  4
+    $$$$$:  326-block  5
+call    8 never executed
+    #####:  327:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::Rook], y * 8 + x)) this->_ui.draw_texture("black_rook", pos_x, pos_y, false, 1, 1);
+    %%%%%:  327-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  327-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  327-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  327-block  3
+    $$$$$:  327-block  4
+    $$$$$:  327-block  5
+call    8 never executed
+    #####:  328:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::Queen], y * 8 + x)) this->_ui.draw_texture("black_queen", pos_x, pos_y, false, 1, 1);
+    %%%%%:  328-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  328-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  328-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  328-block  3
+    $$$$$:  328-block  4
+    $$$$$:  328-block  5
+call    8 never executed
+    #####:  329:            else if (BitboardOperations::get_bit(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::King], y * 8 + x)) this->_ui.draw_texture("black_king", pos_x, pos_y, false, 1, 1);
+    %%%%%:  329-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  329-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  329-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  329-block  3
+    $$$$$:  329-block  4
+    $$$$$:  329-block  5
+call    8 never executed
+        -:  330:
+    #####:  331:            if (y == 7 and shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Pawn)) {
+    %%%%%:  331-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  331-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  332:                this->_ui.draw_texture("white_knight", pos_x, pos_y, false, 0.5, 0.5);
+    %%%%%:  332-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  332-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  332-block  2
+    $$$$$:  332-block  3
+call    6 never executed
+    #####:  333:                this->_ui.draw_texture("white_bishop", pos_x + 64, pos_y, false, 0.5, 0.5);
+    %%%%%:  333-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  333-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  333-block  2
+    $$$$$:  333-block  3
+call    6 never executed
+    #####:  334:                this->_ui.draw_texture("white_rook", pos_x, pos_y + 64, false, 0.5, 0.5);
+    %%%%%:  334-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  334-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  334-block  2
+    $$$$$:  334-block  3
+call    6 never executed
+    #####:  335:                this->_ui.draw_texture("white_queen", pos_x + 64, pos_y + 64, false, 0.5, 0.5);
+    %%%%%:  335-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  335-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  335-block  2
+    $$$$$:  335-block  3
+    $$$$$:  335-block  4
+call    6 never executed
+        -:  336:            }
+    #####:  337:            else if (y == 0 and shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Pawn)) {
+    %%%%%:  337-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  337-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  338:                this->_ui.draw_texture("black_knight", pos_x, pos_y, false, 0.5, 0.5);
+    %%%%%:  338-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  338-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  338-block  2
+    $$$$$:  338-block  3
+call    6 never executed
+    #####:  339:                this->_ui.draw_texture("black_bishop", pos_x + 64, pos_y, false, 0.5, 0.5);
+    %%%%%:  339-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  339-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  339-block  2
+    $$$$$:  339-block  3
+call    6 never executed
+    #####:  340:                this->_ui.draw_texture("black_rook", pos_x, pos_y + 64, false, 0.5, 0.5);
+    %%%%%:  340-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  340-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  340-block  2
+    $$$$$:  340-block  3
+call    6 never executed
+    #####:  341:                this->_ui.draw_texture("black_queen", pos_x + 64, pos_y + 64, false, 0.5, 0.5);
+    %%%%%:  341-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  341-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  341-block  2
+    $$$$$:  341-block  3
+    $$$$$:  341-block  4
+call    6 never executed
+        -:  342:            }
+        -:  343:            else {
+    #####:  344:                if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Pawn)) this->_ui.draw_texture("white_pawn", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  344-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  344-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  344-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  344-block  3
+    $$$$$:  344-block  4
+    $$$$$:  344-block  5
+call    8 never executed
+    #####:  345:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Knight)) this->_ui.draw_texture("white_knight", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  345-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  345-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  345-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  345-block  3
+    $$$$$:  345-block  4
+    $$$$$:  345-block  5
+call    8 never executed
+    #####:  346:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Bishop)) this->_ui.draw_texture("white_bishop", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  346-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  346-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  346-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  346-block  3
+    $$$$$:  346-block  4
+    $$$$$:  346-block  5
+call    8 never executed
+    #####:  347:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Rook)) this->_ui.draw_texture("white_rook", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  347-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  347-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  347-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  347-block  3
+    $$$$$:  347-block  4
+    $$$$$:  347-block  5
+call    8 never executed
+    #####:  348:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::Queen)) this->_ui.draw_texture("white_queen", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  348-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  348-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  348-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  348-block  3
+    $$$$$:  348-block  4
+    $$$$$:  348-block  5
+call    8 never executed
+    #####:  349:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::White, Pieces::King)) this->_ui.draw_texture("white_king", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  349-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  349-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  349-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  349-block  3
+    $$$$$:  349-block  4
+    $$$$$:  349-block  5
+call    8 never executed
+    #####:  350:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Pawn)) this->_ui.draw_texture("black_pawn", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  350-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  350-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  350-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  350-block  3
+    $$$$$:  350-block  4
+    $$$$$:  350-block  5
+call    8 never executed
+    #####:  351:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Knight)) this->_ui.draw_texture("black_knight", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  351-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  351-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  351-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  351-block  3
+    $$$$$:  351-block  4
+    $$$$$:  351-block  5
+call    8 never executed
+    #####:  352:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Bishop)) this->_ui.draw_texture("black_bishop", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  352-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  352-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  352-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  352-block  3
+    $$$$$:  352-block  4
+    $$$$$:  352-block  5
+call    8 never executed
+    #####:  353:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Rook)) this->_ui.draw_texture("black_rook", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  353-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  353-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  353-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  353-block  3
+    $$$$$:  353-block  4
+    $$$$$:  353-block  5
+call    8 never executed
+    #####:  354:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::Queen)) this->_ui.draw_texture("black_queen", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  354-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  354-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  354-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  354-block  3
+    $$$$$:  354-block  4
+    $$$$$:  354-block  5
+call    8 never executed
+    #####:  355:                else if (shadows[y * 8 + x] == std::make_tuple(Pieces::Black, Pieces::King)) this->_ui.draw_texture("black_king", pos_x, pos_y, false, 1, 0.5);
+    %%%%%:  355-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  355-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  355-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  355-block  3
+    %%%%%:  355-block  4
+    $$$$$:  355-block  5
+        -:  356:            }
+        -:  357:        }
+        -:  358:    }
+    #####:  359:}
+    %%%%%:  359-block  0
+function _ZN6Natrix28_draw_game_extra_informationEv called 0 returned 0% blocks executed 0%
+    #####:  360:void Natrix::_draw_game_extra_information() {
+    #####:  361:    if (this->_white_victory()) this->_ui.draw_text("font_large", "Победа белых", 1064, 36, 255, 255, 255, 255);
+    %%%%%:  361-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  361-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  361-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  361-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  361-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  361-block  5
+    $$$$$:  361-block  6
+    $$$$$:  361-block  7
+    $$$$$:  361-block  8
+    $$$$$:  361-block  9
+call   14 never executed
+    #####:  362:    else if (this->_black_victory()) this->_ui.draw_text("font_large", "Победа черных", 1064, 36, 255, 255, 255, 255);
+    %%%%%:  362-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  362-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  362-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  362-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  362-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  362-block  5
+    $$$$$:  362-block  6
+    $$$$$:  362-block  7
+    $$$$$:  362-block  8
+    $$$$$:  362-block  9
+call   14 never executed
+    #####:  363:    else if (this->_draw()) this->_ui.draw_text("font_large", "Ничья", 1064, 36, 255, 255, 255, 255);
+    %%%%%:  363-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  363-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  363-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  363-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  363-block  4
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  363-block  5
+    $$$$$:  363-block  6
+    $$$$$:  363-block  7
+    $$$$$:  363-block  8
+    $$$$$:  363-block  9
+call   14 never executed
+    #####:  364:    else if (this->_white_move()) this->_ui.draw_text("font_large", "Ход белых", 1064, 36, 255, 255, 255, 255);
+    %%%%%:  364-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  364-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  364-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  364-block  3
+branch  9 never executed
+branch 10 never executed
+    %%%%%:  364-block  4
+    $$$$$:  364-block  5
+    $$$$$:  364-block  6
+    $$$$$:  364-block  7
+    $$$$$:  364-block  8
+call   11 never executed
+    #####:  365:    else if (this->_black_move()) this->_ui.draw_text("font_large", "Ход черных", 1064, 36, 255, 255, 255, 255);
+    %%%%%:  365-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  365-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  365-block  2
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  365-block  3
+    $$$$$:  365-block  4
+    $$$$$:  365-block  5
+    $$$$$:  365-block  6
+    #####:  366:}
+    %%%%%:  366-block  0
+function _ZN6Natrix17_draw_game_buttonEv called 0 returned 0% blocks executed 0%
+    #####:  367:void Natrix::_draw_game_button() {
+    #####:  368:    this->_ui.draw_rectangle(Natrix::ReturnToMenuButton::X, Natrix::ReturnToMenuButton::Y, Natrix::ReturnToMenuButton::Width, Natrix::ReturnToMenuButton::Height, 0, 0, 0, 255 / 2);
+    %%%%%:  368-block  0
+call    0 never executed
+    #####:  369:    this->_ui.draw_text("font_large", (std::string)Natrix::ReturnToMenuButton::Label, Natrix::ReturnToMenuButton::X + 20, Natrix::ReturnToMenuButton::Y + 20, 255, 255, 255, 255);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  369-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  369-block  1
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:  369-block  2
+branch  9 never executed
+branch 10 never executed
+    $$$$$:  369-block  3
+    $$$$$:  369-block  4
+    $$$$$:  369-block  5
+    #####:  370:}
+    %%%%%:  370-block  0
+function _ZN6Natrix23_change_game_brightnessEv called 0 returned 0% blocks executed 0%
+    #####:  371:void Natrix::_change_game_brightness() {
+    #####:  372:    this->_ui.draw_rectangle(0, 0, 1920, 1080, 0, 0, 0, (int)(255 * (1 - this->_brightness)));
+    %%%%%:  372-block  0
+call    0 never executed
+    #####:  373:}
+function _ZN6Natrix14_white_victoryEv called 0 returned 0% blocks executed 0%
+    #####:  374:bool Natrix::_white_victory() {
+    #####:  375:    bool black_have_not_got_moves = (LegalMoveGen::generate(this->_position, Pieces::Black).size() == 0);
+    %%%%%:  375-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  375-block  1
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  375-block  2
+branch  7 never executed
+branch  8 never executed
+    $$$$$:  375-block  3
+branch  9 never executed
+branch 10 never executed
+    #####:  376:    bool black_in_check = PsLegalMoveMaskGen::in_danger(this->_position._pieces, BitboardOperations::bsf(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::King]), Pieces::Black);
+    %%%%%:  376-block  0
+call    0 never executed
+        -:  377:
+    #####:  378:    return (black_have_not_got_moves and black_in_check);
+        -:  379:}
+function _ZN6Natrix14_black_victoryEv called 0 returned 0% blocks executed 0%
+    #####:  380:bool Natrix::_black_victory() {
+    #####:  381:    bool white_have_not_got_moves = (LegalMoveGen::generate(this->_position, Pieces::White).size() == 0);
+    %%%%%:  381-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  381-block  1
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  381-block  2
+branch  7 never executed
+branch  8 never executed
+    $$$$$:  381-block  3
+branch  9 never executed
+branch 10 never executed
+    #####:  382:    bool white_in_check = PsLegalMoveMaskGen::in_danger(this->_position._pieces, BitboardOperations::bsf(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::King]), Pieces::White);
+    %%%%%:  382-block  0
+call    0 never executed
+        -:  383:
+    #####:  384:    return (white_have_not_got_moves and white_in_check);
+        -:  385:}
+function _ZN6Natrix5_drawEv called 0 returned 0% blocks executed 0%
+    #####:  386:bool Natrix::_draw() {
+    #####:  387:    bool white_have_not_got_moves = (LegalMoveGen::generate(this->_position, Pieces::White).size() == 0);
+    %%%%%:  387-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  387-block  1
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  387-block  2
+branch  7 never executed
+branch  8 never executed
+    $$$$$:  387-block  3
+branch  9 never executed
+branch 10 never executed
+    $$$$$:  387-block  4
+call   11 never executed
+    #####:  388:    bool white_in_check = PsLegalMoveMaskGen::in_danger(this->_position._pieces, BitboardOperations::bsf(this->_position._pieces._piece_bitboards[Pieces::White][Pieces::King]), Pieces::White);
+    %%%%%:  388-block  0
+call    0 never executed
+        -:  389:
+    #####:  390:    bool black_have_not_got_moves = (LegalMoveGen::generate(this->_position, Pieces::Black).size() == 0);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  390-block  0
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  390-block  1
+branch  7 never executed
+branch  8 never executed
+    $$$$$:  390-block  2
+branch  9 never executed
+branch 10 never executed
+    #####:  391:    bool black_in_check = PsLegalMoveMaskGen::in_danger(this->_position._pieces, BitboardOperations::bsf(this->_position._pieces._piece_bitboards[Pieces::Black][Pieces::King]), Pieces::Black);
+    %%%%%:  391-block  0
+call    0 never executed
+        -:  392:
+    #####:  393:    bool fifty_moves_rule = (this->_position._fifty_moves_ctr >= 50);
+    #####:  394:    bool three_moves_rule = (this->_position._repetition_history.get_repetition_number(this->_position._hash) >= 3);
+call    0 never executed
+        -:  395:
+    #####:  396:    bool white_move = this->_white_move();
+    #####:  397:    bool black_move = !white_move;
+        -:  398:
+    #####:  399:    if (white_have_not_got_moves and !white_in_check and white_move) return true;
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  399-block  0
+branch  2 never executed
+branch  3 never executed
+    #####:  400:    if (black_have_not_got_moves and !black_in_check and black_move) return true;
+    %%%%%:  400-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  400-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  401:    if (fifty_moves_rule) return true;
+    %%%%%:  401-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  402:    if (three_moves_rule) return true;
+    %%%%%:  402-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  402-block  1
+        -:  403:
+        -:  404:    return false;
+        -:  405:}
+function _ZN6Natrix14_game_finishedEv called 0 returned 0% blocks executed 0%
+    #####:  406:bool Natrix::_game_finished() {
+    #####:  407:    return (this->_white_victory() or this->_black_victory() or this->_draw());
+    %%%%%:  407-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  407-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  407-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+        -:  408:}
+function _ZNK6Natrix11_white_moveEv called 0 returned 0% blocks executed 0%
+    #####:  409:bool Natrix::_white_move() const {
+    #####:  410:    return (this->_position._move_ctr - std::floor(this->_position._move_ctr) < 1e-7);
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  410-block  0
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  410-block  1
+branch  4 never executed
+branch  5 never executed
+        -:  411:}
+function _ZN6Natrix11_black_moveEv called 0 returned 0% blocks executed 0%
+    #####:  412:bool Natrix::_black_move() {
+    #####:  413:    return !Natrix::_white_move();
+    %%%%%:  413-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  414:}

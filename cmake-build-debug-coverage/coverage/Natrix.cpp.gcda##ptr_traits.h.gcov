@@ -1,0 +1,2033 @@
+        -:    0:Source:/usr/include/c++/9/bits/ptr_traits.h
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcda
+        -:    0:Runs:1
+        -:    1:// Pointer Traits -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2011-2019 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/** @file bits/ptr_traits.h
+        -:   26: *  This is an internal header file, included by other library headers.
+        -:   27: *  Do not attempt to use it directly. @headername{memory}
+        -:   28: */
+        -:   29:
+        -:   30:#ifndef _PTR_TRAITS_H
+        -:   31:#define _PTR_TRAITS_H 1
+        -:   32:
+        -:   33:#if __cplusplus >= 201103L
+        -:   34:
+        -:   35:#include <bits/move.h>
+        -:   36:
+        -:   37:#if __cplusplus > 201703L
+        -:   38:#define __cpp_lib_constexpr_memory 201811L
+        -:   39:namespace __gnu_debug { struct _Safe_iterator_base; }
+        -:   40:#endif
+        -:   41:
+        -:   42:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   43:{
+        -:   44:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   45:
+        -:   46:  class __undefined;
+        -:   47:
+        -:   48:  // Given Template<T, ...> return T, otherwise invalid.
+        -:   49:  template<typename _Tp>
+        -:   50:    struct __get_first_arg
+        -:   51:    { using type = __undefined; };
+        -:   52:
+        -:   53:  template<template<typename, typename...> class _Template, typename _Tp,
+        -:   54:           typename... _Types>
+        -:   55:    struct __get_first_arg<_Template<_Tp, _Types...>>
+        -:   56:    { using type = _Tp; };
+        -:   57:
+        -:   58:  template<typename _Tp>
+        -:   59:    using __get_first_arg_t = typename __get_first_arg<_Tp>::type;
+        -:   60:
+        -:   61:  // Given Template<T, ...> and U return Template<U, ...>, otherwise invalid.
+        -:   62:  template<typename _Tp, typename _Up>
+        -:   63:    struct __replace_first_arg
+        -:   64:    { };
+        -:   65:
+        -:   66:  template<template<typename, typename...> class _Template, typename _Up,
+        -:   67:           typename _Tp, typename... _Types>
+        -:   68:    struct __replace_first_arg<_Template<_Tp, _Types...>, _Up>
+        -:   69:    { using type = _Template<_Up, _Types...>; };
+        -:   70:
+        -:   71:  template<typename _Tp, typename _Up>
+        -:   72:    using __replace_first_arg_t = typename __replace_first_arg<_Tp, _Up>::type;
+        -:   73:
+        -:   74:  template<typename _Tp>
+        -:   75:    using __make_not_void
+        -:   76:      = typename conditional<is_void<_Tp>::value, __undefined, _Tp>::type;
+        -:   77:
+        -:   78:  /**
+        -:   79:   * @brief  Uniform interface to all pointer-like types
+        -:   80:   * @ingroup pointer_abstractions
+        -:   81:  */
+        -:   82:  template<typename _Ptr>
+        -:   83:    struct pointer_traits
+        -:   84:    {
+        -:   85:    private:
+        -:   86:      template<typename _Tp>
+        -:   87:	using __element_type = typename _Tp::element_type;
+        -:   88:
+        -:   89:      template<typename _Tp>
+        -:   90:	using __difference_type = typename _Tp::difference_type;
+        -:   91:
+        -:   92:      template<typename _Tp, typename _Up, typename = void>
+        -:   93:	struct __rebind : __replace_first_arg<_Tp, _Up> { };
+        -:   94:
+        -:   95:      template<typename _Tp, typename _Up>
+        -:   96:	struct __rebind<_Tp, _Up, __void_t<typename _Tp::template rebind<_Up>>>
+        -:   97:	{ using type = typename _Tp::template rebind<_Up>; };
+        -:   98:
+        -:   99:    public:
+        -:  100:      /// The pointer type.
+        -:  101:      using pointer = _Ptr;
+        -:  102:
+        -:  103:      /// The type pointed to.
+        -:  104:      using element_type
+        -:  105:	= __detected_or_t<__get_first_arg_t<_Ptr>, __element_type, _Ptr>;
+        -:  106:
+        -:  107:      /// The type used to represent the difference between two pointers.
+        -:  108:      using difference_type
+        -:  109:	= __detected_or_t<ptrdiff_t, __difference_type, _Ptr>;
+        -:  110:
+        -:  111:      /// A pointer to a different type.
+        -:  112:      template<typename _Up>
+        -:  113:        using rebind = typename __rebind<_Ptr, _Up>::type;
+        -:  114:
+        -:  115:      static _Ptr
+        -:  116:      pointer_to(__make_not_void<element_type>& __e)
+        -:  117:      { return _Ptr::pointer_to(__e); }
+        -:  118:
+        -:  119:      static_assert(!is_same<element_type, __undefined>::value,
+        -:  120:	  "pointer type defines element_type or is like SomePointer<T, Args>");
+        -:  121:    };
+        -:  122:
+        -:  123:  /**
+        -:  124:   * @brief  Partial specialization for built-in pointers.
+        -:  125:   * @ingroup pointer_abstractions
+        -:  126:  */
+        -:  127:  template<typename _Tp>
+        -:  128:    struct pointer_traits<_Tp*>
+        -:  129:    {
+        -:  130:      /// The pointer type
+        -:  131:      typedef _Tp* pointer;
+        -:  132:      /// The type pointed to
+        -:  133:      typedef _Tp  element_type;
+        -:  134:      /// Type used to represent the difference between two pointers
+        -:  135:      typedef ptrdiff_t difference_type;
+        -:  136:
+        -:  137:      template<typename _Up>
+        -:  138:        using rebind = _Up*;
+        -:  139:
+        -:  140:      /**
+        -:  141:       *  @brief  Obtain a pointer to an object
+        -:  142:       *  @param  __r  A reference to an object of type @c element_type
+        -:  143:       *  @return @c addressof(__r)
+        -:  144:      */
+        -:  145:      static _GLIBCXX20_CONSTEXPR pointer
+       5*:  146:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    %%%%%:  146-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  146-block  1
+branch  2 never executed
+branch  3 never executed
+        1:  146-block  2
+branch  4 taken 0 (fallthrough)
+branch  5 taken 1
+    %%%%%:  146-block  3
+branch  6 never executed
+branch  7 never executed
+branch  8 taken 0 (fallthrough)
+branch  9 taken 1
+    %%%%%:  146-block  4
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  146-block  5
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  146-block  6
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:  146-block  7
+branch 19 never executed
+branch 20 never executed
+    %%%%%:  146-block  8
+branch 21 never executed
+branch 22 never executed
+    $$$$$:  146-block  9
+branch 23 never executed
+branch 24 never executed
+    $$$$$:  146-block 10
+branch 25 never executed
+branch 26 never executed
+    %%%%%:  146-block 11
+branch 27 never executed
+branch 28 never executed
+    %%%%%:  146-block 12
+branch 29 never executed
+branch 30 never executed
+    %%%%%:  146-block 13
+branch 31 never executed
+branch 32 never executed
+    %%%%%:  146-block 14
+branch 33 never executed
+branch 34 never executed
+    %%%%%:  146-block 15
+branch 35 never executed
+branch 36 never executed
+    %%%%%:  146-block 16
+branch 37 never executed
+branch 38 never executed
+    %%%%%:  146-block 17
+branch 39 never executed
+branch 40 never executed
+    %%%%%:  146-block 18
+branch 41 never executed
+branch 42 never executed
+    %%%%%:  146-block 19
+branch 43 never executed
+branch 44 never executed
+    %%%%%:  146-block 20
+branch 45 never executed
+branch 46 never executed
+    $$$$$:  146-block 21
+branch 47 never executed
+branch 48 never executed
+    $$$$$:  146-block 22
+branch 49 never executed
+branch 50 never executed
+    $$$$$:  146-block 23
+branch 51 never executed
+branch 52 never executed
+    $$$$$:  146-block 24
+branch 53 never executed
+branch 54 never executed
+    $$$$$:  146-block 25
+branch 55 never executed
+branch 56 never executed
+    $$$$$:  146-block 26
+branch 57 never executed
+branch 58 never executed
+    $$$$$:  146-block 27
+branch 59 never executed
+branch 60 never executed
+    $$$$$:  146-block 28
+branch 61 never executed
+branch 62 never executed
+    $$$$$:  146-block 29
+branch 63 never executed
+branch 64 never executed
+    $$$$$:  146-block 30
+branch 65 never executed
+branch 66 never executed
+    %%%%%:  146-block 31
+branch 67 never executed
+branch 68 never executed
+    %%%%%:  146-block 32
+branch 69 never executed
+branch 70 never executed
+    %%%%%:  146-block 33
+branch 71 never executed
+branch 72 never executed
+    %%%%%:  146-block 34
+branch 73 never executed
+branch 74 never executed
+    %%%%%:  146-block 35
+branch 75 never executed
+branch 76 never executed
+    %%%%%:  146-block 36
+branch 77 never executed
+branch 78 never executed
+    %%%%%:  146-block 37
+branch 79 never executed
+branch 80 never executed
+    %%%%%:  146-block 38
+branch 81 never executed
+branch 82 never executed
+    %%%%%:  146-block 39
+branch 83 never executed
+branch 84 never executed
+    %%%%%:  146-block 40
+branch 85 never executed
+branch 86 never executed
+    %%%%%:  146-block 41
+branch 87 never executed
+branch 88 never executed
+    %%%%%:  146-block 42
+branch 89 never executed
+branch 90 never executed
+    %%%%%:  146-block 43
+branch 91 never executed
+branch 92 never executed
+    %%%%%:  146-block 44
+branch 93 never executed
+branch 94 never executed
+    %%%%%:  146-block 45
+branch 95 never executed
+branch 96 never executed
+    %%%%%:  146-block 46
+branch 97 never executed
+branch 98 never executed
+    %%%%%:  146-block 47
+branch 99 never executed
+branch 100 never executed
+    %%%%%:  146-block 48
+branch 101 never executed
+branch 102 never executed
+    %%%%%:  146-block 49
+branch 103 never executed
+branch 104 never executed
+    %%%%%:  146-block 50
+branch 105 never executed
+branch 106 never executed
+    %%%%%:  146-block 51
+branch 107 never executed
+branch 108 never executed
+    %%%%%:  146-block 52
+branch 109 never executed
+branch 110 never executed
+    %%%%%:  146-block 53
+branch 111 never executed
+branch 112 never executed
+    %%%%%:  146-block 54
+branch 113 never executed
+branch 114 never executed
+    %%%%%:  146-block 55
+branch 115 never executed
+branch 116 never executed
+    %%%%%:  146-block 56
+branch 117 never executed
+branch 118 never executed
+    %%%%%:  146-block 57
+branch 119 never executed
+branch 120 never executed
+    %%%%%:  146-block 58
+branch 121 never executed
+branch 122 never executed
+    %%%%%:  146-block 59
+branch 123 never executed
+branch 124 never executed
+    %%%%%:  146-block 60
+branch 125 never executed
+branch 126 never executed
+    %%%%%:  146-block 61
+branch 127 never executed
+branch 128 never executed
+    %%%%%:  146-block 62
+branch 129 never executed
+branch 130 never executed
+    $$$$$:  146-block 63
+branch 131 never executed
+branch 132 never executed
+    $$$$$:  146-block 64
+branch 133 never executed
+branch 134 never executed
+    $$$$$:  146-block 65
+branch 135 never executed
+branch 136 never executed
+    $$$$$:  146-block 66
+branch 137 never executed
+branch 138 never executed
+    $$$$$:  146-block 67
+branch 139 never executed
+branch 140 never executed
+    $$$$$:  146-block 68
+branch 141 never executed
+branch 142 never executed
+    $$$$$:  146-block 69
+branch 143 never executed
+branch 144 never executed
+    $$$$$:  146-block 70
+branch 145 never executed
+branch 146 never executed
+    $$$$$:  146-block 71
+branch 147 never executed
+branch 148 never executed
+    $$$$$:  146-block 72
+branch 149 never executed
+branch 150 never executed
+    $$$$$:  146-block 73
+branch 151 never executed
+branch 152 never executed
+    $$$$$:  146-block 74
+branch 153 never executed
+branch 154 never executed
+    $$$$$:  146-block 75
+branch 155 never executed
+branch 156 never executed
+    $$$$$:  146-block 76
+branch 157 never executed
+branch 158 never executed
+    $$$$$:  146-block 77
+branch 159 never executed
+branch 160 never executed
+    $$$$$:  146-block 78
+branch 161 never executed
+branch 162 never executed
+    $$$$$:  146-block 79
+branch 163 never executed
+branch 164 never executed
+    $$$$$:  146-block 80
+branch 165 never executed
+branch 166 never executed
+    $$$$$:  146-block 81
+branch 167 never executed
+branch 168 never executed
+    $$$$$:  146-block 82
+branch 169 never executed
+branch 170 never executed
+    $$$$$:  146-block 83
+branch 171 never executed
+branch 172 never executed
+    $$$$$:  146-block 84
+branch 173 never executed
+branch 174 never executed
+    $$$$$:  146-block 85
+branch 175 never executed
+branch 176 never executed
+    $$$$$:  146-block 86
+branch 177 never executed
+branch 178 never executed
+    $$$$$:  146-block 87
+branch 179 never executed
+branch 180 never executed
+    $$$$$:  146-block 88
+branch 181 never executed
+branch 182 never executed
+    $$$$$:  146-block 89
+branch 183 never executed
+branch 184 never executed
+    $$$$$:  146-block 90
+branch 185 never executed
+branch 186 never executed
+    $$$$$:  146-block 91
+branch 187 never executed
+branch 188 never executed
+    $$$$$:  146-block 92
+branch 189 never executed
+branch 190 never executed
+    $$$$$:  146-block 93
+branch 191 never executed
+branch 192 never executed
+    $$$$$:  146-block 94
+branch 193 never executed
+branch 194 never executed
+    %%%%%:  146-block 95
+branch 195 never executed
+branch 196 never executed
+    %%%%%:  146-block 96
+branch 197 never executed
+branch 198 never executed
+    %%%%%:  146-block 97
+branch 199 never executed
+branch 200 never executed
+    %%%%%:  146-block 98
+branch 201 never executed
+branch 202 never executed
+    %%%%%:  146-block 99
+branch 203 never executed
+branch 204 never executed
+    %%%%%:  146-block 100
+branch 205 never executed
+branch 206 never executed
+    %%%%%:  146-block 101
+branch 207 never executed
+branch 208 never executed
+    %%%%%:  146-block 102
+branch 209 never executed
+branch 210 never executed
+    %%%%%:  146-block 103
+branch 211 never executed
+branch 212 never executed
+    %%%%%:  146-block 104
+branch 213 never executed
+branch 214 never executed
+    %%%%%:  146-block 105
+branch 215 never executed
+branch 216 never executed
+    $$$$$:  146-block 106
+branch 217 never executed
+branch 218 never executed
+    $$$$$:  146-block 107
+branch 219 never executed
+branch 220 never executed
+    $$$$$:  146-block 108
+branch 221 never executed
+branch 222 never executed
+    $$$$$:  146-block 109
+branch 223 never executed
+branch 224 never executed
+    $$$$$:  146-block 110
+branch 225 never executed
+branch 226 never executed
+    $$$$$:  146-block 111
+branch 227 never executed
+branch 228 never executed
+    $$$$$:  146-block 112
+branch 229 never executed
+branch 230 never executed
+    $$$$$:  146-block 113
+branch 231 never executed
+branch 232 never executed
+    $$$$$:  146-block 114
+branch 233 never executed
+branch 234 never executed
+    $$$$$:  146-block 115
+branch 235 never executed
+branch 236 never executed
+    $$$$$:  146-block 116
+branch 237 never executed
+branch 238 never executed
+    %%%%%:  146-block 117
+branch 239 never executed
+branch 240 never executed
+    %%%%%:  146-block 118
+branch 241 never executed
+branch 242 never executed
+    %%%%%:  146-block 119
+branch 243 never executed
+branch 244 never executed
+    %%%%%:  146-block 120
+branch 245 never executed
+branch 246 never executed
+    %%%%%:  146-block 121
+branch 247 never executed
+branch 248 never executed
+    %%%%%:  146-block 122
+call   249 never executed
+branch 250 never executed
+branch 251 never executed
+    %%%%%:  146-block 123
+branch 252 never executed
+branch 253 never executed
+    %%%%%:  146-block 124
+call   254 never executed
+branch 255 never executed
+branch 256 never executed
+    %%%%%:  146-block 125
+branch 257 never executed
+branch 258 never executed
+    %%%%%:  146-block 126
+call   259 never executed
+branch 260 never executed
+branch 261 never executed
+    %%%%%:  146-block 127
+branch 262 never executed
+branch 263 never executed
+    %%%%%:  146-block 128
+branch 264 never executed
+branch 265 never executed
+    %%%%%:  146-block 129
+branch 266 never executed
+branch 267 never executed
+    %%%%%:  146-block 130
+branch 268 never executed
+branch 269 never executed
+    %%%%%:  146-block 131
+branch 270 never executed
+branch 271 never executed
+    %%%%%:  146-block 132
+branch 272 never executed
+branch 273 never executed
+    %%%%%:  146-block 133
+branch 274 never executed
+branch 275 never executed
+    $$$$$:  146-block 134
+branch 276 never executed
+branch 277 never executed
+    $$$$$:  146-block 135
+branch 278 never executed
+branch 279 never executed
+    $$$$$:  146-block 136
+branch 280 never executed
+branch 281 never executed
+    $$$$$:  146-block 137
+branch 282 never executed
+branch 283 never executed
+    $$$$$:  146-block 138
+branch 284 never executed
+branch 285 never executed
+    $$$$$:  146-block 139
+branch 286 never executed
+branch 287 never executed
+    $$$$$:  146-block 140
+branch 288 never executed
+branch 289 never executed
+    $$$$$:  146-block 141
+branch 290 never executed
+branch 291 never executed
+    $$$$$:  146-block 142
+branch 292 never executed
+branch 293 never executed
+    $$$$$:  146-block 143
+branch 294 never executed
+branch 295 never executed
+    $$$$$:  146-block 144
+branch 296 never executed
+branch 297 never executed
+    $$$$$:  146-block 145
+branch 298 never executed
+branch 299 never executed
+    $$$$$:  146-block 146
+branch 300 never executed
+branch 301 never executed
+    $$$$$:  146-block 147
+branch 302 never executed
+branch 303 never executed
+        1:  146-block 148
+call   304 returned 1
+branch 305 taken 1 (fallthrough)
+branch 306 taken 0 (throw)
+branch 307 taken 1 (fallthrough)
+branch 308 taken 0
+        1:  146-block 149
+branch 309 taken 0 (fallthrough)
+branch 310 taken 1
+    %%%%%:  146-block 150
+call   311 never executed
+branch 312 never executed
+branch 313 never executed
+    %%%%%:  146-block 151
+branch 314 never executed
+branch 315 never executed
+    %%%%%:  146-block 152
+branch 316 never executed
+branch 317 never executed
+    %%%%%:  146-block 153
+branch 318 never executed
+branch 319 never executed
+    %%%%%:  146-block 154
+call   320 never executed
+branch 321 never executed
+branch 322 never executed
+    %%%%%:  146-block 155
+branch 323 never executed
+branch 324 never executed
+    %%%%%:  146-block 156
+branch 325 never executed
+branch 326 never executed
+    %%%%%:  146-block 157
+branch 327 never executed
+branch 328 never executed
+    %%%%%:  146-block 158
+call   329 never executed
+branch 330 never executed
+branch 331 never executed
+    %%%%%:  146-block 159
+branch 332 never executed
+branch 333 never executed
+    %%%%%:  146-block 160
+branch 334 never executed
+branch 335 never executed
+    %%%%%:  146-block 161
+branch 336 never executed
+branch 337 never executed
+    %%%%%:  146-block 162
+call   338 never executed
+branch 339 never executed
+branch 340 never executed
+    %%%%%:  146-block 163
+branch 341 never executed
+branch 342 never executed
+    %%%%%:  146-block 164
+branch 343 never executed
+branch 344 never executed
+    %%%%%:  146-block 165
+branch 345 never executed
+branch 346 never executed
+    %%%%%:  146-block 166
+call   347 never executed
+branch 348 never executed
+branch 349 never executed
+    %%%%%:  146-block 167
+branch 350 never executed
+branch 351 never executed
+    %%%%%:  146-block 168
+branch 352 never executed
+branch 353 never executed
+    %%%%%:  146-block 169
+branch 354 never executed
+branch 355 never executed
+    %%%%%:  146-block 170
+call   356 never executed
+branch 357 never executed
+branch 358 never executed
+    %%%%%:  146-block 171
+branch 359 never executed
+branch 360 never executed
+    %%%%%:  146-block 172
+branch 361 never executed
+branch 362 never executed
+    %%%%%:  146-block 173
+branch 363 never executed
+branch 364 never executed
+    %%%%%:  146-block 174
+call   365 never executed
+branch 366 never executed
+branch 367 never executed
+    %%%%%:  146-block 175
+branch 368 never executed
+branch 369 never executed
+    %%%%%:  146-block 176
+branch 370 never executed
+branch 371 never executed
+    %%%%%:  146-block 177
+branch 372 never executed
+branch 373 never executed
+    %%%%%:  146-block 178
+call   374 never executed
+branch 375 never executed
+branch 376 never executed
+    %%%%%:  146-block 179
+branch 377 never executed
+branch 378 never executed
+    %%%%%:  146-block 180
+branch 379 never executed
+branch 380 never executed
+    %%%%%:  146-block 181
+branch 381 never executed
+branch 382 never executed
+    %%%%%:  146-block 182
+call   383 never executed
+branch 384 never executed
+branch 385 never executed
+    %%%%%:  146-block 183
+branch 386 never executed
+branch 387 never executed
+    %%%%%:  146-block 184
+branch 388 never executed
+branch 389 never executed
+    %%%%%:  146-block 185
+branch 390 never executed
+branch 391 never executed
+    %%%%%:  146-block 186
+call   392 never executed
+branch 393 never executed
+branch 394 never executed
+    %%%%%:  146-block 187
+branch 395 never executed
+branch 396 never executed
+    %%%%%:  146-block 188
+branch 397 never executed
+branch 398 never executed
+    %%%%%:  146-block 189
+branch 399 never executed
+branch 400 never executed
+    %%%%%:  146-block 190
+call   401 never executed
+branch 402 never executed
+branch 403 never executed
+    %%%%%:  146-block 191
+branch 404 never executed
+branch 405 never executed
+    %%%%%:  146-block 192
+branch 406 never executed
+branch 407 never executed
+    %%%%%:  146-block 193
+branch 408 never executed
+branch 409 never executed
+    %%%%%:  146-block 194
+call   410 never executed
+branch 411 never executed
+branch 412 never executed
+    %%%%%:  146-block 195
+branch 413 never executed
+branch 414 never executed
+    %%%%%:  146-block 196
+branch 415 never executed
+branch 416 never executed
+    %%%%%:  146-block 197
+branch 417 never executed
+branch 418 never executed
+    %%%%%:  146-block 198
+call   419 never executed
+branch 420 never executed
+branch 421 never executed
+    %%%%%:  146-block 199
+branch 422 never executed
+branch 423 never executed
+    %%%%%:  146-block 200
+branch 424 never executed
+branch 425 never executed
+    %%%%%:  146-block 201
+branch 426 never executed
+branch 427 never executed
+    %%%%%:  146-block 202
+call   428 never executed
+branch 429 never executed
+branch 430 never executed
+    %%%%%:  146-block 203
+branch 431 never executed
+branch 432 never executed
+    %%%%%:  146-block 204
+branch 433 never executed
+branch 434 never executed
+    %%%%%:  146-block 205
+branch 435 never executed
+branch 436 never executed
+    %%%%%:  146-block 206
+call   437 never executed
+branch 438 never executed
+branch 439 never executed
+    %%%%%:  146-block 207
+branch 440 never executed
+branch 441 never executed
+    %%%%%:  146-block 208
+branch 442 never executed
+branch 443 never executed
+    %%%%%:  146-block 209
+branch 444 never executed
+branch 445 never executed
+    %%%%%:  146-block 210
+call   446 never executed
+branch 447 never executed
+branch 448 never executed
+    %%%%%:  146-block 211
+branch 449 never executed
+branch 450 never executed
+    %%%%%:  146-block 212
+branch 451 never executed
+branch 452 never executed
+    %%%%%:  146-block 213
+branch 453 never executed
+branch 454 never executed
+    %%%%%:  146-block 214
+call   455 never executed
+branch 456 never executed
+branch 457 never executed
+    %%%%%:  146-block 215
+branch 458 never executed
+branch 459 never executed
+    %%%%%:  146-block 216
+branch 460 never executed
+branch 461 never executed
+    %%%%%:  146-block 217
+branch 462 never executed
+branch 463 never executed
+    %%%%%:  146-block 218
+call   464 never executed
+branch 465 never executed
+branch 466 never executed
+    %%%%%:  146-block 219
+branch 467 never executed
+branch 468 never executed
+    %%%%%:  146-block 220
+branch 469 never executed
+branch 470 never executed
+    %%%%%:  146-block 221
+branch 471 never executed
+branch 472 never executed
+    %%%%%:  146-block 222
+call   473 never executed
+branch 474 never executed
+branch 475 never executed
+    %%%%%:  146-block 223
+branch 476 never executed
+branch 477 never executed
+    %%%%%:  146-block 224
+branch 478 never executed
+branch 479 never executed
+    %%%%%:  146-block 225
+branch 480 never executed
+branch 481 never executed
+    %%%%%:  146-block 226
+call   482 never executed
+branch 483 never executed
+branch 484 never executed
+    %%%%%:  146-block 227
+branch 485 never executed
+branch 486 never executed
+    %%%%%:  146-block 228
+branch 487 never executed
+branch 488 never executed
+    %%%%%:  146-block 229
+branch 489 never executed
+branch 490 never executed
+    $$$$$:  146-block 230
+branch 491 never executed
+branch 492 never executed
+    $$$$$:  146-block 231
+branch 493 never executed
+branch 494 never executed
+    $$$$$:  146-block 232
+branch 495 never executed
+branch 496 never executed
+    $$$$$:  146-block 233
+branch 497 never executed
+branch 498 never executed
+    $$$$$:  146-block 234
+branch 499 never executed
+branch 500 never executed
+    $$$$$:  146-block 235
+branch 501 never executed
+branch 502 never executed
+    $$$$$:  146-block 236
+branch 503 never executed
+branch 504 never executed
+    $$$$$:  146-block 237
+branch 505 never executed
+branch 506 never executed
+    $$$$$:  146-block 238
+branch 507 never executed
+branch 508 never executed
+    $$$$$:  146-block 239
+branch 509 never executed
+branch 510 never executed
+    $$$$$:  146-block 240
+branch 511 never executed
+branch 512 never executed
+    $$$$$:  146-block 241
+branch 513 never executed
+branch 514 never executed
+    $$$$$:  146-block 242
+branch 515 never executed
+branch 516 never executed
+    $$$$$:  146-block 243
+branch 517 never executed
+branch 518 never executed
+    $$$$$:  146-block 244
+branch 519 never executed
+branch 520 never executed
+    $$$$$:  146-block 245
+branch 521 never executed
+branch 522 never executed
+    $$$$$:  146-block 246
+branch 523 never executed
+branch 524 never executed
+    $$$$$:  146-block 247
+branch 525 never executed
+branch 526 never executed
+    $$$$$:  146-block 248
+branch 527 never executed
+branch 528 never executed
+    $$$$$:  146-block 249
+branch 529 never executed
+branch 530 never executed
+    $$$$$:  146-block 250
+branch 531 never executed
+branch 532 never executed
+    $$$$$:  146-block 251
+branch 533 never executed
+branch 534 never executed
+    $$$$$:  146-block 252
+branch 535 never executed
+branch 536 never executed
+    $$$$$:  146-block 253
+branch 537 never executed
+branch 538 never executed
+    $$$$$:  146-block 254
+branch 539 never executed
+branch 540 never executed
+    $$$$$:  146-block 255
+branch 541 never executed
+branch 542 never executed
+    $$$$$:  146-block 256
+branch 543 never executed
+branch 544 never executed
+    $$$$$:  146-block 257
+branch 545 never executed
+branch 546 never executed
+    $$$$$:  146-block 258
+branch 547 never executed
+branch 548 never executed
+    $$$$$:  146-block 259
+branch 549 never executed
+branch 550 never executed
+    $$$$$:  146-block 260
+branch 551 never executed
+branch 552 never executed
+    $$$$$:  146-block 261
+branch 553 never executed
+branch 554 never executed
+    $$$$$:  146-block 262
+branch 555 never executed
+branch 556 never executed
+    $$$$$:  146-block 263
+branch 557 never executed
+branch 558 never executed
+    $$$$$:  146-block 264
+branch 559 never executed
+branch 560 never executed
+    $$$$$:  146-block 265
+branch 561 never executed
+branch 562 never executed
+    $$$$$:  146-block 266
+branch 563 never executed
+branch 564 never executed
+    $$$$$:  146-block 267
+branch 565 never executed
+branch 566 never executed
+    $$$$$:  146-block 268
+branch 567 never executed
+branch 568 never executed
+    $$$$$:  146-block 269
+branch 569 never executed
+branch 570 never executed
+    $$$$$:  146-block 270
+branch 571 never executed
+branch 572 never executed
+    $$$$$:  146-block 271
+branch 573 never executed
+branch 574 never executed
+    $$$$$:  146-block 272
+branch 575 never executed
+branch 576 never executed
+    $$$$$:  146-block 273
+branch 577 never executed
+branch 578 never executed
+    $$$$$:  146-block 274
+branch 579 never executed
+branch 580 never executed
+    $$$$$:  146-block 275
+branch 581 never executed
+branch 582 never executed
+    $$$$$:  146-block 276
+branch 583 never executed
+branch 584 never executed
+    $$$$$:  146-block 277
+branch 585 never executed
+branch 586 never executed
+    $$$$$:  146-block 278
+branch 587 never executed
+branch 588 never executed
+    $$$$$:  146-block 279
+branch 589 never executed
+branch 590 never executed
+    $$$$$:  146-block 280
+branch 591 never executed
+branch 592 never executed
+    $$$$$:  146-block 281
+branch 593 never executed
+branch 594 never executed
+    $$$$$:  146-block 282
+branch 595 never executed
+branch 596 never executed
+    $$$$$:  146-block 283
+branch 597 never executed
+branch 598 never executed
+    $$$$$:  146-block 284
+branch 599 never executed
+branch 600 never executed
+    $$$$$:  146-block 285
+branch 601 never executed
+branch 602 never executed
+    $$$$$:  146-block 286
+branch 603 never executed
+branch 604 never executed
+    $$$$$:  146-block 287
+branch 605 never executed
+branch 606 never executed
+    $$$$$:  146-block 288
+branch 607 never executed
+branch 608 never executed
+    $$$$$:  146-block 289
+branch 609 never executed
+branch 610 never executed
+    $$$$$:  146-block 290
+branch 611 never executed
+branch 612 never executed
+    $$$$$:  146-block 291
+branch 613 never executed
+branch 614 never executed
+       5*:  147:      { return std::addressof(__r); }
+    %%%%%:  147-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  147-block  1
+branch  2 never executed
+branch  3 never executed
+        1:  147-block  2
+branch  4 taken 0 (fallthrough)
+branch  5 taken 1
+    %%%%%:  147-block  3
+branch  6 never executed
+branch  7 never executed
+branch  8 taken 0 (fallthrough)
+branch  9 taken 1
+    %%%%%:  147-block  4
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  147-block  5
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  147-block  6
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:  147-block  7
+branch 19 never executed
+branch 20 never executed
+    %%%%%:  147-block  8
+branch 21 never executed
+branch 22 never executed
+    $$$$$:  147-block  9
+branch 23 never executed
+branch 24 never executed
+    $$$$$:  147-block 10
+branch 25 never executed
+branch 26 never executed
+    %%%%%:  147-block 11
+branch 27 never executed
+branch 28 never executed
+    %%%%%:  147-block 12
+branch 29 never executed
+branch 30 never executed
+    %%%%%:  147-block 13
+branch 31 never executed
+branch 32 never executed
+    %%%%%:  147-block 14
+branch 33 never executed
+branch 34 never executed
+    %%%%%:  147-block 15
+branch 35 never executed
+branch 36 never executed
+    %%%%%:  147-block 16
+branch 37 never executed
+branch 38 never executed
+    %%%%%:  147-block 17
+branch 39 never executed
+branch 40 never executed
+    %%%%%:  147-block 18
+branch 41 never executed
+branch 42 never executed
+    %%%%%:  147-block 19
+branch 43 never executed
+branch 44 never executed
+    %%%%%:  147-block 20
+branch 45 never executed
+branch 46 never executed
+    $$$$$:  147-block 21
+branch 47 never executed
+branch 48 never executed
+    $$$$$:  147-block 22
+branch 49 never executed
+branch 50 never executed
+    $$$$$:  147-block 23
+branch 51 never executed
+branch 52 never executed
+    $$$$$:  147-block 24
+branch 53 never executed
+branch 54 never executed
+    $$$$$:  147-block 25
+branch 55 never executed
+branch 56 never executed
+    $$$$$:  147-block 26
+branch 57 never executed
+branch 58 never executed
+    $$$$$:  147-block 27
+branch 59 never executed
+branch 60 never executed
+    $$$$$:  147-block 28
+branch 61 never executed
+branch 62 never executed
+    $$$$$:  147-block 29
+branch 63 never executed
+branch 64 never executed
+    $$$$$:  147-block 30
+branch 65 never executed
+branch 66 never executed
+    %%%%%:  147-block 31
+branch 67 never executed
+branch 68 never executed
+    %%%%%:  147-block 32
+branch 69 never executed
+branch 70 never executed
+    %%%%%:  147-block 33
+branch 71 never executed
+branch 72 never executed
+    %%%%%:  147-block 34
+branch 73 never executed
+branch 74 never executed
+    %%%%%:  147-block 35
+branch 75 never executed
+branch 76 never executed
+    %%%%%:  147-block 36
+branch 77 never executed
+branch 78 never executed
+    %%%%%:  147-block 37
+branch 79 never executed
+branch 80 never executed
+    %%%%%:  147-block 38
+branch 81 never executed
+branch 82 never executed
+    %%%%%:  147-block 39
+branch 83 never executed
+branch 84 never executed
+    %%%%%:  147-block 40
+branch 85 never executed
+branch 86 never executed
+    %%%%%:  147-block 41
+branch 87 never executed
+branch 88 never executed
+    %%%%%:  147-block 42
+branch 89 never executed
+branch 90 never executed
+    %%%%%:  147-block 43
+branch 91 never executed
+branch 92 never executed
+    %%%%%:  147-block 44
+branch 93 never executed
+branch 94 never executed
+    %%%%%:  147-block 45
+branch 95 never executed
+branch 96 never executed
+    %%%%%:  147-block 46
+branch 97 never executed
+branch 98 never executed
+    %%%%%:  147-block 47
+branch 99 never executed
+branch 100 never executed
+    %%%%%:  147-block 48
+branch 101 never executed
+branch 102 never executed
+    %%%%%:  147-block 49
+branch 103 never executed
+branch 104 never executed
+    %%%%%:  147-block 50
+branch 105 never executed
+branch 106 never executed
+    %%%%%:  147-block 51
+branch 107 never executed
+branch 108 never executed
+    %%%%%:  147-block 52
+branch 109 never executed
+branch 110 never executed
+    %%%%%:  147-block 53
+branch 111 never executed
+branch 112 never executed
+    %%%%%:  147-block 54
+branch 113 never executed
+branch 114 never executed
+    %%%%%:  147-block 55
+branch 115 never executed
+branch 116 never executed
+    %%%%%:  147-block 56
+branch 117 never executed
+branch 118 never executed
+    %%%%%:  147-block 57
+branch 119 never executed
+branch 120 never executed
+    %%%%%:  147-block 58
+branch 121 never executed
+branch 122 never executed
+    %%%%%:  147-block 59
+branch 123 never executed
+branch 124 never executed
+    %%%%%:  147-block 60
+branch 125 never executed
+branch 126 never executed
+    %%%%%:  147-block 61
+branch 127 never executed
+branch 128 never executed
+    %%%%%:  147-block 62
+branch 129 never executed
+branch 130 never executed
+    $$$$$:  147-block 63
+branch 131 never executed
+branch 132 never executed
+    $$$$$:  147-block 64
+branch 133 never executed
+branch 134 never executed
+    $$$$$:  147-block 65
+branch 135 never executed
+branch 136 never executed
+    $$$$$:  147-block 66
+branch 137 never executed
+branch 138 never executed
+    $$$$$:  147-block 67
+branch 139 never executed
+branch 140 never executed
+    $$$$$:  147-block 68
+branch 141 never executed
+branch 142 never executed
+    $$$$$:  147-block 69
+branch 143 never executed
+branch 144 never executed
+    $$$$$:  147-block 70
+branch 145 never executed
+branch 146 never executed
+    $$$$$:  147-block 71
+branch 147 never executed
+branch 148 never executed
+    $$$$$:  147-block 72
+branch 149 never executed
+branch 150 never executed
+    $$$$$:  147-block 73
+branch 151 never executed
+branch 152 never executed
+    $$$$$:  147-block 74
+branch 153 never executed
+branch 154 never executed
+    $$$$$:  147-block 75
+branch 155 never executed
+branch 156 never executed
+    $$$$$:  147-block 76
+branch 157 never executed
+branch 158 never executed
+    $$$$$:  147-block 77
+branch 159 never executed
+branch 160 never executed
+    $$$$$:  147-block 78
+branch 161 never executed
+branch 162 never executed
+    $$$$$:  147-block 79
+branch 163 never executed
+branch 164 never executed
+    $$$$$:  147-block 80
+branch 165 never executed
+branch 166 never executed
+    $$$$$:  147-block 81
+branch 167 never executed
+branch 168 never executed
+    $$$$$:  147-block 82
+branch 169 never executed
+branch 170 never executed
+    $$$$$:  147-block 83
+branch 171 never executed
+branch 172 never executed
+    $$$$$:  147-block 84
+branch 173 never executed
+branch 174 never executed
+    $$$$$:  147-block 85
+branch 175 never executed
+branch 176 never executed
+    $$$$$:  147-block 86
+branch 177 never executed
+branch 178 never executed
+    $$$$$:  147-block 87
+branch 179 never executed
+branch 180 never executed
+    $$$$$:  147-block 88
+branch 181 never executed
+branch 182 never executed
+    $$$$$:  147-block 89
+branch 183 never executed
+branch 184 never executed
+    $$$$$:  147-block 90
+branch 185 never executed
+branch 186 never executed
+    $$$$$:  147-block 91
+branch 187 never executed
+branch 188 never executed
+    $$$$$:  147-block 92
+branch 189 never executed
+branch 190 never executed
+    $$$$$:  147-block 93
+branch 191 never executed
+branch 192 never executed
+    $$$$$:  147-block 94
+branch 193 never executed
+branch 194 never executed
+    %%%%%:  147-block 95
+branch 195 never executed
+branch 196 never executed
+    %%%%%:  147-block 96
+branch 197 never executed
+branch 198 never executed
+    %%%%%:  147-block 97
+branch 199 never executed
+branch 200 never executed
+    %%%%%:  147-block 98
+branch 201 never executed
+branch 202 never executed
+    %%%%%:  147-block 99
+branch 203 never executed
+branch 204 never executed
+    %%%%%:  147-block 100
+branch 205 never executed
+branch 206 never executed
+    %%%%%:  147-block 101
+branch 207 never executed
+branch 208 never executed
+    %%%%%:  147-block 102
+branch 209 never executed
+branch 210 never executed
+    %%%%%:  147-block 103
+branch 211 never executed
+branch 212 never executed
+    %%%%%:  147-block 104
+branch 213 never executed
+branch 214 never executed
+    %%%%%:  147-block 105
+branch 215 never executed
+branch 216 never executed
+    $$$$$:  147-block 106
+branch 217 never executed
+branch 218 never executed
+    $$$$$:  147-block 107
+branch 219 never executed
+branch 220 never executed
+    $$$$$:  147-block 108
+branch 221 never executed
+branch 222 never executed
+    $$$$$:  147-block 109
+branch 223 never executed
+branch 224 never executed
+    $$$$$:  147-block 110
+branch 225 never executed
+branch 226 never executed
+    $$$$$:  147-block 111
+branch 227 never executed
+branch 228 never executed
+    $$$$$:  147-block 112
+branch 229 never executed
+branch 230 never executed
+    $$$$$:  147-block 113
+branch 231 never executed
+branch 232 never executed
+    $$$$$:  147-block 114
+branch 233 never executed
+branch 234 never executed
+    $$$$$:  147-block 115
+branch 235 never executed
+branch 236 never executed
+    $$$$$:  147-block 116
+branch 237 never executed
+branch 238 never executed
+    %%%%%:  147-block 117
+branch 239 never executed
+branch 240 never executed
+    %%%%%:  147-block 118
+branch 241 never executed
+branch 242 never executed
+    %%%%%:  147-block 119
+branch 243 never executed
+branch 244 never executed
+    %%%%%:  147-block 120
+branch 245 never executed
+branch 246 never executed
+    %%%%%:  147-block 121
+branch 247 never executed
+branch 248 never executed
+    %%%%%:  147-block 122
+call   249 never executed
+branch 250 never executed
+branch 251 never executed
+    %%%%%:  147-block 123
+branch 252 never executed
+branch 253 never executed
+    %%%%%:  147-block 124
+call   254 never executed
+branch 255 never executed
+branch 256 never executed
+    %%%%%:  147-block 125
+branch 257 never executed
+branch 258 never executed
+    %%%%%:  147-block 126
+call   259 never executed
+branch 260 never executed
+branch 261 never executed
+    %%%%%:  147-block 127
+branch 262 never executed
+branch 263 never executed
+    %%%%%:  147-block 128
+branch 264 never executed
+branch 265 never executed
+    %%%%%:  147-block 129
+branch 266 never executed
+branch 267 never executed
+    %%%%%:  147-block 130
+branch 268 never executed
+branch 269 never executed
+    %%%%%:  147-block 131
+branch 270 never executed
+branch 271 never executed
+    %%%%%:  147-block 132
+branch 272 never executed
+branch 273 never executed
+    %%%%%:  147-block 133
+branch 274 never executed
+branch 275 never executed
+    $$$$$:  147-block 134
+branch 276 never executed
+branch 277 never executed
+    $$$$$:  147-block 135
+branch 278 never executed
+branch 279 never executed
+    $$$$$:  147-block 136
+branch 280 never executed
+branch 281 never executed
+    $$$$$:  147-block 137
+branch 282 never executed
+branch 283 never executed
+    $$$$$:  147-block 138
+branch 284 never executed
+branch 285 never executed
+    $$$$$:  147-block 139
+branch 286 never executed
+branch 287 never executed
+    $$$$$:  147-block 140
+branch 288 never executed
+branch 289 never executed
+    $$$$$:  147-block 141
+branch 290 never executed
+branch 291 never executed
+    $$$$$:  147-block 142
+branch 292 never executed
+branch 293 never executed
+    $$$$$:  147-block 143
+branch 294 never executed
+branch 295 never executed
+    $$$$$:  147-block 144
+branch 296 never executed
+branch 297 never executed
+    $$$$$:  147-block 145
+branch 298 never executed
+branch 299 never executed
+    $$$$$:  147-block 146
+branch 300 never executed
+branch 301 never executed
+    $$$$$:  147-block 147
+branch 302 never executed
+branch 303 never executed
+        1:  147-block 148
+call   304 returned 1
+branch 305 taken 1 (fallthrough)
+branch 306 taken 0 (throw)
+branch 307 taken 1 (fallthrough)
+branch 308 taken 0
+        1:  147-block 149
+branch 309 taken 0 (fallthrough)
+branch 310 taken 1
+    %%%%%:  147-block 150
+call   311 never executed
+branch 312 never executed
+branch 313 never executed
+    %%%%%:  147-block 151
+branch 314 never executed
+branch 315 never executed
+    %%%%%:  147-block 152
+branch 316 never executed
+branch 317 never executed
+    %%%%%:  147-block 153
+branch 318 never executed
+branch 319 never executed
+    %%%%%:  147-block 154
+call   320 never executed
+branch 321 never executed
+branch 322 never executed
+    %%%%%:  147-block 155
+branch 323 never executed
+branch 324 never executed
+    %%%%%:  147-block 156
+branch 325 never executed
+branch 326 never executed
+    %%%%%:  147-block 157
+branch 327 never executed
+branch 328 never executed
+    %%%%%:  147-block 158
+call   329 never executed
+branch 330 never executed
+branch 331 never executed
+    %%%%%:  147-block 159
+branch 332 never executed
+branch 333 never executed
+    %%%%%:  147-block 160
+branch 334 never executed
+branch 335 never executed
+    %%%%%:  147-block 161
+branch 336 never executed
+branch 337 never executed
+    %%%%%:  147-block 162
+call   338 never executed
+branch 339 never executed
+branch 340 never executed
+    %%%%%:  147-block 163
+branch 341 never executed
+branch 342 never executed
+    %%%%%:  147-block 164
+branch 343 never executed
+branch 344 never executed
+    %%%%%:  147-block 165
+branch 345 never executed
+branch 346 never executed
+    %%%%%:  147-block 166
+call   347 never executed
+branch 348 never executed
+branch 349 never executed
+    %%%%%:  147-block 167
+branch 350 never executed
+branch 351 never executed
+    %%%%%:  147-block 168
+branch 352 never executed
+branch 353 never executed
+    %%%%%:  147-block 169
+branch 354 never executed
+branch 355 never executed
+    %%%%%:  147-block 170
+call   356 never executed
+branch 357 never executed
+branch 358 never executed
+    %%%%%:  147-block 171
+branch 359 never executed
+branch 360 never executed
+    %%%%%:  147-block 172
+branch 361 never executed
+branch 362 never executed
+    %%%%%:  147-block 173
+branch 363 never executed
+branch 364 never executed
+    %%%%%:  147-block 174
+call   365 never executed
+branch 366 never executed
+branch 367 never executed
+    %%%%%:  147-block 175
+branch 368 never executed
+branch 369 never executed
+    %%%%%:  147-block 176
+branch 370 never executed
+branch 371 never executed
+    %%%%%:  147-block 177
+branch 372 never executed
+branch 373 never executed
+    %%%%%:  147-block 178
+call   374 never executed
+branch 375 never executed
+branch 376 never executed
+    %%%%%:  147-block 179
+branch 377 never executed
+branch 378 never executed
+    %%%%%:  147-block 180
+branch 379 never executed
+branch 380 never executed
+    %%%%%:  147-block 181
+branch 381 never executed
+branch 382 never executed
+    %%%%%:  147-block 182
+call   383 never executed
+branch 384 never executed
+branch 385 never executed
+    %%%%%:  147-block 183
+branch 386 never executed
+branch 387 never executed
+    %%%%%:  147-block 184
+branch 388 never executed
+branch 389 never executed
+    %%%%%:  147-block 185
+branch 390 never executed
+branch 391 never executed
+    %%%%%:  147-block 186
+call   392 never executed
+branch 393 never executed
+branch 394 never executed
+    %%%%%:  147-block 187
+branch 395 never executed
+branch 396 never executed
+    %%%%%:  147-block 188
+branch 397 never executed
+branch 398 never executed
+    %%%%%:  147-block 189
+branch 399 never executed
+branch 400 never executed
+    %%%%%:  147-block 190
+call   401 never executed
+branch 402 never executed
+branch 403 never executed
+    %%%%%:  147-block 191
+branch 404 never executed
+branch 405 never executed
+    %%%%%:  147-block 192
+branch 406 never executed
+branch 407 never executed
+    %%%%%:  147-block 193
+branch 408 never executed
+branch 409 never executed
+    %%%%%:  147-block 194
+call   410 never executed
+branch 411 never executed
+branch 412 never executed
+    %%%%%:  147-block 195
+branch 413 never executed
+branch 414 never executed
+    %%%%%:  147-block 196
+branch 415 never executed
+branch 416 never executed
+    %%%%%:  147-block 197
+branch 417 never executed
+branch 418 never executed
+    %%%%%:  147-block 198
+call   419 never executed
+branch 420 never executed
+branch 421 never executed
+    %%%%%:  147-block 199
+branch 422 never executed
+branch 423 never executed
+    %%%%%:  147-block 200
+branch 424 never executed
+branch 425 never executed
+    %%%%%:  147-block 201
+branch 426 never executed
+branch 427 never executed
+    %%%%%:  147-block 202
+call   428 never executed
+branch 429 never executed
+branch 430 never executed
+    %%%%%:  147-block 203
+branch 431 never executed
+branch 432 never executed
+    %%%%%:  147-block 204
+branch 433 never executed
+branch 434 never executed
+    %%%%%:  147-block 205
+branch 435 never executed
+branch 436 never executed
+    %%%%%:  147-block 206
+call   437 never executed
+branch 438 never executed
+branch 439 never executed
+    %%%%%:  147-block 207
+branch 440 never executed
+branch 441 never executed
+    %%%%%:  147-block 208
+branch 442 never executed
+branch 443 never executed
+    %%%%%:  147-block 209
+branch 444 never executed
+branch 445 never executed
+    %%%%%:  147-block 210
+call   446 never executed
+branch 447 never executed
+branch 448 never executed
+    %%%%%:  147-block 211
+branch 449 never executed
+branch 450 never executed
+    %%%%%:  147-block 212
+branch 451 never executed
+branch 452 never executed
+    %%%%%:  147-block 213
+branch 453 never executed
+branch 454 never executed
+    %%%%%:  147-block 214
+call   455 never executed
+branch 456 never executed
+branch 457 never executed
+    %%%%%:  147-block 215
+branch 458 never executed
+branch 459 never executed
+    %%%%%:  147-block 216
+branch 460 never executed
+branch 461 never executed
+    %%%%%:  147-block 217
+branch 462 never executed
+branch 463 never executed
+    %%%%%:  147-block 218
+call   464 never executed
+branch 465 never executed
+branch 466 never executed
+    %%%%%:  147-block 219
+branch 467 never executed
+branch 468 never executed
+    %%%%%:  147-block 220
+branch 469 never executed
+branch 470 never executed
+    %%%%%:  147-block 221
+branch 471 never executed
+branch 472 never executed
+    %%%%%:  147-block 222
+call   473 never executed
+branch 474 never executed
+branch 475 never executed
+    %%%%%:  147-block 223
+branch 476 never executed
+branch 477 never executed
+    %%%%%:  147-block 224
+branch 478 never executed
+branch 479 never executed
+    %%%%%:  147-block 225
+branch 480 never executed
+branch 481 never executed
+    %%%%%:  147-block 226
+call   482 never executed
+branch 483 never executed
+branch 484 never executed
+    %%%%%:  147-block 227
+branch 485 never executed
+branch 486 never executed
+    %%%%%:  147-block 228
+branch 487 never executed
+branch 488 never executed
+    %%%%%:  147-block 229
+branch 489 never executed
+branch 490 never executed
+    $$$$$:  147-block 230
+branch 491 never executed
+branch 492 never executed
+    $$$$$:  147-block 231
+branch 493 never executed
+branch 494 never executed
+    $$$$$:  147-block 232
+branch 495 never executed
+branch 496 never executed
+    $$$$$:  147-block 233
+branch 497 never executed
+branch 498 never executed
+    $$$$$:  147-block 234
+branch 499 never executed
+branch 500 never executed
+    $$$$$:  147-block 235
+branch 501 never executed
+branch 502 never executed
+    $$$$$:  147-block 236
+branch 503 never executed
+branch 504 never executed
+    $$$$$:  147-block 237
+branch 505 never executed
+branch 506 never executed
+    $$$$$:  147-block 238
+branch 507 never executed
+branch 508 never executed
+    $$$$$:  147-block 239
+branch 509 never executed
+branch 510 never executed
+    $$$$$:  147-block 240
+branch 511 never executed
+branch 512 never executed
+    $$$$$:  147-block 241
+branch 513 never executed
+branch 514 never executed
+    $$$$$:  147-block 242
+branch 515 never executed
+branch 516 never executed
+    $$$$$:  147-block 243
+branch 517 never executed
+branch 518 never executed
+    $$$$$:  147-block 244
+branch 519 never executed
+branch 520 never executed
+    $$$$$:  147-block 245
+branch 521 never executed
+branch 522 never executed
+    $$$$$:  147-block 246
+branch 523 never executed
+branch 524 never executed
+    $$$$$:  147-block 247
+branch 525 never executed
+branch 526 never executed
+    $$$$$:  147-block 248
+branch 527 never executed
+branch 528 never executed
+    $$$$$:  147-block 249
+branch 529 never executed
+branch 530 never executed
+    $$$$$:  147-block 250
+branch 531 never executed
+branch 532 never executed
+    $$$$$:  147-block 251
+branch 533 never executed
+branch 534 never executed
+    $$$$$:  147-block 252
+branch 535 never executed
+branch 536 never executed
+    $$$$$:  147-block 253
+branch 537 never executed
+branch 538 never executed
+    $$$$$:  147-block 254
+branch 539 never executed
+branch 540 never executed
+    $$$$$:  147-block 255
+branch 541 never executed
+branch 542 never executed
+    $$$$$:  147-block 256
+branch 543 never executed
+branch 544 never executed
+    $$$$$:  147-block 257
+branch 545 never executed
+branch 546 never executed
+    $$$$$:  147-block 258
+branch 547 never executed
+branch 548 never executed
+    $$$$$:  147-block 259
+branch 549 never executed
+branch 550 never executed
+    $$$$$:  147-block 260
+branch 551 never executed
+branch 552 never executed
+    $$$$$:  147-block 261
+branch 553 never executed
+branch 554 never executed
+    $$$$$:  147-block 262
+branch 555 never executed
+branch 556 never executed
+    $$$$$:  147-block 263
+branch 557 never executed
+branch 558 never executed
+    $$$$$:  147-block 264
+branch 559 never executed
+branch 560 never executed
+    $$$$$:  147-block 265
+branch 561 never executed
+branch 562 never executed
+    $$$$$:  147-block 266
+branch 563 never executed
+branch 564 never executed
+    $$$$$:  147-block 267
+branch 565 never executed
+branch 566 never executed
+    $$$$$:  147-block 268
+branch 567 never executed
+branch 568 never executed
+    $$$$$:  147-block 269
+branch 569 never executed
+branch 570 never executed
+    $$$$$:  147-block 270
+branch 571 never executed
+branch 572 never executed
+    $$$$$:  147-block 271
+branch 573 never executed
+branch 574 never executed
+    $$$$$:  147-block 272
+branch 575 never executed
+branch 576 never executed
+    $$$$$:  147-block 273
+branch 577 never executed
+branch 578 never executed
+    $$$$$:  147-block 274
+branch 579 never executed
+branch 580 never executed
+    $$$$$:  147-block 275
+branch 581 never executed
+branch 582 never executed
+    $$$$$:  147-block 276
+branch 583 never executed
+branch 584 never executed
+    $$$$$:  147-block 277
+branch 585 never executed
+branch 586 never executed
+    $$$$$:  147-block 278
+branch 587 never executed
+branch 588 never executed
+    $$$$$:  147-block 279
+branch 589 never executed
+branch 590 never executed
+    $$$$$:  147-block 280
+branch 591 never executed
+branch 592 never executed
+    $$$$$:  147-block 281
+branch 593 never executed
+branch 594 never executed
+    $$$$$:  147-block 282
+branch 595 never executed
+branch 596 never executed
+    $$$$$:  147-block 283
+branch 597 never executed
+branch 598 never executed
+    $$$$$:  147-block 284
+branch 599 never executed
+branch 600 never executed
+    $$$$$:  147-block 285
+branch 601 never executed
+branch 602 never executed
+    $$$$$:  147-block 286
+branch 603 never executed
+branch 604 never executed
+    $$$$$:  147-block 287
+branch 605 never executed
+branch 606 never executed
+    $$$$$:  147-block 288
+branch 607 never executed
+branch 608 never executed
+    $$$$$:  147-block 289
+branch 609 never executed
+branch 610 never executed
+    $$$$$:  147-block 290
+branch 611 never executed
+branch 612 never executed
+    $$$$$:  147-block 291
+branch 613 never executed
+branch 614 never executed
+        -:  148:    };
+        -:  149:
+        -:  150:  /// Convenience alias for rebinding pointers.
+        -:  151:  template<typename _Ptr, typename _Tp>
+        -:  152:    using __ptr_rebind = typename pointer_traits<_Ptr>::template rebind<_Tp>;
+        -:  153:
+        -:  154:  template<typename _Tp>
+        -:  155:    constexpr _Tp*
+        -:  156:    __to_address(_Tp* __ptr) noexcept
+        -:  157:    {
+        -:  158:      static_assert(!std::is_function<_Tp>::value, "not a function pointer");
+        -:  159:      return __ptr;
+        -:  160:    }
+        -:  161:
+        -:  162:#if __cplusplus <= 201703L
+        -:  163:  template<typename _Ptr>
+        -:  164:    constexpr typename std::pointer_traits<_Ptr>::element_type*
+        -:  165:    __to_address(const _Ptr& __ptr)
+        -:  166:    { return std::__to_address(__ptr.operator->()); }
+        -:  167:#else
+        -:  168:  template<typename _Ptr>
+        -:  169:    constexpr auto
+        -:  170:    __to_address(const _Ptr& __ptr) noexcept
+        -:  171:    -> decltype(std::pointer_traits<_Ptr>::to_address(__ptr))
+        -:  172:    { return std::pointer_traits<_Ptr>::to_address(__ptr); }
+        -:  173:
+        -:  174:  template<typename _Ptr, typename... _None>
+        -:  175:    constexpr auto
+        -:  176:    __to_address(const _Ptr& __ptr, _None...) noexcept
+        -:  177:    {
+        -:  178:      if constexpr (is_base_of_v<__gnu_debug::_Safe_iterator_base, _Ptr>)
+        -:  179:	return std::__to_address(__ptr.base().operator->());
+        -:  180:      else
+        -:  181:	return std::__to_address(__ptr.operator->());
+        -:  182:    }
+        -:  183:
+        -:  184:#define __cpp_lib_to_address 201711L
+        -:  185:
+        -:  186:  /**
+        -:  187:   * @brief Obtain address referenced by a pointer to an object
+        -:  188:   * @param __ptr A pointer to an object
+        -:  189:   * @return @c __ptr
+        -:  190:   * @ingroup pointer_abstractions
+        -:  191:  */
+        -:  192:  template<typename _Tp>
+        -:  193:    constexpr _Tp*
+        -:  194:    to_address(_Tp* __ptr) noexcept
+        -:  195:    { return std::__to_address(__ptr); }
+        -:  196:
+        -:  197:  /**
+        -:  198:   * @brief Obtain address referenced by a pointer to an object
+        -:  199:   * @param __ptr A pointer to an object
+        -:  200:   * @return @c pointer_traits<_Ptr>::to_address(__ptr) if that expression is
+        -:  201:             well-formed, otherwise @c to_address(__ptr.operator->())
+        -:  202:   * @ingroup pointer_abstractions
+        -:  203:  */
+        -:  204:  template<typename _Ptr>
+        -:  205:    constexpr auto
+        -:  206:    to_address(const _Ptr& __ptr) noexcept
+        -:  207:    { return std::__to_address(__ptr); }
+        -:  208:#endif // C++2a
+        -:  209:
+        -:  210:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  211:} // namespace std
+        -:  212:
+        -:  213:#endif
+        -:  214:
+        -:  215:#endif

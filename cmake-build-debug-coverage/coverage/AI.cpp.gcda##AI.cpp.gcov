@@ -1,0 +1,898 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/AI.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "AI.hpp"
+        -:    2:
+        -:    3:
+        -:    4:#define nsecs std::chrono::high_resolution_clock::now().time_since_epoch().count()
+        -:    5:
+        -:    6:
+        -:    7:static std::atomic<bool> stop_search;
+        -:    8:
+        -:    9:
+        -:   10:static int64_t evaluated;
+        -:   11:static int32_t maximal_depth;
+        -:   12:static int32_t tt_cutoffs;
+        -:   13:
+        -:   14:
+        -:   15:AI::AI() = default;
+function _ZN2AIC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 86%
+        1:   16:AI::AI(const std::string& opening_book_path) {
+        1:   16-block  0
+call    0 returned 1
+    $$$$$:   16-block  1
+call    1 never executed
+        1:   17:    this->_opening_book = {opening_book_path};
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   17-block  0
+call    3 returned 1
+call    4 returned 1
+        1:   18:}
+function _ZN2AI9best_moveERK8Positionhii called 0 returned 0% blocks executed 0%
+    #####:   19:Move AI::best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms) {
+    #####:   20:    std::cout << std::endl;
+    %%%%%:   20-block  0
+call    0 never executed
+    #####:   21:    StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened, true);
+call    0 never executed
+        -:   22:
+    #####:   23:    int64_t time_start = nsecs;
+call    0 never executed
+call    1 never executed
+    #####:   24:    stop_search = false;
+call    0 never executed
+    #####:   25:    TranspositionTable tt;
+call    0 never executed
+        -:   26:
+    #####:   27:    std::tuple<Move, int32_t> opening_book_result = this->_opening_book.try_to_find_move(position);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   28:    std::cout << ANSI::Green << "Number of available moves in the opening book: " << std::get<1>(opening_book_result) << "." << ANSI::End << std::endl;
+    %%%%%:   28-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   28-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   28-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   28-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   28-block  4
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   28-block  5
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+    #####:   29:    if (std::get<1>(opening_book_result)) {
+    %%%%%:   29-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   30:        usleep(std::max((int64_t)0, (min_ms - (nsecs - time_start) / (int64_t)1e+6) * (int64_t)1e+3));
+    %%%%%:   30-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   30-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   30-block  2
+call    6 never executed
+    #####:   31:        return std::get<0>(opening_book_result);
+    %%%%%:   31-block  0
+        -:   32:    }
+        -:   33:
+    #####:   34:    std::cout << ANSI::Green << "Search started." << std::endl;
+    %%%%%:   34-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   34-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   34-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+        -:   35:
+    #####:   36:    int32_t best_move_evaluation;
+    #####:   37:    Move best_move;
+    %%%%%:   37-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   38:    std::future<std::tuple<int32_t, Move>> best_move_thread;
+    %%%%%:   38-block  0
+call    0 never executed
+    $$$$$:   38-block  1
+        -:   39:
+    #####:   40:    bool update_best_move;
+        -:   41:
+    #####:   42:    for (int32_t i = 1; i < 1e+3; i = i + 1) {
+    %%%%%:   42-block  0
+    %%%%%:   42-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   42-block  2
+    #####:   43:        evaluated = 0;
+    #####:   44:        maximal_depth = 0;
+    #####:   45:        tt_cutoffs = 0;
+        -:   46:
+    #####:   47:        best_move_thread = std::async(AI::_best_move, position, side, i, std::ref(tt));
+    %%%%%:   47-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   47-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   47-block  2
+branch  5 never executed
+branch  6 never executed
+        -:   48:
+    #####:   49:        update_best_move = true;
+    %%%%%:   49-block  0
+    #####:   50:        while (best_move_thread.wait_for(std::chrono::seconds(0)) != std::future_status::ready) {
+    %%%%%:   50-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   50-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:   51:            if ((nsecs - time_start) / (int32_t)1e+6 >= max_ms) {
+    %%%%%:   51-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   52:                update_best_move = false;
+        -:   53:                break;
+        -:   54:            }
+    #####:   55:            usleep(20000);
+    %%%%%:   55-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   56:        }
+        -:   57:
+    #####:   58:        if (update_best_move or i == 1) std::tie(best_move_evaluation, best_move) = best_move_thread.get();
+    %%%%%:   58-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   58-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   58-block  2
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:   58-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+        -:   59:        else {
+    #####:   60:            stop_search = true;
+    %%%%%:   60-block  0
+        -:   61:            break;
+        -:   62:        }
+        -:   63:
+    #####:   64:        std::cout << "Base depth: " << std::setw(4) << i << ". Maximal depth: " << std::setw(4) << maximal_depth << ". Evaluation: " << std::setw(6) << (float)best_move_evaluation / 100.0f << " pawns. Evaluated (this iteration): " << std::setw(10) << evaluated << ". TT cutoffs (this iteration): " << std::setw(10) << tt_cutoffs << ". Time (full search): " << std::setw(10) << (nsecs - time_start) / (int32_t)1e+6 << " ms." << std::endl;
+    %%%%%:   64-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   64-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   64-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   64-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   64-block  4
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   64-block  5
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+    %%%%%:   64-block  6
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+    %%%%%:   64-block  7
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+    %%%%%:   64-block  8
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+    %%%%%:   64-block  9
+call   27 never executed
+branch 28 never executed
+branch 29 never executed
+    %%%%%:   64-block 10
+call   30 never executed
+branch 31 never executed
+branch 32 never executed
+    %%%%%:   64-block 11
+call   33 never executed
+call   34 never executed
+branch 35 never executed
+branch 36 never executed
+    %%%%%:   64-block 12
+call   37 never executed
+branch 38 never executed
+branch 39 never executed
+    %%%%%:   64-block 13
+call   40 never executed
+branch 41 never executed
+branch 42 never executed
+    $$$$$:   64-block 14
+        -:   65:
+    #####:   66:        if (best_move_evaluation > AI::Infinity::Positive - 2000 or best_move_evaluation < AI::Infinity::Negative + 2000) break;
+    %%%%%:   66-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   67:    }
+        -:   68:
+    #####:   69:    usleep(std::max((int64_t)0, (min_ms - (nsecs - time_start) / (int64_t)1e+6) * (int64_t)1e+3));
+    %%%%%:   69-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   69-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   69-block  2
+branch  6 never executed
+branch  7 never executed
+        -:   70:
+    #####:   71:    std::cout << "Search finished." << std::endl << ANSI::End;
+    %%%%%:   71-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   71-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   71-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+        -:   72:
+    #####:   73:    return best_move;
+    %%%%%:   73-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   74:}
+function _ZN2AI10_best_moveERK8PositionhiR18TranspositionTable called 0 returned 0% blocks executed 0%
+    #####:   75:std::tuple<int32_t, Move> AI::_best_move(const Position& position, uint8_t side, int32_t depth, TranspositionTable &tt) {
+    #####:   76:    if (side == Pieces::White) return AI::_alpha_beta_max(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);
+    %%%%%:   76-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   76-block  1
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   76-block  2
+    $$$$$:   76-block  3
+call    6 never executed
+    #####:   77:    return AI::_alpha_beta_min(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);
+    %%%%%:   77-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   77-block  1
+        -:   78:}
+function _ZN2AI15_alpha_beta_minE8PositioniiiiR18TranspositionTable called 0 returned 0% blocks executed 0%
+    #####:   79:std::tuple<int32_t, Move> AI::_alpha_beta_min(Position position, int32_t alpha, int32_t beta, int32_t depth_left, int32_t depth_current, TranspositionTable &tt) {
+    #####:   80:    if (stop_search) return std::make_tuple(0, Move());
+    %%%%%:   80-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   80-block  1
+call    2 never executed
+    #####:   81:    if (depth_current > maximal_depth) maximal_depth = depth_current;
+    %%%%%:   81-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   81-block  1
+        -:   82:
+    #####:   83:    if (depth_left == 0) return std::make_tuple(AI::_alpha_beta_min_only_captures(position, alpha, beta, depth_current), Move());
+    %%%%%:   83-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   83-block  1
+call    2 never executed
+call    3 never executed
+        -:   84:
+    #####:   85:    if (position._fifty_moves_ctr >= 50 or position._repetition_history.get_repetition_number(position._hash) >= 3) return std::make_tuple(0, Move());
+    %%%%%:   85-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   85-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   85-block  2
+call    5 never executed
+        -:   86:
+    #####:   87:    MoveList moves = LegalMoveGen::generate(position, Pieces::Black);
+    %%%%%:   87-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:   87-block  1
+call    4 never executed
+    #####:   88:    moves = MoveSorter::sort(position._pieces, moves);
+    %%%%%:   88-block  0
+call    0 never executed
+    #####:   89:    Move move;
+call    0 never executed
+    #####:   90:    Move best_move;
+call    0 never executed
+    #####:   91:    uint8_t best_move_index;
+        -:   92:
+    #####:   93:    bool in_check = PsLegalMoveMaskGen::in_danger(position._pieces, BitboardOperations::bsf(position._pieces._piece_bitboards[Pieces::Black][Pieces::King]), Pieces::Black);
+call    0 never executed
+        -:   94:
+    #####:   95:    if (moves.size() == 0) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   96:        if (in_check) return std::make_tuple(AI::Infinity::Positive - depth_current, Move());
+    %%%%%:   96-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   96-block  1
+call    2 never executed
+    #####:   97:        return std::make_tuple(0, Move());
+    %%%%%:   97-block  0
+call    0 never executed
+        -:   98:    }
+        -:   99:
+    #####:  100:    int32_t evaluation;
+        -:  101:
+    #####:  102:    Position copy;
+    %%%%%:  102-block  0
+call    0 never executed
+    %%%%%:  102-block  1
+        -:  103:
+    #####:  104:    uint8_t tt_result = tt.try_to_find_best_move_index(position._hash);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  105:
+    #####:  106:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  106-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  106-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  106-block  2
+    #####:  107:        if (tt_result >= moves.size()) move = moves[i];
+    %%%%%:  107-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  107-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  107-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  107-block  3
+        -:  108:        else {
+    #####:  109:            if (i == 0) move = moves[tt_result];
+    %%%%%:  109-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  109-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  109-block  2
+        -:  110:            else {
+    #####:  111:                if (i == tt_result) move = moves[0];
+    %%%%%:  111-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  111-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  111-block  2
+    #####:  112:                else move = moves[i];
+    %%%%%:  112-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  112-block  1
+        -:  113:            }
+        -:  114:        }
+        -:  115:
+    #####:  116:        copy = position;
+    %%%%%:  116-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  117:        copy.move(move);
+    %%%%%:  117-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  118:        evaluation = std::get<0>(AI::_alpha_beta_max(copy, alpha, beta, depth_left - !in_check, depth_current + 1, tt));
+    %%%%%:  118-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  118-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  118-block  2
+branch  6 never executed
+branch  7 never executed
+    $$$$$:  118-block  3
+        -:  119:
+    #####:  120:        if (evaluation <= alpha) {
+    %%%%%:  120-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  121:            if (tt_result >= moves.size() or i != 0) tt.add_entry({position._hash, depth_left, best_move_index});
+    %%%%%:  121-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  121-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  121-block  2
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  121-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  121-block  4
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+    %%%%%:  121-block  5
+    #####:  122:            else tt_cutoffs = tt_cutoffs + 1;
+    %%%%%:  122-block  0
+    #####:  123:            return std::make_tuple(alpha, best_move);
+    %%%%%:  123-block  0
+        -:  124:        }
+    #####:  125:        if (evaluation < beta) {
+    %%%%%:  125-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  126:            best_move = move;
+    #####:  127:            best_move_index = i;
+    #####:  128:            beta = evaluation;
+    %%%%%:  128-block  0
+        -:  129:        }
+        -:  130:    }
+        -:  131:
+    #####:  132:    tt.add_entry({position._hash, depth_left, best_move_index});
+    %%%%%:  132-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  132-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  132-block  2
+branch  6 never executed
+branch  7 never executed
+    #####:  133:    return std::make_tuple(beta, best_move);
+    %%%%%:  133-block  0
+    %%%%%:  133-block  1
+branch  0 never executed
+branch  1 never executed
+        -:  134:}
+function _ZN2AI15_alpha_beta_maxE8PositioniiiiR18TranspositionTable called 0 returned 0% blocks executed 0%
+    #####:  135:std::tuple<int32_t, Move> AI::_alpha_beta_max(Position position, int32_t alpha, int32_t beta, int32_t depth_left, int32_t depth_current, TranspositionTable &tt) {
+    #####:  136:    if (stop_search) return std::make_tuple(0, Move());
+    %%%%%:  136-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  136-block  1
+call    2 never executed
+    #####:  137:    if (depth_current > maximal_depth) maximal_depth = depth_current;
+    %%%%%:  137-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  137-block  1
+        -:  138:
+    #####:  139:    if (depth_left == 0) return std::make_tuple(AI::_alpha_beta_max_only_captures(position, alpha, beta, depth_current), Move());
+    %%%%%:  139-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  139-block  1
+call    2 never executed
+call    3 never executed
+        -:  140:
+    #####:  141:    if (position._fifty_moves_ctr >= 50 or position._repetition_history.get_repetition_number(position._hash) >= 3) return std::make_tuple(0, Move());
+    %%%%%:  141-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  141-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  141-block  2
+call    5 never executed
+        -:  142:
+    #####:  143:    MoveList moves = LegalMoveGen::generate(position, Pieces::White);
+    %%%%%:  143-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  143-block  1
+call    4 never executed
+    #####:  144:    moves = MoveSorter::sort(position._pieces, moves);
+    %%%%%:  144-block  0
+call    0 never executed
+    #####:  145:    Move move;
+call    0 never executed
+    #####:  146:    Move best_move;
+call    0 never executed
+    #####:  147:    uint8_t best_move_index;
+        -:  148:
+    #####:  149:    bool in_check = PsLegalMoveMaskGen::in_danger(position._pieces, BitboardOperations::bsf(position._pieces._piece_bitboards[Pieces::White][Pieces::King]), Pieces::White);
+call    0 never executed
+        -:  150:
+    #####:  151:    if (moves.size() == 0) {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  152:        if (in_check) return std::make_tuple(AI::Infinity::Negative + depth_current, Move());
+    %%%%%:  152-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  152-block  1
+call    2 never executed
+    #####:  153:        return std::make_tuple(0, Move());
+    %%%%%:  153-block  0
+call    0 never executed
+        -:  154:    }
+        -:  155:
+    #####:  156:    int32_t evaluation;
+        -:  157:
+    #####:  158:    Position copy;
+    %%%%%:  158-block  0
+call    0 never executed
+    %%%%%:  158-block  1
+        -:  159:
+    #####:  160:    uint8_t tt_result = tt.try_to_find_best_move_index(position._hash);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  161:
+    #####:  162:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  162-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  162-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  162-block  2
+    #####:  163:        if (tt_result >= moves.size()) move = moves[i];
+    %%%%%:  163-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  163-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  163-block  2
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  163-block  3
+        -:  164:        else {
+    #####:  165:            if (i == 0) move = moves[tt_result];
+    %%%%%:  165-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  165-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  165-block  2
+        -:  166:            else {
+    #####:  167:                if (i == tt_result) move = moves[0];
+    %%%%%:  167-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  167-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  167-block  2
+    #####:  168:                else move = moves[i];
+    %%%%%:  168-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  168-block  1
+        -:  169:            }
+        -:  170:        }
+        -:  171:
+    #####:  172:        copy = position;
+    %%%%%:  172-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  173:        copy.move(move);
+    %%%%%:  173-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  174:        evaluation = std::get<0>(AI::_alpha_beta_min(copy, alpha, beta, depth_left - !in_check, depth_current + 1, tt));
+    %%%%%:  174-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  174-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  174-block  2
+branch  6 never executed
+branch  7 never executed
+    $$$$$:  174-block  3
+        -:  175:
+    #####:  176:        if (evaluation >= beta) {
+    %%%%%:  176-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  177:            if (tt_result >= moves.size() or i != 0) tt.add_entry({position._hash, depth_left, best_move_index});
+    %%%%%:  177-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  177-block  1
+branch  3 never executed
+branch  4 never executed
+    %%%%%:  177-block  2
+branch  5 never executed
+branch  6 never executed
+    %%%%%:  177-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  177-block  4
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+    %%%%%:  177-block  5
+    #####:  178:            else tt_cutoffs = tt_cutoffs + 1;
+    %%%%%:  178-block  0
+    #####:  179:            return std::make_tuple(beta, best_move);
+    %%%%%:  179-block  0
+        -:  180:        }
+    #####:  181:        if (evaluation > alpha) {
+    %%%%%:  181-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  182:            best_move = move;
+    #####:  183:            best_move_index = i;
+    #####:  184:            alpha = evaluation;
+    %%%%%:  184-block  0
+        -:  185:        }
+        -:  186:    }
+        -:  187:
+    #####:  188:    tt.add_entry({position._hash, depth_left, best_move_index});
+    %%%%%:  188-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  188-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  188-block  2
+branch  6 never executed
+branch  7 never executed
+    #####:  189:    return std::make_tuple(alpha, best_move);
+    %%%%%:  189-block  0
+    %%%%%:  189-block  1
+branch  0 never executed
+branch  1 never executed
+        -:  190:}
+function _ZN2AI29_alpha_beta_min_only_capturesERK8Positioniii called 0 returned 0% blocks executed 0%
+    #####:  191:int32_t AI::_alpha_beta_min_only_captures(const Position& position, int32_t alpha, int32_t beta, int32_t depth_current) {
+    #####:  192:    if (stop_search) return 0;
+    %%%%%:  192-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  193:    if (depth_current > maximal_depth) maximal_depth = depth_current;
+    %%%%%:  193-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  193-block  1
+        -:  194:
+    #####:  195:    int32_t evaluation = StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened);
+    %%%%%:  195-block  0
+call    0 never executed
+    #####:  196:    evaluated = evaluated + 1;
+        -:  197:
+    #####:  198:    if (evaluation <= alpha) return alpha;
+branch  0 never executed
+branch  1 never executed
+    #####:  199:    if (evaluation < beta) beta = evaluation;
+        -:  200:
+    #####:  201:    MoveList moves = LegalMoveGen::generate(position, Pieces::Black, true);
+    %%%%%:  201-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  201-block  1
+call    4 never executed
+    #####:  202:    moves = MoveSorter::sort(position._pieces, moves);
+    %%%%%:  202-block  0
+call    0 never executed
+    #####:  203:    Move move;
+call    0 never executed
+        -:  204:
+    #####:  205:    Position copy;
+call    0 never executed
+    %%%%%:  205-block  0
+        -:  206:
+    #####:  207:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  207-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  207-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:  208:        move = moves[i];
+    %%%%%:  208-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  209:
+    #####:  210:        copy = position;
+    %%%%%:  210-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  211:        copy.move(move);
+    %%%%%:  211-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  212:        evaluation = AI::_alpha_beta_max_only_captures(copy, alpha, beta, depth_current + 1);
+    %%%%%:  212-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  213:
+    #####:  214:        if (evaluation <= alpha) return alpha;
+    %%%%%:  214-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  215:        if (evaluation < beta) beta = evaluation;
+    %%%%%:  215-block  0
+        -:  216:    }
+        -:  217:
+        -:  218:    return beta;
+        -:  219:}
+function _ZN2AI29_alpha_beta_max_only_capturesERK8Positioniii called 0 returned 0% blocks executed 0%
+    #####:  220:int32_t AI::_alpha_beta_max_only_captures(const Position& position, int32_t alpha, int32_t beta, int32_t depth_current) {
+    #####:  221:    if (stop_search) return 0;
+    %%%%%:  221-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  222:    if (depth_current > maximal_depth) maximal_depth = depth_current;
+    %%%%%:  222-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  222-block  1
+        -:  223:
+    #####:  224:    int32_t evaluation = StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened);
+    %%%%%:  224-block  0
+call    0 never executed
+    #####:  225:    evaluated = evaluated + 1;
+        -:  226:
+    #####:  227:    if (evaluation >= beta) return beta;
+branch  0 never executed
+branch  1 never executed
+    #####:  228:    if (evaluation > alpha) alpha = evaluation;
+        -:  229:
+    #####:  230:    MoveList moves = LegalMoveGen::generate(position, Pieces::White, true);
+    %%%%%:  230-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  230-block  1
+call    4 never executed
+    #####:  231:    moves = MoveSorter::sort(position._pieces, moves);
+    %%%%%:  231-block  0
+call    0 never executed
+    #####:  232:    Move move;
+call    0 never executed
+        -:  233:
+    #####:  234:    Position copy;
+call    0 never executed
+    %%%%%:  234-block  0
+        -:  235:
+    #####:  236:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:  236-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  236-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:  237:        move = moves[i];
+    %%%%%:  237-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  238:
+    #####:  239:        copy = position;
+    %%%%%:  239-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  240:        copy.move(move);
+    %%%%%:  240-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  241:        evaluation = AI::_alpha_beta_min_only_captures(copy, alpha, beta, depth_current + 1);
+    %%%%%:  241-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  242:
+    #####:  243:        if (evaluation >= beta) return beta;
+    %%%%%:  243-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  244:        if (evaluation > alpha) alpha = evaluation;
+    %%%%%:  244-block  0
+        -:  245:    }
+        -:  246:
+        -:  247:    return alpha;
+        -:  248:}

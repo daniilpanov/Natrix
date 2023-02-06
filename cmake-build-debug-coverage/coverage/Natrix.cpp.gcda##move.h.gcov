@@ -1,0 +1,1210 @@
+        -:    0:Source:/usr/include/c++/9/bits/move.h
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Natrix.cpp.gcda
+        -:    0:Runs:1
+        -:    1:// Move, forward and identity for C++11 + swap -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2007-2019 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/** @file bits/move.h
+        -:   26: *  This is an internal header file, included by other library headers.
+        -:   27: *  Do not attempt to use it directly. @headername{utility}
+        -:   28: */
+        -:   29:
+        -:   30:#ifndef _MOVE_H
+        -:   31:#define _MOVE_H 1
+        -:   32:
+        -:   33:#include <bits/c++config.h>
+        -:   34:#include <bits/concept_check.h>
+        -:   35:
+        -:   36:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   37:{
+        -:   38:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   39:
+        -:   40:  // Used, in C++03 mode too, by allocators, etc.
+        -:   41:  /**
+        -:   42:   *  @brief Same as C++11 std::addressof
+        -:   43:   *  @ingroup utilities
+        -:   44:   */
+        -:   45:  template<typename _Tp>
+        -:   46:    inline _GLIBCXX_CONSTEXPR _Tp*
+    #####:   47:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+    %%%%%:   47-block  0
+    %%%%%:   47-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   47-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   47-block  3
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   47-block  4
+branch  6 never executed
+branch  7 never executed
+        -:   48:    { return __builtin_addressof(__r); }
+        -:   49:
+        -:   50:#if __cplusplus >= 201103L
+        -:   51:
+        -:   52:_GLIBCXX_END_NAMESPACE_VERSION
+        -:   53:} // namespace
+        -:   54:
+        -:   55:#include <type_traits> // Brings in std::declval too.
+        -:   56:
+        -:   57:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   58:{
+        -:   59:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   60:
+        -:   61:  /**
+        -:   62:   *  @addtogroup utilities
+        -:   63:   *  @{
+        -:   64:   */
+        -:   65:
+        -:   66:  /**
+        -:   67:   *  @brief  Forward an lvalue.
+        -:   68:   *  @return The parameter cast to the specified type.
+        -:   69:   *
+        -:   70:   *  This function is used to implement "perfect forwarding".
+        -:   71:   */
+        -:   72:  template<typename _Tp>
+        -:   73:    constexpr _Tp&&
+    #####:   74:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+    %%%%%:   74-block  0
+    %%%%%:   74-block  1
+    %%%%%:   74-block  2
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   74-block  3
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   74-block  4
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   74-block  5
+branch  6 never executed
+branch  7 never executed
+    %%%%%:   74-block  6
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   74-block  7
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   74-block  8
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   74-block  9
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   74-block 10
+branch 16 never executed
+branch 17 never executed
+    %%%%%:   74-block 11
+branch 18 never executed
+branch 19 never executed
+    %%%%%:   74-block 12
+branch 20 never executed
+branch 21 never executed
+    %%%%%:   74-block 13
+branch 22 never executed
+branch 23 never executed
+    %%%%%:   74-block 14
+branch 24 never executed
+branch 25 never executed
+    %%%%%:   74-block 15
+branch 26 never executed
+branch 27 never executed
+branch 28 never executed
+branch 29 never executed
+branch 30 never executed
+branch 31 never executed
+    %%%%%:   74-block 16
+call   32 never executed
+branch 33 never executed
+branch 34 never executed
+        -:   75:    { return static_cast<_Tp&&>(__t); }
+        -:   76:
+        -:   77:  /**
+        -:   78:   *  @brief  Forward an rvalue.
+        -:   79:   *  @return The parameter cast to the specified type.
+        -:   80:   *
+        -:   81:   *  This function is used to implement "perfect forwarding".
+        -:   82:   */
+        -:   83:  template<typename _Tp>
+        -:   84:    constexpr _Tp&&
+        -:   85:    forward(typename std::remove_reference<_Tp>::type&& __t) noexcept
+        -:   86:    {
+        -:   87:      static_assert(!std::is_lvalue_reference<_Tp>::value, "template argument"
+        -:   88:		    " substituting _Tp is an lvalue reference type");
+        -:   89:      return static_cast<_Tp&&>(__t);
+        -:   90:    }
+        -:   91:
+        -:   92:  /**
+        -:   93:   *  @brief  Convert a value to an rvalue.
+        -:   94:   *  @param  __t  A thing of arbitrary type.
+        -:   95:   *  @return The parameter cast to an rvalue-reference to allow moving it.
+        -:   96:  */
+        -:   97:  template<typename _Tp>
+        -:   98:    constexpr typename std::remove_reference<_Tp>::type&&
+       2*:   99:    move(_Tp&& __t) noexcept
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   99-block  0
+    %%%%%:   99-block  1
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        1:   99-block  2
+call    6 returned 1
+    %%%%%:   99-block  3
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+        -:  100:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+        -:  101:
+        -:  102:
+        -:  103:  template<typename _Tp>
+        -:  104:    struct __move_if_noexcept_cond
+        -:  105:    : public __and_<__not_<is_nothrow_move_constructible<_Tp>>,
+        -:  106:                    is_copy_constructible<_Tp>>::type { };
+        -:  107:
+        -:  108:  /**
+        -:  109:   *  @brief  Conditionally convert a value to an rvalue.
+        -:  110:   *  @param  __x  A thing of arbitrary type.
+        -:  111:   *  @return The parameter, possibly cast to an rvalue-reference.
+        -:  112:   *
+        -:  113:   *  Same as std::move unless the type's move constructor could throw and the
+        -:  114:   *  type is copyable, in which case an lvalue-reference is returned instead.
+        -:  115:   */
+        -:  116:  template<typename _Tp>
+        -:  117:    constexpr typename
+        -:  118:    conditional<__move_if_noexcept_cond<_Tp>::value, const _Tp&, _Tp&&>::type
+        -:  119:    move_if_noexcept(_Tp& __x) noexcept
+        -:  120:    { return std::move(__x); }
+        -:  121:
+        -:  122:  // declval, from type_traits.
+        -:  123:
+        -:  124:#if __cplusplus > 201402L
+        -:  125:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  126:  // 2296. std::addressof should be constexpr
+        -:  127:# define __cpp_lib_addressof_constexpr 201603
+        -:  128:#endif
+        -:  129:  /**
+        -:  130:   *  @brief Returns the actual address of the object or function
+        -:  131:   *         referenced by r, even in the presence of an overloaded
+        -:  132:   *         operator&.
+        -:  133:   *  @param  __r  Reference to an object or function.
+        -:  134:   *  @return   The actual address.
+        -:  135:  */
+        -:  136:  template<typename _Tp>
+        -:  137:    inline _GLIBCXX17_CONSTEXPR _Tp*
+       6*:  138:    addressof(_Tp& __r) noexcept
+       5*:  139:    { return std::__addressof(__r); }
+    %%%%%:  139-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  139-block  1
+branch  2 never executed
+branch  3 never executed
+        1:  139-block  2
+branch  4 taken 0 (fallthrough)
+branch  5 taken 1
+    %%%%%:  139-block  3
+branch  6 never executed
+branch  7 never executed
+branch  8 taken 0 (fallthrough)
+branch  9 taken 1
+    %%%%%:  139-block  4
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  139-block  5
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  139-block  6
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:  139-block  7
+branch 19 never executed
+branch 20 never executed
+    %%%%%:  139-block  8
+branch 21 never executed
+branch 22 never executed
+    $$$$$:  139-block  9
+branch 23 never executed
+branch 24 never executed
+    $$$$$:  139-block 10
+branch 25 never executed
+branch 26 never executed
+    %%%%%:  139-block 11
+branch 27 never executed
+branch 28 never executed
+    %%%%%:  139-block 12
+branch 29 never executed
+branch 30 never executed
+    %%%%%:  139-block 13
+branch 31 never executed
+branch 32 never executed
+    %%%%%:  139-block 14
+branch 33 never executed
+branch 34 never executed
+    %%%%%:  139-block 15
+branch 35 never executed
+branch 36 never executed
+    %%%%%:  139-block 16
+branch 37 never executed
+branch 38 never executed
+    %%%%%:  139-block 17
+branch 39 never executed
+branch 40 never executed
+    %%%%%:  139-block 18
+branch 41 never executed
+branch 42 never executed
+    %%%%%:  139-block 19
+branch 43 never executed
+branch 44 never executed
+    %%%%%:  139-block 20
+branch 45 never executed
+branch 46 never executed
+    $$$$$:  139-block 21
+branch 47 never executed
+branch 48 never executed
+    $$$$$:  139-block 22
+branch 49 never executed
+branch 50 never executed
+    $$$$$:  139-block 23
+branch 51 never executed
+branch 52 never executed
+    $$$$$:  139-block 24
+branch 53 never executed
+branch 54 never executed
+    $$$$$:  139-block 25
+branch 55 never executed
+branch 56 never executed
+    $$$$$:  139-block 26
+branch 57 never executed
+branch 58 never executed
+    $$$$$:  139-block 27
+branch 59 never executed
+branch 60 never executed
+    $$$$$:  139-block 28
+branch 61 never executed
+branch 62 never executed
+    $$$$$:  139-block 29
+branch 63 never executed
+branch 64 never executed
+    $$$$$:  139-block 30
+branch 65 never executed
+branch 66 never executed
+    %%%%%:  139-block 31
+branch 67 never executed
+branch 68 never executed
+    %%%%%:  139-block 32
+branch 69 never executed
+branch 70 never executed
+    %%%%%:  139-block 33
+branch 71 never executed
+branch 72 never executed
+    %%%%%:  139-block 34
+branch 73 never executed
+branch 74 never executed
+    %%%%%:  139-block 35
+branch 75 never executed
+branch 76 never executed
+    %%%%%:  139-block 36
+branch 77 never executed
+branch 78 never executed
+    %%%%%:  139-block 37
+branch 79 never executed
+branch 80 never executed
+    %%%%%:  139-block 38
+branch 81 never executed
+branch 82 never executed
+    %%%%%:  139-block 39
+branch 83 never executed
+branch 84 never executed
+    %%%%%:  139-block 40
+branch 85 never executed
+branch 86 never executed
+    %%%%%:  139-block 41
+branch 87 never executed
+branch 88 never executed
+    %%%%%:  139-block 42
+branch 89 never executed
+branch 90 never executed
+    %%%%%:  139-block 43
+branch 91 never executed
+branch 92 never executed
+    %%%%%:  139-block 44
+branch 93 never executed
+branch 94 never executed
+    %%%%%:  139-block 45
+branch 95 never executed
+branch 96 never executed
+    %%%%%:  139-block 46
+branch 97 never executed
+branch 98 never executed
+    %%%%%:  139-block 47
+branch 99 never executed
+branch 100 never executed
+    %%%%%:  139-block 48
+branch 101 never executed
+branch 102 never executed
+    %%%%%:  139-block 49
+branch 103 never executed
+branch 104 never executed
+    %%%%%:  139-block 50
+branch 105 never executed
+branch 106 never executed
+    %%%%%:  139-block 51
+branch 107 never executed
+branch 108 never executed
+    %%%%%:  139-block 52
+branch 109 never executed
+branch 110 never executed
+    %%%%%:  139-block 53
+branch 111 never executed
+branch 112 never executed
+    %%%%%:  139-block 54
+branch 113 never executed
+branch 114 never executed
+    %%%%%:  139-block 55
+branch 115 never executed
+branch 116 never executed
+    %%%%%:  139-block 56
+branch 117 never executed
+branch 118 never executed
+    %%%%%:  139-block 57
+branch 119 never executed
+branch 120 never executed
+    %%%%%:  139-block 58
+branch 121 never executed
+branch 122 never executed
+    %%%%%:  139-block 59
+branch 123 never executed
+branch 124 never executed
+    %%%%%:  139-block 60
+branch 125 never executed
+branch 126 never executed
+    %%%%%:  139-block 61
+branch 127 never executed
+branch 128 never executed
+    %%%%%:  139-block 62
+branch 129 never executed
+branch 130 never executed
+    $$$$$:  139-block 63
+branch 131 never executed
+branch 132 never executed
+    $$$$$:  139-block 64
+branch 133 never executed
+branch 134 never executed
+    $$$$$:  139-block 65
+branch 135 never executed
+branch 136 never executed
+    $$$$$:  139-block 66
+branch 137 never executed
+branch 138 never executed
+    $$$$$:  139-block 67
+branch 139 never executed
+branch 140 never executed
+    $$$$$:  139-block 68
+branch 141 never executed
+branch 142 never executed
+    $$$$$:  139-block 69
+branch 143 never executed
+branch 144 never executed
+    $$$$$:  139-block 70
+branch 145 never executed
+branch 146 never executed
+    $$$$$:  139-block 71
+branch 147 never executed
+branch 148 never executed
+    $$$$$:  139-block 72
+branch 149 never executed
+branch 150 never executed
+    $$$$$:  139-block 73
+branch 151 never executed
+branch 152 never executed
+    $$$$$:  139-block 74
+branch 153 never executed
+branch 154 never executed
+    $$$$$:  139-block 75
+branch 155 never executed
+branch 156 never executed
+    $$$$$:  139-block 76
+branch 157 never executed
+branch 158 never executed
+    $$$$$:  139-block 77
+branch 159 never executed
+branch 160 never executed
+    $$$$$:  139-block 78
+branch 161 never executed
+branch 162 never executed
+    $$$$$:  139-block 79
+branch 163 never executed
+branch 164 never executed
+    $$$$$:  139-block 80
+branch 165 never executed
+branch 166 never executed
+    $$$$$:  139-block 81
+branch 167 never executed
+branch 168 never executed
+    $$$$$:  139-block 82
+branch 169 never executed
+branch 170 never executed
+    $$$$$:  139-block 83
+branch 171 never executed
+branch 172 never executed
+    $$$$$:  139-block 84
+branch 173 never executed
+branch 174 never executed
+    $$$$$:  139-block 85
+branch 175 never executed
+branch 176 never executed
+    $$$$$:  139-block 86
+branch 177 never executed
+branch 178 never executed
+    $$$$$:  139-block 87
+branch 179 never executed
+branch 180 never executed
+    $$$$$:  139-block 88
+branch 181 never executed
+branch 182 never executed
+    $$$$$:  139-block 89
+branch 183 never executed
+branch 184 never executed
+    $$$$$:  139-block 90
+branch 185 never executed
+branch 186 never executed
+    $$$$$:  139-block 91
+branch 187 never executed
+branch 188 never executed
+    $$$$$:  139-block 92
+branch 189 never executed
+branch 190 never executed
+    $$$$$:  139-block 93
+branch 191 never executed
+branch 192 never executed
+    $$$$$:  139-block 94
+branch 193 never executed
+branch 194 never executed
+    %%%%%:  139-block 95
+branch 195 never executed
+branch 196 never executed
+    %%%%%:  139-block 96
+branch 197 never executed
+branch 198 never executed
+    %%%%%:  139-block 97
+branch 199 never executed
+branch 200 never executed
+    %%%%%:  139-block 98
+branch 201 never executed
+branch 202 never executed
+    %%%%%:  139-block 99
+branch 203 never executed
+branch 204 never executed
+    %%%%%:  139-block 100
+branch 205 never executed
+branch 206 never executed
+    %%%%%:  139-block 101
+branch 207 never executed
+branch 208 never executed
+    %%%%%:  139-block 102
+branch 209 never executed
+branch 210 never executed
+    %%%%%:  139-block 103
+branch 211 never executed
+branch 212 never executed
+    %%%%%:  139-block 104
+branch 213 never executed
+branch 214 never executed
+    %%%%%:  139-block 105
+branch 215 never executed
+branch 216 never executed
+    $$$$$:  139-block 106
+branch 217 never executed
+branch 218 never executed
+    $$$$$:  139-block 107
+branch 219 never executed
+branch 220 never executed
+    $$$$$:  139-block 108
+branch 221 never executed
+branch 222 never executed
+    $$$$$:  139-block 109
+branch 223 never executed
+branch 224 never executed
+    $$$$$:  139-block 110
+branch 225 never executed
+branch 226 never executed
+    $$$$$:  139-block 111
+branch 227 never executed
+branch 228 never executed
+    $$$$$:  139-block 112
+branch 229 never executed
+branch 230 never executed
+    $$$$$:  139-block 113
+branch 231 never executed
+branch 232 never executed
+    $$$$$:  139-block 114
+branch 233 never executed
+branch 234 never executed
+    $$$$$:  139-block 115
+branch 235 never executed
+branch 236 never executed
+    $$$$$:  139-block 116
+branch 237 never executed
+branch 238 never executed
+    %%%%%:  139-block 117
+branch 239 never executed
+branch 240 never executed
+    %%%%%:  139-block 118
+branch 241 never executed
+branch 242 never executed
+    %%%%%:  139-block 119
+branch 243 never executed
+branch 244 never executed
+    %%%%%:  139-block 120
+branch 245 never executed
+branch 246 never executed
+    %%%%%:  139-block 121
+branch 247 never executed
+branch 248 never executed
+    %%%%%:  139-block 122
+call   249 never executed
+branch 250 never executed
+branch 251 never executed
+    %%%%%:  139-block 123
+branch 252 never executed
+branch 253 never executed
+    %%%%%:  139-block 124
+call   254 never executed
+branch 255 never executed
+branch 256 never executed
+    %%%%%:  139-block 125
+branch 257 never executed
+branch 258 never executed
+    %%%%%:  139-block 126
+call   259 never executed
+branch 260 never executed
+branch 261 never executed
+    %%%%%:  139-block 127
+branch 262 never executed
+branch 263 never executed
+    %%%%%:  139-block 128
+branch 264 never executed
+branch 265 never executed
+    %%%%%:  139-block 129
+branch 266 never executed
+branch 267 never executed
+    %%%%%:  139-block 130
+branch 268 never executed
+branch 269 never executed
+    %%%%%:  139-block 131
+branch 270 never executed
+branch 271 never executed
+    %%%%%:  139-block 132
+branch 272 never executed
+branch 273 never executed
+    %%%%%:  139-block 133
+branch 274 never executed
+branch 275 never executed
+    $$$$$:  139-block 134
+branch 276 never executed
+branch 277 never executed
+    $$$$$:  139-block 135
+branch 278 never executed
+branch 279 never executed
+    $$$$$:  139-block 136
+branch 280 never executed
+branch 281 never executed
+    $$$$$:  139-block 137
+branch 282 never executed
+branch 283 never executed
+    $$$$$:  139-block 138
+branch 284 never executed
+branch 285 never executed
+    $$$$$:  139-block 139
+branch 286 never executed
+branch 287 never executed
+    $$$$$:  139-block 140
+branch 288 never executed
+branch 289 never executed
+    $$$$$:  139-block 141
+branch 290 never executed
+branch 291 never executed
+    $$$$$:  139-block 142
+branch 292 never executed
+branch 293 never executed
+    $$$$$:  139-block 143
+branch 294 never executed
+branch 295 never executed
+    $$$$$:  139-block 144
+branch 296 never executed
+branch 297 never executed
+    $$$$$:  139-block 145
+branch 298 never executed
+branch 299 never executed
+    $$$$$:  139-block 146
+branch 300 never executed
+branch 301 never executed
+    $$$$$:  139-block 147
+branch 302 never executed
+branch 303 never executed
+        1:  139-block 148
+call   304 returned 1
+branch 305 taken 1 (fallthrough)
+branch 306 taken 0 (throw)
+branch 307 taken 1 (fallthrough)
+branch 308 taken 0
+        1:  139-block 149
+branch 309 taken 0 (fallthrough)
+branch 310 taken 1
+    %%%%%:  139-block 150
+call   311 never executed
+branch 312 never executed
+branch 313 never executed
+    %%%%%:  139-block 151
+branch 314 never executed
+branch 315 never executed
+    %%%%%:  139-block 152
+branch 316 never executed
+branch 317 never executed
+    %%%%%:  139-block 153
+branch 318 never executed
+branch 319 never executed
+    %%%%%:  139-block 154
+call   320 never executed
+branch 321 never executed
+branch 322 never executed
+    %%%%%:  139-block 155
+branch 323 never executed
+branch 324 never executed
+    %%%%%:  139-block 156
+branch 325 never executed
+branch 326 never executed
+    %%%%%:  139-block 157
+branch 327 never executed
+branch 328 never executed
+    %%%%%:  139-block 158
+call   329 never executed
+branch 330 never executed
+branch 331 never executed
+    %%%%%:  139-block 159
+branch 332 never executed
+branch 333 never executed
+    %%%%%:  139-block 160
+branch 334 never executed
+branch 335 never executed
+    %%%%%:  139-block 161
+branch 336 never executed
+branch 337 never executed
+    %%%%%:  139-block 162
+call   338 never executed
+branch 339 never executed
+branch 340 never executed
+    %%%%%:  139-block 163
+branch 341 never executed
+branch 342 never executed
+    %%%%%:  139-block 164
+branch 343 never executed
+branch 344 never executed
+    %%%%%:  139-block 165
+branch 345 never executed
+branch 346 never executed
+    %%%%%:  139-block 166
+call   347 never executed
+branch 348 never executed
+branch 349 never executed
+    %%%%%:  139-block 167
+branch 350 never executed
+branch 351 never executed
+    %%%%%:  139-block 168
+branch 352 never executed
+branch 353 never executed
+    %%%%%:  139-block 169
+branch 354 never executed
+branch 355 never executed
+    %%%%%:  139-block 170
+call   356 never executed
+branch 357 never executed
+branch 358 never executed
+    %%%%%:  139-block 171
+branch 359 never executed
+branch 360 never executed
+    %%%%%:  139-block 172
+branch 361 never executed
+branch 362 never executed
+    %%%%%:  139-block 173
+branch 363 never executed
+branch 364 never executed
+    %%%%%:  139-block 174
+call   365 never executed
+branch 366 never executed
+branch 367 never executed
+    %%%%%:  139-block 175
+branch 368 never executed
+branch 369 never executed
+    %%%%%:  139-block 176
+branch 370 never executed
+branch 371 never executed
+    %%%%%:  139-block 177
+branch 372 never executed
+branch 373 never executed
+    %%%%%:  139-block 178
+call   374 never executed
+branch 375 never executed
+branch 376 never executed
+    %%%%%:  139-block 179
+branch 377 never executed
+branch 378 never executed
+    %%%%%:  139-block 180
+branch 379 never executed
+branch 380 never executed
+    %%%%%:  139-block 181
+branch 381 never executed
+branch 382 never executed
+    %%%%%:  139-block 182
+call   383 never executed
+branch 384 never executed
+branch 385 never executed
+    %%%%%:  139-block 183
+branch 386 never executed
+branch 387 never executed
+    %%%%%:  139-block 184
+branch 388 never executed
+branch 389 never executed
+    %%%%%:  139-block 185
+branch 390 never executed
+branch 391 never executed
+    %%%%%:  139-block 186
+call   392 never executed
+branch 393 never executed
+branch 394 never executed
+    %%%%%:  139-block 187
+branch 395 never executed
+branch 396 never executed
+    %%%%%:  139-block 188
+branch 397 never executed
+branch 398 never executed
+    %%%%%:  139-block 189
+branch 399 never executed
+branch 400 never executed
+    %%%%%:  139-block 190
+call   401 never executed
+branch 402 never executed
+branch 403 never executed
+    %%%%%:  139-block 191
+branch 404 never executed
+branch 405 never executed
+    %%%%%:  139-block 192
+branch 406 never executed
+branch 407 never executed
+    %%%%%:  139-block 193
+branch 408 never executed
+branch 409 never executed
+    %%%%%:  139-block 194
+call   410 never executed
+branch 411 never executed
+branch 412 never executed
+    %%%%%:  139-block 195
+branch 413 never executed
+branch 414 never executed
+    %%%%%:  139-block 196
+branch 415 never executed
+branch 416 never executed
+    %%%%%:  139-block 197
+branch 417 never executed
+branch 418 never executed
+    %%%%%:  139-block 198
+call   419 never executed
+branch 420 never executed
+branch 421 never executed
+    %%%%%:  139-block 199
+branch 422 never executed
+branch 423 never executed
+    %%%%%:  139-block 200
+branch 424 never executed
+branch 425 never executed
+    %%%%%:  139-block 201
+branch 426 never executed
+branch 427 never executed
+    %%%%%:  139-block 202
+call   428 never executed
+branch 429 never executed
+branch 430 never executed
+    %%%%%:  139-block 203
+branch 431 never executed
+branch 432 never executed
+    %%%%%:  139-block 204
+branch 433 never executed
+branch 434 never executed
+    %%%%%:  139-block 205
+branch 435 never executed
+branch 436 never executed
+    %%%%%:  139-block 206
+call   437 never executed
+branch 438 never executed
+branch 439 never executed
+    %%%%%:  139-block 207
+branch 440 never executed
+branch 441 never executed
+    %%%%%:  139-block 208
+branch 442 never executed
+branch 443 never executed
+    %%%%%:  139-block 209
+branch 444 never executed
+branch 445 never executed
+    %%%%%:  139-block 210
+call   446 never executed
+branch 447 never executed
+branch 448 never executed
+    %%%%%:  139-block 211
+branch 449 never executed
+branch 450 never executed
+    %%%%%:  139-block 212
+branch 451 never executed
+branch 452 never executed
+    %%%%%:  139-block 213
+branch 453 never executed
+branch 454 never executed
+    %%%%%:  139-block 214
+call   455 never executed
+branch 456 never executed
+branch 457 never executed
+    %%%%%:  139-block 215
+branch 458 never executed
+branch 459 never executed
+    %%%%%:  139-block 216
+branch 460 never executed
+branch 461 never executed
+    %%%%%:  139-block 217
+branch 462 never executed
+branch 463 never executed
+    %%%%%:  139-block 218
+call   464 never executed
+branch 465 never executed
+branch 466 never executed
+    %%%%%:  139-block 219
+branch 467 never executed
+branch 468 never executed
+    %%%%%:  139-block 220
+branch 469 never executed
+branch 470 never executed
+    %%%%%:  139-block 221
+branch 471 never executed
+branch 472 never executed
+    %%%%%:  139-block 222
+call   473 never executed
+branch 474 never executed
+branch 475 never executed
+    %%%%%:  139-block 223
+branch 476 never executed
+branch 477 never executed
+    %%%%%:  139-block 224
+branch 478 never executed
+branch 479 never executed
+    %%%%%:  139-block 225
+branch 480 never executed
+branch 481 never executed
+    %%%%%:  139-block 226
+call   482 never executed
+branch 483 never executed
+branch 484 never executed
+    %%%%%:  139-block 227
+branch 485 never executed
+branch 486 never executed
+    %%%%%:  139-block 228
+branch 487 never executed
+branch 488 never executed
+    %%%%%:  139-block 229
+branch 489 never executed
+branch 490 never executed
+    $$$$$:  139-block 230
+branch 491 never executed
+branch 492 never executed
+    $$$$$:  139-block 231
+branch 493 never executed
+branch 494 never executed
+    $$$$$:  139-block 232
+branch 495 never executed
+branch 496 never executed
+    $$$$$:  139-block 233
+branch 497 never executed
+branch 498 never executed
+    $$$$$:  139-block 234
+branch 499 never executed
+branch 500 never executed
+    $$$$$:  139-block 235
+branch 501 never executed
+branch 502 never executed
+    $$$$$:  139-block 236
+branch 503 never executed
+branch 504 never executed
+    $$$$$:  139-block 237
+branch 505 never executed
+branch 506 never executed
+    $$$$$:  139-block 238
+branch 507 never executed
+branch 508 never executed
+    $$$$$:  139-block 239
+branch 509 never executed
+branch 510 never executed
+    $$$$$:  139-block 240
+branch 511 never executed
+branch 512 never executed
+    $$$$$:  139-block 241
+branch 513 never executed
+branch 514 never executed
+    $$$$$:  139-block 242
+branch 515 never executed
+branch 516 never executed
+    $$$$$:  139-block 243
+branch 517 never executed
+branch 518 never executed
+    $$$$$:  139-block 244
+branch 519 never executed
+branch 520 never executed
+    $$$$$:  139-block 245
+branch 521 never executed
+branch 522 never executed
+    $$$$$:  139-block 246
+branch 523 never executed
+branch 524 never executed
+    $$$$$:  139-block 247
+branch 525 never executed
+branch 526 never executed
+    $$$$$:  139-block 248
+branch 527 never executed
+branch 528 never executed
+    $$$$$:  139-block 249
+branch 529 never executed
+branch 530 never executed
+    $$$$$:  139-block 250
+branch 531 never executed
+branch 532 never executed
+    $$$$$:  139-block 251
+branch 533 never executed
+branch 534 never executed
+    $$$$$:  139-block 252
+branch 535 never executed
+branch 536 never executed
+    $$$$$:  139-block 253
+branch 537 never executed
+branch 538 never executed
+    $$$$$:  139-block 254
+branch 539 never executed
+branch 540 never executed
+    $$$$$:  139-block 255
+branch 541 never executed
+branch 542 never executed
+    $$$$$:  139-block 256
+branch 543 never executed
+branch 544 never executed
+    $$$$$:  139-block 257
+branch 545 never executed
+branch 546 never executed
+    $$$$$:  139-block 258
+branch 547 never executed
+branch 548 never executed
+    $$$$$:  139-block 259
+branch 549 never executed
+branch 550 never executed
+    $$$$$:  139-block 260
+branch 551 never executed
+branch 552 never executed
+    $$$$$:  139-block 261
+branch 553 never executed
+branch 554 never executed
+    $$$$$:  139-block 262
+branch 555 never executed
+branch 556 never executed
+    $$$$$:  139-block 263
+branch 557 never executed
+branch 558 never executed
+    $$$$$:  139-block 264
+branch 559 never executed
+branch 560 never executed
+    $$$$$:  139-block 265
+branch 561 never executed
+branch 562 never executed
+    $$$$$:  139-block 266
+branch 563 never executed
+branch 564 never executed
+    $$$$$:  139-block 267
+branch 565 never executed
+branch 566 never executed
+    $$$$$:  139-block 268
+branch 567 never executed
+branch 568 never executed
+    $$$$$:  139-block 269
+branch 569 never executed
+branch 570 never executed
+    $$$$$:  139-block 270
+branch 571 never executed
+branch 572 never executed
+    $$$$$:  139-block 271
+branch 573 never executed
+branch 574 never executed
+    $$$$$:  139-block 272
+branch 575 never executed
+branch 576 never executed
+    $$$$$:  139-block 273
+branch 577 never executed
+branch 578 never executed
+    $$$$$:  139-block 274
+branch 579 never executed
+branch 580 never executed
+    $$$$$:  139-block 275
+branch 581 never executed
+branch 582 never executed
+    $$$$$:  139-block 276
+branch 583 never executed
+branch 584 never executed
+    $$$$$:  139-block 277
+branch 585 never executed
+branch 586 never executed
+    $$$$$:  139-block 278
+branch 587 never executed
+branch 588 never executed
+    $$$$$:  139-block 279
+branch 589 never executed
+branch 590 never executed
+    $$$$$:  139-block 280
+branch 591 never executed
+branch 592 never executed
+    $$$$$:  139-block 281
+branch 593 never executed
+branch 594 never executed
+    $$$$$:  139-block 282
+branch 595 never executed
+branch 596 never executed
+    $$$$$:  139-block 283
+branch 597 never executed
+branch 598 never executed
+    $$$$$:  139-block 284
+branch 599 never executed
+branch 600 never executed
+    $$$$$:  139-block 285
+branch 601 never executed
+branch 602 never executed
+    $$$$$:  139-block 286
+branch 603 never executed
+branch 604 never executed
+    $$$$$:  139-block 287
+branch 605 never executed
+branch 606 never executed
+    $$$$$:  139-block 288
+branch 607 never executed
+branch 608 never executed
+    $$$$$:  139-block 289
+branch 609 never executed
+branch 610 never executed
+    $$$$$:  139-block 290
+branch 611 never executed
+branch 612 never executed
+    $$$$$:  139-block 291
+branch 613 never executed
+branch 614 never executed
+        -:  140:
+        -:  141:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  142:  // 2598. addressof works on temporaries
+        -:  143:  template<typename _Tp>
+        -:  144:    const _Tp* addressof(const _Tp&&) = delete;
+        -:  145:
+        -:  146:  // C++11 version of std::exchange for internal use.
+        -:  147:  template <typename _Tp, typename _Up = _Tp>
+        -:  148:    inline _Tp
+        -:  149:    __exchange(_Tp& __obj, _Up&& __new_val)
+        -:  150:    {
+        -:  151:      _Tp __old_val = std::move(__obj);
+        -:  152:      __obj = std::forward<_Up>(__new_val);
+        -:  153:      return __old_val;
+        -:  154:    }
+        -:  155:
+        -:  156:  /// @} group utilities
+        -:  157:
+        -:  158:#define _GLIBCXX_MOVE(__val) std::move(__val)
+        -:  159:#define _GLIBCXX_FORWARD(_Tp, __val) std::forward<_Tp>(__val)
+        -:  160:#else
+        -:  161:#define _GLIBCXX_MOVE(__val) (__val)
+        -:  162:#define _GLIBCXX_FORWARD(_Tp, __val) (__val)
+        -:  163:#endif
+        -:  164:
+        -:  165:  /**
+        -:  166:   *  @addtogroup utilities
+        -:  167:   *  @{
+        -:  168:   */
+        -:  169:
+        -:  170:  /**
+        -:  171:   *  @brief Swaps two values.
+        -:  172:   *  @param  __a  A thing of arbitrary type.
+        -:  173:   *  @param  __b  Another thing of arbitrary type.
+        -:  174:   *  @return   Nothing.
+        -:  175:  */
+        -:  176:  template<typename _Tp>
+        -:  177:    inline
+        -:  178:#if __cplusplus >= 201103L
+        -:  179:    typename enable_if<__and_<__not_<__is_tuple_like<_Tp>>,
+        -:  180:			      is_move_constructible<_Tp>,
+        -:  181:			      is_move_assignable<_Tp>>::value>::type
+        -:  182:    swap(_Tp& __a, _Tp& __b)
+        -:  183:    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
+        -:  184:	            is_nothrow_move_assignable<_Tp>>::value)
+        -:  185:#else
+        -:  186:    void
+        -:  187:    swap(_Tp& __a, _Tp& __b)
+        -:  188:#endif
+        -:  189:    {
+        -:  190:      // concept requirements
+        -:  191:      __glibcxx_function_requires(_SGIAssignableConcept<_Tp>)
+        -:  192:
+        -:  193:      _Tp __tmp = _GLIBCXX_MOVE(__a);
+        -:  194:      __a = _GLIBCXX_MOVE(__b);
+        -:  195:      __b = _GLIBCXX_MOVE(__tmp);
+        -:  196:    }
+        -:  197:
+        -:  198:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  199:  // DR 809. std::swap should be overloaded for array types.
+        -:  200:  /// Swap the contents of two arrays.
+        -:  201:  template<typename _Tp, size_t _Nm>
+        -:  202:    inline
+        -:  203:#if __cplusplus >= 201103L
+        -:  204:    typename enable_if<__is_swappable<_Tp>::value>::type
+        -:  205:    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+        -:  206:    noexcept(__is_nothrow_swappable<_Tp>::value)
+        -:  207:#else
+        -:  208:    void
+        -:  209:    swap(_Tp (&__a)[_Nm], _Tp (&__b)[_Nm])
+        -:  210:#endif
+        -:  211:    {
+        -:  212:      for (size_t __n = 0; __n < _Nm; ++__n)
+        -:  213:	swap(__a[__n], __b[__n]);
+        -:  214:    }
+        -:  215:
+        -:  216:  /// @} group utilities
+        -:  217:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  218:} // namespace
+        -:  219:
+        -:  220:#endif /* _MOVE_H */

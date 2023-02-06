@@ -1,0 +1,28 @@
+/home/daniel/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/daniel/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/linux/x64/ninja -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage -G Ninja -S /home/daniel/Projects/C++/Natrix -B /home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found SDL2: /usr/local/lib/libSDL2main.a;/usr/local/lib/libSDL2.so;-lpthread  
+-- Found SDL2_image: /usr/local/lib/libSDL2_image.so (found version "2.6.2") 
+-- Found SDL2_mixer: /usr/local/lib/libSDL2_mixer.so (found version "2.6.2") 
+-- Found SDL2_ttf: /usr/local/lib/libSDL2_ttf.so (found version "2.20.1") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage

@@ -1,0 +1,115 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/MoveSorter.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/MoveSorter.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/MoveSorter.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "MoveSorter.hpp"
+        -:    2:
+        -:    3:
+function _ZN10MoveSorter4sortE6Pieces8MoveList called 0 returned 0% blocks executed 0%
+    #####:    4:MoveList MoveSorter::sort(Pieces pieces, MoveList moves) {
+    #####:    5:    for (uint8_t i = 0; i < moves.size() - 1; i = i + 1) {
+    %%%%%:    5-block  0
+    %%%%%:    5-block  1
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:    5-block  2
+    #####:    6:        for (uint8_t j = 0; j < moves.size() - i - 1; j = j + 1) {
+branch  0 never executed
+branch  1 never executed
+    #####:    7:            if (MoveSorter::_evaluate_move(pieces, moves[j]) < MoveSorter::_evaluate_move(pieces, moves[j + 1])) std::swap(moves[j], moves[j + 1]);
+    %%%%%:    7-block  0
+call    0 never executed
+    %%%%%:    7-block  1
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    %%%%%:    7-block  2
+call    7 never executed
+call    8 never executed
+        -:    8:        }
+        -:    9:    }
+        -:   10:
+    #####:   11:    return moves;
+        -:   12:}
+function _ZN10MoveSorter14_evaluate_moveE6Pieces4Move called 0 returned 0% blocks executed 0%
+    #####:   13:int32_t MoveSorter::_evaluate_move(Pieces pieces, Move move) {
+    #####:   14:    int32_t evaluation = 0;
+        -:   15:
+    #####:   16:    if (move._attacker_type != Pieces::Pawn) {
+    %%%%%:   16-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   17:        Bitboard opponent_pawn_attacks = PsLegalMoveMaskGen::generate_pawn_left_captures_mask(pieces, Pieces::inverse(move._attacker_side), true) | PsLegalMoveMaskGen::generate_pawn_right_captures_mask(pieces, Pieces::inverse(move._attacker_side), true);
+    %%%%%:   17-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   18:        if (BitboardOperations::get_bit(opponent_pawn_attacks, move._to)) {
+branch  0 never executed
+branch  1 never executed
+    #####:   19:            switch (move._attacker_type) {
+    %%%%%:   19-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   20:                case Pieces::Knight: evaluation = evaluation - StaticEvaluator::Material::Knight; break;
+        -:   21:                case Pieces::Bishop: evaluation = evaluation - StaticEvaluator::Material::Bishop; break;
+        -:   22:                case Pieces::Rook: evaluation = evaluation - StaticEvaluator::Material::Rook; break;
+        -:   23:                case Pieces::Queen: evaluation = evaluation - StaticEvaluator::Material::Queen; break;
+        -:   24:                // Король не может быть на поле, битое пешкой противника.
+        -:   25:            }
+        -:   26:        }
+        -:   27:    }
+        -:   28:
+    #####:   29:    if (move._defender_type != 255) {
+    %%%%%:   29-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   30:        switch (move._defender_type) {
+    %%%%%:   30-block  0
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   31:            case Pieces::Pawn: evaluation = evaluation + 1000 * StaticEvaluator::Material::Pawn; break;
+    %%%%%:   31-block  0
+    #####:   32:            case Pieces::Knight: evaluation = evaluation + 1000 * StaticEvaluator::Material::Knight; break;
+    %%%%%:   32-block  0
+    #####:   33:            case Pieces::Bishop: evaluation = evaluation + 1000 * StaticEvaluator::Material::Bishop; break;
+    %%%%%:   33-block  0
+    #####:   34:            case Pieces::Rook: evaluation = evaluation + 1000 * StaticEvaluator::Material::Rook; break;
+    %%%%%:   34-block  0
+    #####:   35:            case Pieces::Queen: evaluation = evaluation + 1000 * StaticEvaluator::Material::Queen; break;
+    %%%%%:   35-block  0
+        -:   36:            // Короля нельзя съесть.
+        -:   37:        }
+    #####:   38:        switch (move._attacker_type) {
+    %%%%%:   38-block  0
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:   39:            case Pieces::Pawn: evaluation = evaluation - StaticEvaluator::Material::Pawn; break;
+    %%%%%:   39-block  0
+    #####:   40:            case Pieces::Knight: evaluation = evaluation - StaticEvaluator::Material::Knight; break;
+    %%%%%:   40-block  0
+    #####:   41:            case Pieces::Bishop: evaluation = evaluation - StaticEvaluator::Material::Bishop; break;
+    %%%%%:   41-block  0
+    #####:   42:            case Pieces::Rook: evaluation = evaluation - StaticEvaluator::Material::Rook; break;
+    %%%%%:   42-block  0
+    #####:   43:            case Pieces::Queen: evaluation = evaluation - StaticEvaluator::Material::Queen; break;
+    %%%%%:   43-block  0
+        -:   44:            // Если съедает король, то ничего не вычитаем, ведь короля нельзя съесть, следовательно, никакого ответного взятия, вероятно, не будет.
+        -:   45:        }
+        -:   46:    }
+        -:   47:
+    #####:   48:    return evaluation;
+        -:   49:}

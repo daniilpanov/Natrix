@@ -1,0 +1,519 @@
+        -:    0:Source:/usr/include/c++/9/bit
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.gcda
+        -:    0:Runs:1
+        -:    1:// <bit> -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2018-2019 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/** @file include/bit
+        -:   26: *  This is a Standard C++ Library header.
+        -:   27: */
+        -:   28:
+        -:   29:#ifndef _GLIBCXX_BIT
+        -:   30:#define _GLIBCXX_BIT 1
+        -:   31:
+        -:   32:#pragma GCC system_header
+        -:   33:
+        -:   34:#if __cplusplus >= 201402L
+        -:   35:
+        -:   36:#include <type_traits>
+        -:   37:#include <limits>
+        -:   38:
+        -:   39:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   40:{
+        -:   41:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   42:
+        -:   43:  template<typename _Tp>
+        -:   44:    constexpr _Tp
+        -:   45:    __rotl(_Tp __x, int __s) noexcept
+        -:   46:    {
+        -:   47:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:   48:      const int __r = __s % _Nd;
+        -:   49:      if (__r == 0)
+        -:   50:	return __x;
+        -:   51:      else if (__r > 0)
+        -:   52:	return (__x << __r) | (__x >> ((_Nd - __r) % _Nd));
+        -:   53:      else
+        -:   54:	return (__x >> -__r) | (__x << ((_Nd + __r) % _Nd)); // rotr(x, -r)
+        -:   55:    }
+        -:   56:
+        -:   57:  template<typename _Tp>
+        -:   58:    constexpr _Tp
+        -:   59:    __rotr(_Tp __x, int __s) noexcept
+        -:   60:    {
+        -:   61:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:   62:      const int __r = __s % _Nd;
+        -:   63:      if (__r == 0)
+        -:   64:	return __x;
+        -:   65:      else if (__r > 0)
+        -:   66:	return (__x >> __r) | (__x << ((_Nd - __r) % _Nd));
+        -:   67:      else
+        -:   68:	return (__x << -__r) | (__x >> ((_Nd + __r) % _Nd)); // rotl(x, -r)
+        -:   69:    }
+        -:   70:
+        -:   71:  template<typename _Tp>
+        -:   72:    constexpr int
+        -:   73:    __countl_zero(_Tp __x) noexcept
+        -:   74:    {
+        -:   75:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:   76:
+        -:   77:      if (__x == 0)
+        -:   78:        return _Nd;
+        -:   79:
+        -:   80:      constexpr auto _Nd_ull = numeric_limits<unsigned long long>::digits;
+        -:   81:      constexpr auto _Nd_ul = numeric_limits<unsigned long>::digits;
+        -:   82:      constexpr auto _Nd_u = numeric_limits<unsigned>::digits;
+        -:   83:
+        -:   84:      if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_u)
+        -:   85:	{
+        -:   86:	  constexpr int __diff = _Nd_u - _Nd;
+        -:   87:	  return __builtin_clz(__x) - __diff;
+        -:   88:	}
+        -:   89:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ul)
+        -:   90:	{
+        -:   91:	  constexpr int __diff = _Nd_ul - _Nd;
+        -:   92:	  return __builtin_clzl(__x) - __diff;
+        -:   93:	}
+        -:   94:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ull)
+        -:   95:	{
+        -:   96:	  constexpr int __diff = _Nd_ull - _Nd;
+        -:   97:	  return __builtin_clzll(__x) - __diff;
+        -:   98:	}
+        -:   99:      else // (_Nd > _Nd_ull)
+        -:  100:	{
+        -:  101:	  static_assert(_Nd <= (2 * _Nd_ull),
+        -:  102:			"Maximum supported integer size is 128-bit");
+        -:  103:
+        -:  104:	  unsigned long long __high = __x >> _Nd_ull;
+        -:  105:	  if (__high != 0)
+        -:  106:	    {
+        -:  107:	      constexpr int __diff = (2 * _Nd_ull) - _Nd;
+        -:  108:	      return __builtin_clzll(__high) - __diff;
+        -:  109:	    }
+        -:  110:	  constexpr auto __max_ull = numeric_limits<unsigned long long>::max();
+        -:  111:	  unsigned long long __low = __x & __max_ull;
+        -:  112:	  return (_Nd - _Nd_ull) + __builtin_clzll(__low);
+        -:  113:	}
+        -:  114:    }
+        -:  115:
+        -:  116:  template<typename _Tp>
+        -:  117:    constexpr int
+        -:  118:    __countl_one(_Tp __x) noexcept
+        -:  119:    {
+        -:  120:      if (__x == numeric_limits<_Tp>::max())
+        -:  121:        return numeric_limits<_Tp>::digits;
+        -:  122:      return std::__countl_zero<_Tp>((_Tp)~__x);
+        -:  123:    }
+        -:  124:
+        -:  125:  template<typename _Tp>
+        -:  126:    constexpr int
+        -:  127:    __countr_zero(_Tp __x) noexcept
+        -:  128:    {
+        -:  129:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:  130:
+        -:  131:      if (__x == 0)
+        -:  132:        return _Nd;
+        -:  133:
+        -:  134:      constexpr auto _Nd_ull = numeric_limits<unsigned long long>::digits;
+        -:  135:      constexpr auto _Nd_ul = numeric_limits<unsigned long>::digits;
+        -:  136:      constexpr auto _Nd_u = numeric_limits<unsigned>::digits;
+        -:  137:
+        -:  138:      if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_u)
+        -:  139:	return __builtin_ctz(__x);
+        -:  140:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ul)
+        -:  141:	return __builtin_ctzl(__x);
+        -:  142:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ull)
+        -:  143:	return __builtin_ctzll(__x);
+        -:  144:      else // (_Nd > _Nd_ull)
+        -:  145:	{
+        -:  146:	  static_assert(_Nd <= (2 * _Nd_ull),
+        -:  147:			"Maximum supported integer size is 128-bit");
+        -:  148:
+        -:  149:	  constexpr auto __max_ull = numeric_limits<unsigned long long>::max();
+        -:  150:	  unsigned long long __low = __x & __max_ull;
+        -:  151:	  if (__low != 0)
+        -:  152:	    return __builtin_ctzll(__low);
+        -:  153:	  unsigned long long __high = __x >> _Nd_ull;
+        -:  154:	  return __builtin_ctzll(__high) + _Nd_ull;
+        -:  155:	}
+        -:  156:    }
+        -:  157:
+        -:  158:  template<typename _Tp>
+        -:  159:    constexpr int
+        -:  160:    __countr_one(_Tp __x) noexcept
+        -:  161:    {
+        -:  162:      if (__x == numeric_limits<_Tp>::max())
+        -:  163:        return numeric_limits<_Tp>::digits;
+        -:  164:      return std::__countr_zero((_Tp)~__x);
+        -:  165:    }
+        -:  166:
+        -:  167:  template<typename _Tp>
+        -:  168:    constexpr int
+    #####:  169:    __popcount(_Tp __x) noexcept
+        -:  170:    {
+    #####:  171:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:  172:
+    #####:  173:      if (__x == 0)
+        -:  174:        return 0;
+        -:  175:
+    #####:  176:      constexpr auto _Nd_ull = numeric_limits<unsigned long long>::digits;
+    #####:  177:      constexpr auto _Nd_ul = numeric_limits<unsigned long>::digits;
+    #####:  178:      constexpr auto _Nd_u = numeric_limits<unsigned>::digits;
+        -:  179:
+        -:  180:      if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_u)
+        -:  181:	return __builtin_popcount(__x);
+        -:  182:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ul)
+    #####:  183:	return __builtin_popcountl(__x);
+    %%%%%:  183-block  0
+    %%%%%:  183-block  1
+    %%%%%:  183-block  2
+    %%%%%:  183-block  3
+    %%%%%:  183-block  4
+    %%%%%:  183-block  5
+    %%%%%:  183-block  6
+    %%%%%:  183-block  7
+    %%%%%:  183-block  8
+    %%%%%:  183-block  9
+    %%%%%:  183-block 10
+    %%%%%:  183-block 11
+    %%%%%:  183-block 12
+    %%%%%:  183-block 13
+    %%%%%:  183-block 14
+    %%%%%:  183-block 15
+    %%%%%:  183-block 16
+    %%%%%:  183-block 17
+    %%%%%:  183-block 18
+    %%%%%:  183-block 19
+    %%%%%:  183-block 20
+    %%%%%:  183-block 21
+    %%%%%:  183-block 22
+    %%%%%:  183-block 23
+    %%%%%:  183-block 24
+    %%%%%:  183-block 25
+    %%%%%:  183-block 26
+    %%%%%:  183-block 27
+    %%%%%:  183-block 28
+        -:  184:      else if _GLIBCXX17_CONSTEXPR (_Nd <= _Nd_ull)
+        -:  185:	return __builtin_popcountll(__x);
+        -:  186:      else // (_Nd > _Nd_ull)
+        -:  187:	{
+        -:  188:	  static_assert(_Nd <= (2 * _Nd_ull),
+        -:  189:			"Maximum supported integer size is 128-bit");
+        -:  190:
+        -:  191:	  constexpr auto __max_ull = numeric_limits<unsigned long long>::max();
+        -:  192:	  unsigned long long __low = __x & __max_ull;
+        -:  193:	  unsigned long long __high = __x >> _Nd_ull;
+        -:  194:	  return __builtin_popcountll(__low) + __builtin_popcountll(__high);
+        -:  195:	}
+        -:  196:    }
+        -:  197:
+        -:  198:  template<typename _Tp>
+        -:  199:    constexpr bool
+        -:  200:    __ispow2(_Tp __x) noexcept
+        -:  201:    { return std::__popcount(__x) == 1; }
+        -:  202:
+        -:  203:  template<typename _Tp>
+        -:  204:    constexpr _Tp
+        -:  205:    __ceil2(_Tp __x) noexcept
+        -:  206:    {
+        -:  207:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:  208:      if (__x == 0 || __x == 1)
+        -:  209:        return 1;
+        -:  210:      auto __shift_exponent = _Nd - std::__countl_zero((_Tp)(__x - 1u));
+        -:  211:      // If the shift exponent equals _Nd then the correct result is not
+        -:  212:      // representable as a value of _Tp, and so the result is undefined.
+        -:  213:      // Want that undefined behaviour to be detected in constant expressions,
+        -:  214:      // by UBSan, and by debug assertions.
+        -:  215:#ifdef _GLIBCXX_HAVE_BUILTIN_IS_CONSTANT_EVALUATED
+        -:  216:      if (!__builtin_is_constant_evaluated())
+        -:  217:	__glibcxx_assert( __shift_exponent != numeric_limits<_Tp>::digits );
+        -:  218:#endif
+        -:  219:      using __promoted_type = decltype(__x << 1);
+        -:  220:      if _GLIBCXX17_CONSTEXPR (!is_same<__promoted_type, _Tp>::value)
+        -:  221:	{
+        -:  222:	  // If __x undergoes integral promotion then shifting by _Nd is
+        -:  223:	  // not undefined. In order to make the shift undefined, so that
+        -:  224:	  // it is diagnosed in constant expressions and by UBsan, we also
+        -:  225:	  // need to "promote" the shift exponent to be too large for the
+        -:  226:	  // promoted type.
+        -:  227:	  const int __extra_exp = sizeof(__promoted_type) / sizeof(_Tp) / 2;
+        -:  228:	  __shift_exponent |= (__shift_exponent & _Nd) << __extra_exp;
+        -:  229:	}
+        -:  230:      return (_Tp)1u << __shift_exponent;
+        -:  231:    }
+        -:  232:
+        -:  233:  template<typename _Tp>
+        -:  234:    constexpr _Tp
+        -:  235:    __floor2(_Tp __x) noexcept
+        -:  236:    {
+        -:  237:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:  238:      if (__x == 0)
+        -:  239:        return 0;
+        -:  240:      return (_Tp)1u << (_Nd - std::__countl_zero((_Tp)(__x >> 1)));
+        -:  241:    }
+        -:  242:
+        -:  243:  template<typename _Tp>
+        -:  244:    constexpr _Tp
+        -:  245:    __log2p1(_Tp __x) noexcept
+        -:  246:    {
+        -:  247:      constexpr auto _Nd = numeric_limits<_Tp>::digits;
+        -:  248:      return _Nd - std::__countl_zero(__x);
+        -:  249:    }
+        -:  250:
+        -:  251:#if __cplusplus > 201703L
+        -:  252:
+        -:  253:#define __cpp_lib_bitops 201907L
+        -:  254:
+        -:  255:  template<typename _Tp, typename _Up, bool = is_integral_v<_Tp>>
+        -:  256:    struct _If_is_unsigned_integer_type { };
+        -:  257:
+        -:  258:  template<typename _Up>
+        -:  259:    struct _If_is_unsigned_integer_type<bool, _Up, true> { };
+        -:  260:
+        -:  261:  template<typename _Tp, typename _Up>
+        -:  262:    struct _If_is_unsigned_integer_type<_Tp, _Up, true>
+        -:  263:    : enable_if<is_same_v<_Tp, make_unsigned_t<_Tp>>, _Up> { };
+        -:  264:
+        -:  265:  template<typename _Tp, typename _Up = _Tp>
+        -:  266:    using _If_is_unsigned_integer
+        -:  267:      = typename _If_is_unsigned_integer_type<remove_cv_t<_Tp>, _Up>::type;
+        -:  268:
+        -:  269:  // [bit.rot], rotating
+        -:  270:
+        -:  271:  template<typename _Tp>
+        -:  272:    [[nodiscard]] constexpr _If_is_unsigned_integer<_Tp>
+        -:  273:    rotl(_Tp __x, int __s) noexcept
+        -:  274:    { return std::__rotl(__x, __s); }
+        -:  275:
+        -:  276:  template<typename _Tp>
+        -:  277:    [[nodiscard]] constexpr _If_is_unsigned_integer<_Tp>
+        -:  278:    rotr(_Tp __x, int __s) noexcept
+        -:  279:    { return std::__rotr(__x, __s); }
+        -:  280:
+        -:  281:  // [bit.count], counting
+        -:  282:
+        -:  283:  template<typename _Tp>
+        -:  284:    constexpr _If_is_unsigned_integer<_Tp, int>
+        -:  285:    countl_zero(_Tp __x) noexcept
+        -:  286:    { return std::__countl_zero(__x); }
+        -:  287:
+        -:  288:  template<typename _Tp>
+        -:  289:    constexpr _If_is_unsigned_integer<_Tp, int>
+        -:  290:    countl_one(_Tp __x) noexcept
+        -:  291:    { return std::__countl_one(__x); }
+        -:  292:
+        -:  293:  template<typename _Tp>
+        -:  294:    constexpr _If_is_unsigned_integer<_Tp, int>
+        -:  295:    countr_zero(_Tp __x) noexcept
+        -:  296:    { return std::__countr_zero(__x); }
+        -:  297:
+        -:  298:  template<typename _Tp>
+        -:  299:    constexpr _If_is_unsigned_integer<_Tp, int>
+        -:  300:    countr_one(_Tp __x) noexcept
+        -:  301:    { return std::__countr_one(__x); }
+        -:  302:
+        -:  303:  template<typename _Tp>
+        -:  304:    constexpr _If_is_unsigned_integer<_Tp, int>
+    #####:  305:    popcount(_Tp __x) noexcept
+    %%%%%:  305-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  305-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  305-block  2
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  305-block  3
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  305-block  4
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  305-block  5
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  305-block  6
+branch 14 never executed
+branch 15 never executed
+    %%%%%:  305-block  7
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+branch 21 never executed
+branch 22 never executed
+branch 23 never executed
+branch 24 never executed
+branch 25 never executed
+branch 26 never executed
+branch 27 never executed
+branch 28 never executed
+branch 29 never executed
+branch 30 never executed
+branch 31 never executed
+branch 32 never executed
+branch 33 never executed
+    %%%%%:  305-block  8
+branch 34 never executed
+branch 35 never executed
+    %%%%%:  305-block  9
+branch 36 never executed
+branch 37 never executed
+    %%%%%:  305-block 10
+branch 38 never executed
+branch 39 never executed
+    %%%%%:  305-block 11
+branch 40 never executed
+branch 41 never executed
+    %%%%%:  305-block 12
+branch 42 never executed
+branch 43 never executed
+    %%%%%:  305-block 13
+branch 44 never executed
+branch 45 never executed
+    %%%%%:  305-block 14
+branch 46 never executed
+branch 47 never executed
+    %%%%%:  305-block 15
+branch 48 never executed
+branch 49 never executed
+    %%%%%:  305-block 16
+branch 50 never executed
+branch 51 never executed
+    %%%%%:  305-block 17
+branch 52 never executed
+branch 53 never executed
+    %%%%%:  305-block 18
+branch 54 never executed
+branch 55 never executed
+    %%%%%:  305-block 19
+branch 56 never executed
+branch 57 never executed
+    #####:  306:    { return std::__popcount(__x); }
+    %%%%%:  306-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  306-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  306-block  2
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  306-block  3
+    %%%%%:  306-block  4
+    %%%%%:  306-block  5
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  306-block  6
+branch  8 never executed
+branch  9 never executed
+    %%%%%:  306-block  7
+branch 10 never executed
+branch 11 never executed
+    %%%%%:  306-block  8
+    %%%%%:  306-block  9
+    %%%%%:  306-block 10
+    %%%%%:  306-block 11
+    %%%%%:  306-block 12
+    %%%%%:  306-block 13
+    %%%%%:  306-block 14
+    %%%%%:  306-block 15
+    %%%%%:  306-block 16
+branch 12 never executed
+branch 13 never executed
+    %%%%%:  306-block 17
+branch 14 never executed
+branch 15 never executed
+    %%%%%:  306-block 18
+branch 16 never executed
+branch 17 never executed
+    %%%%%:  306-block 19
+branch 18 never executed
+branch 19 never executed
+    %%%%%:  306-block 20
+branch 20 never executed
+branch 21 never executed
+    %%%%%:  306-block 21
+branch 22 never executed
+branch 23 never executed
+    %%%%%:  306-block 22
+branch 24 never executed
+branch 25 never executed
+    %%%%%:  306-block 23
+branch 26 never executed
+branch 27 never executed
+    %%%%%:  306-block 24
+branch 28 never executed
+branch 29 never executed
+    %%%%%:  306-block 25
+branch 30 never executed
+branch 31 never executed
+    %%%%%:  306-block 26
+branch 32 never executed
+branch 33 never executed
+        -:  307:
+        -:  308:  // [bit.pow.two], integral powers of 2
+        -:  309:
+        -:  310:#define __cpp_lib_int_pow2 201806L
+        -:  311:
+        -:  312:  template<typename _Tp>
+        -:  313:    constexpr _If_is_unsigned_integer<_Tp, bool>
+        -:  314:    ispow2(_Tp __x) noexcept
+        -:  315:    { return std::__ispow2(__x); }
+        -:  316:
+        -:  317:  template<typename _Tp>
+        -:  318:    constexpr _If_is_unsigned_integer<_Tp>
+        -:  319:    ceil2(_Tp __x) noexcept
+        -:  320:    { return std::__ceil2(__x); }
+        -:  321:
+        -:  322:  template<typename _Tp>
+        -:  323:    constexpr _If_is_unsigned_integer<_Tp>
+        -:  324:    floor2(_Tp __x) noexcept
+        -:  325:    { return std::__floor2(__x); }
+        -:  326:
+        -:  327:  template<typename _Tp>
+        -:  328:    constexpr _If_is_unsigned_integer<_Tp>
+        -:  329:    log2p1(_Tp __x) noexcept
+        -:  330:    { return std::__log2p1(__x); }
+        -:  331:
+        -:  332:#define __cpp_lib_endian 201907L
+        -:  333:
+        -:  334:  /// Byte order
+        -:  335:  enum class endian
+        -:  336:  {
+        -:  337:    little = __ORDER_LITTLE_ENDIAN__,
+        -:  338:    big    = __ORDER_BIG_ENDIAN__,
+        -:  339:    native = __BYTE_ORDER__
+        -:  340:  };
+        -:  341:#endif // C++2a
+        -:  342:
+        -:  343:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  344:} // namespace std
+        -:  345:
+        -:  346:#endif // C++14
+        -:  347:#endif // _GLIBCXX_BIT

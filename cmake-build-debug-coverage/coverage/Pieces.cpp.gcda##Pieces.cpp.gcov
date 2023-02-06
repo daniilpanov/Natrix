@@ -1,0 +1,242 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Pieces.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Pieces.hpp"
+        -:    2:
+        -:    3:
+        -:    4:Pieces::Pieces() = default;
+function _ZN6PiecesC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 7751 returned 100% blocks executed 100%
+     7751:    5:Pieces::Pieces(const std::string& short_fen) {
+     7751:    6:    uint8_t x = 0;
+     7751:    7:    uint8_t y = 7;
+        -:    8:
+     7751:    9:    uint8_t side;
+        -:   10:
+   341044:   11:    for (auto buff : short_fen) {
+     7751:   11-block  0
+   341044:   11-block  1
+branch  0 taken 333293 (fallthrough)
+branch  1 taken 7751
+   333293:   11-block  2
+branch  2 taken 54257 (fallthrough)
+branch  3 taken 279036
+   333293:   11-block  3
+   333293:   12:        if (buff == '/') {
+   333293:   12-block  0
+branch  0 taken 54257 (fallthrough)
+branch  1 taken 279036
+    54257:   13:            x = 0;
+    54257:   14:            y = y - 1;
+    54257:   14-block  0
+        -:   15:        }
+   279036:   16:        else if (std::isdigit(buff)) {
+   279036:   16-block  0
+branch  0 taken 31004 (fallthrough)
+branch  1 taken 248032
+    31004:   17:            x = x + buff - '0';
+    31004:   17-block  0
+        -:   18:        }
+        -:   19:        else {
+   248032:   20:            if (std::isupper(buff)) {
+   248032:   20-block  0
+branch  0 taken 124016 (fallthrough)
+branch  1 taken 124016
+   124016:   21:                buff = std::tolower(buff);
+   124016:   22:                side = Pieces::White;
+   124016:   22-block  0
+        -:   23:            }
+        -:   24:            else side = Pieces::Black;
+        -:   25:
+   248032:   26:            switch (buff) {
+   248032:   26-block  0
+branch  0 taken 124016
+branch  1 taken 31004
+branch  2 taken 31004
+branch  3 taken 31004
+branch  4 taken 15502
+branch  5 taken 15502
+branch  6 taken 0
+   124016:   27:                case 'p': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::Pawn], y * 8 + x); break;
+   124016:   27-block  0
+    31004:   28:                case 'n': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::Knight], y * 8 + x); break;
+    31004:   28-block  0
+    31004:   29:                case 'b': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::Bishop], y * 8 + x); break;
+    31004:   29-block  0
+    31004:   30:                case 'r': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::Rook], y * 8 + x); break;
+    31004:   30-block  0
+    15502:   31:                case 'q': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::Queen], y * 8 + x); break;
+    15502:   31-block  0
+    15502:   32:                case 'k': BitboardOperations::set_1(this->_piece_bitboards[side][Pieces::King], y * 8 + x); break;
+    15502:   32-block  0
+        -:   33:            }
+        -:   34:
+   248032:   35:            x = x + 1;
+   248032:   35-block  0
+        -:   36:        }
+        -:   37:    }
+        -:   38:
+     7751:   39:    this->update_bitboards();
+     7751:   39-block  0
+call    0 returned 7751
+     7751:   40:}
+function _ZlsRSo6Pieces called 0 returned 0% blocks executed 0%
+    #####:   41:std::ostream &operator<<(std::ostream &ostream, Pieces pieces) {
+    #####:   42:    ostream << ANSI::Green;
+    %%%%%:   42-block  0
+call    0 never executed
+        -:   43:
+    #####:   44:    for (int8_t y = 7; y >= 0; y = y - 1) {
+    %%%%%:   44-block  0
+call    0 never executed
+    %%%%%:   44-block  1
+branch  1 never executed
+branch  2 never executed
+    #####:   45:        for (uint8_t x = 0; x < 8; x = x + 1) {
+    %%%%%:   45-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   46:            ostream << "|  ";
+    %%%%%:   46-block  0
+call    0 never executed
+        -:   47:
+    #####:   48:            if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Pawn], y * 8 + x)) ostream << "♙";
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   48-block  0
+call    2 never executed
+    #####:   49:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Knight], y * 8 + x)) ostream << "♘";
+    %%%%%:   49-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   49-block  1
+call    2 never executed
+    #####:   50:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Bishop], y * 8 + x)) ostream << "♗";
+    %%%%%:   50-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   50-block  1
+call    2 never executed
+    #####:   51:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Rook], y * 8 + x)) ostream << "♖";
+    %%%%%:   51-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   51-block  1
+call    2 never executed
+    #####:   52:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Queen], y * 8 + x)) ostream << "♕";
+    %%%%%:   52-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   52-block  1
+call    2 never executed
+    #####:   53:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::King], y * 8 + x)) ostream << "♔";
+    %%%%%:   53-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   53-block  1
+call    2 never executed
+        -:   54:
+    #####:   55:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn], y * 8 + x)) ostream << "♟";
+    %%%%%:   55-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   55-block  1
+call    2 never executed
+    #####:   56:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Knight], y * 8 + x)) ostream << "♞";
+    %%%%%:   56-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   56-block  1
+call    2 never executed
+    #####:   57:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Bishop], y * 8 + x)) ostream << "♝";
+    %%%%%:   57-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   57-block  1
+call    2 never executed
+    #####:   58:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Rook], y * 8 + x)) ostream << "♜";
+    %%%%%:   58-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   58-block  1
+call    2 never executed
+    #####:   59:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Queen], y * 8 + x)) ostream << "♛";
+    %%%%%:   59-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   59-block  1
+call    2 never executed
+    #####:   60:            else if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::King], y * 8 + x)) ostream << "♚";
+    %%%%%:   60-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   60-block  1
+call    2 never executed
+        -:   61:
+    #####:   62:            else ostream << " ";
+    %%%%%:   62-block  0
+call    0 never executed
+        -:   63:
+    #####:   64:            ostream << "  ";
+    %%%%%:   64-block  0
+call    0 never executed
+        -:   65:        }
+    #####:   66:        ostream << "|\n";
+    %%%%%:   66-block  0
+call    0 never executed
+        -:   67:    }
+        -:   68:
+    #####:   69:    ostream << ANSI::End;
+    %%%%%:   69-block  0
+call    0 never executed
+        -:   70:
+    #####:   71:    return ostream;
+        -:   72:}
+function _Zeq6PiecesS_ called 0 returned 0% blocks executed 0%
+    #####:   73:bool operator ==(Pieces left, Pieces right) {
+    #####:   74:    for (uint8_t i = 0; i < 2; i = i + 1) {
+    %%%%%:   74-block  0
+    %%%%%:   74-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   74-block  2
+    #####:   75:        for (uint8_t j = 0; j < 6; j = j + 1) {
+    %%%%%:   75-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   75-block  1
+    #####:   76:            if (left._piece_bitboards[i][j] != right._piece_bitboards[i][j]) return false;
+    %%%%%:   76-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   77:        }
+        -:   78:    }
+        -:   79:
+        -:   80:    return true;
+        -:   81:}
+function _ZN6Pieces16update_bitboardsEv called 2780839 returned 100% blocks executed 100%
+  2780839:   82:void Pieces::update_bitboards() {
+  2780839:   83:    this->_side_bitboards[Pieces::White] = this->_piece_bitboards[Pieces::White][Pieces::Pawn] |
+  2780839:   84:                                           this->_piece_bitboards[Pieces::White][Pieces::Knight] |
+  2780839:   85:                                           this->_piece_bitboards[Pieces::White][Pieces::Bishop] |
+  2780839:   86:                                           this->_piece_bitboards[Pieces::White][Pieces::Rook] |
+  2780839:   87:                                           this->_piece_bitboards[Pieces::White][Pieces::Queen] |
+  2780839:   88:                                           this->_piece_bitboards[Pieces::White][Pieces::King];
+        -:   89:
+  2780839:   90:    this->_side_bitboards[Pieces::Black] = this->_piece_bitboards[Pieces::Black][Pieces::Pawn] |
+  2780839:   91:                                           this->_piece_bitboards[Pieces::Black][Pieces::Knight] |
+  2780839:   92:                                           this->_piece_bitboards[Pieces::Black][Pieces::Bishop] |
+  2780839:   93:                                           this->_piece_bitboards[Pieces::Black][Pieces::Rook] |
+  2780839:   94:                                           this->_piece_bitboards[Pieces::Black][Pieces::Queen] |
+  2780839:   95:                                           this->_piece_bitboards[Pieces::Black][Pieces::King];
+        -:   96:
+  2780839:   97:    this->_inversion_side_bitboards[Pieces::White] = ~this->_side_bitboards[Pieces::White];
+  2780839:   98:    this->_inversion_side_bitboards[Pieces::Black] = ~this->_side_bitboards[Pieces::Black];
+        -:   99:
+  2780839:  100:    this->_all = this->_side_bitboards[Pieces::White] | this->_side_bitboards[Pieces::Black];
+  2780839:  101:    this->_empty = ~this->_all;
+  2780839:  102:}
+function _ZN6Pieces7inverseEh called 35497127 returned 100% blocks executed 100%
+ 35497127:  103:uint8_t Pieces::inverse(uint8_t side) {
+ 35497127:  104:    return !side;
+        -:  105:}

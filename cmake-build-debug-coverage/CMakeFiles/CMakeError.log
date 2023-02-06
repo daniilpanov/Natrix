@@ -1,0 +1,54 @@
+The C compiler identification could not be found in "/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/3.24.2/CompilerIdC/CMakeCCompilerId.gcno"
+
+The CXX compiler identification could not be found in "/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/3.24.2/CompilerIdCXX/CMakeCXXCompilerId.gcno"
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/home/daniel/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/linux/x64/ninja cmTC_4f444 && [1/2] Building C object CMakeFiles/cmTC_4f444.dir/src.c.o
+[2/2] Linking C executable cmTC_4f444
+FAILED: cmTC_4f444 
+: && /usr/bin/cc --coverage  CMakeFiles/cmTC_4f444.dir/src.c.o -o cmTC_4f444   && :
+/usr/bin/ld: CMakeFiles/cmTC_4f444.dir/src.c.o: в функции «main»:
+src.c:(.text+0x6a): неопределённая ссылка на «pthread_create»
+/usr/bin/ld: src.c:(.text+0x88): неопределённая ссылка на «pthread_detach»
+/usr/bin/ld: src.c:(.text+0xa6): неопределённая ссылка на «pthread_cancel»
+/usr/bin/ld: src.c:(.text+0xc9): неопределённая ссылка на «pthread_join»
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/home/daniel/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/ninja/linux/x64/ninja cmTC_053dc && [1/2] Building C object CMakeFiles/cmTC_053dc.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_053dc
+FAILED: cmTC_053dc 
+: && /usr/bin/cc --coverage -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_053dc.dir/CheckFunctionExists.c.o -o cmTC_053dc  -lpthreads && :
+/usr/bin/ld: невозможно найти -lpthreads
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+

@@ -1,0 +1,23 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/OpeningBook.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <fstream>
+        -:    2:#include <sstream>
+        -:    3:#include <tuple>
+        -:    4:#include "../Base/MoveGeneration/LegalMoveGen.hpp"
+        -:    5:
+        -:    6:
+        -:    7:#pragma once
+        -:    8:
+        -:    9:
+function _ZN11OpeningBookC2Ev called 2 returned 100% blocks executed 100%
+        2:   10:class OpeningBook {
+        -:   11:public:
+        -:   12:    OpeningBook();
+        -:   13:    OpeningBook(const std::string& path);
+        -:   14:
+        -:   15:    std::tuple<Move, int32_t> try_to_find_move(const Position& position);
+        -:   16:private:
+        -:   17:    std::vector<std::vector<Move>> _moves;
+        -:   18:};

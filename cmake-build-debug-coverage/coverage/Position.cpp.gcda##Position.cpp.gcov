@@ -1,0 +1,486 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Position.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Position.hpp"
+        -:    2:
+        -:    3:
+        -:    4:Position::Position() = default;
+function _ZN8PositionC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEhbbbbf called 7751 returned 100% blocks executed 73%
+     7751:    5:Position::Position(const std::string& short_fen, uint8_t en_passant, bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling, float move_ctr) {
+     7751:    5-block  0
+call    0 returned 7751
+call    1 returned 7751
+call    2 returned 7751
+    $$$$$:    5-block  1
+branch  3 never executed
+branch  4 never executed
+     7751:    6:    this->_pieces = {short_fen};
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+     7751:    7:    this->_en_passant = en_passant;
+        -:    8:
+     7751:    9:    this->_w_l_castling = w_l_castling;
+     7751:   10:    this->_w_s_castling = w_s_castling;
+     7751:   11:    this->_b_l_castling = b_l_castling;
+     7751:   12:    this->_b_s_castling = b_s_castling;
+        -:   13:
+        -:   14:    // Этими переменными пользуется ИИ при оценке позиции. На генерацию рокировок влияют только переменные выше.
+     7751:   15:    this->_white_castling_happened = false;
+     7751:   16:    this->_black_castling_happened = false;
+        -:   17:
+     7751:   18:    this->_move_ctr = move_ctr;
+     7751:   19:    this->_hash = {this->_pieces, (this->_move_ctr - std::floor(this->_move_ctr) > 1e-4), this->_w_l_castling, this->_w_s_castling, this->_b_l_castling, this->_b_s_castling};
+     7751:   19-block  0
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+     7751:   20:    this->_repetition_history.add_position(this->_hash);
+     7751:   20-block  0
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+     7751:   21:    this->_fifty_moves_ctr = 0;
+     7751:   22:}
+     7751:   22-block  0
+function _ZlsRSo8Position called 0 returned 0% blocks executed 0%
+    #####:   23:std::ostream &operator<<(std::ostream &ostream, Position position) {
+    #####:   24:    ostream << position._pieces;
+    %%%%%:   24-block  0
+call    0 never executed
+        -:   25:
+    #####:   26:    ostream << ANSI::Green;
+call    0 never executed
+        -:   27:
+    #####:   28:    ostream << "En passant: " << (uint32_t)position._en_passant << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   29:    ostream << "White long castling: " << position._w_l_castling << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   30:    ostream << "White short castling: " << position._w_s_castling << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   31:    ostream << "Black long castling: " << position._b_l_castling << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   32:    ostream << "Black short castling: " << position._b_l_castling << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   33:    ostream << "Move counter: " << position._move_ctr << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   34:    ostream << "Zobrist hash: " << std::hex << "0x" << position._hash._hash << "\n" << std::dec;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+    #####:   35:    ostream << "Fifty moves counter: " << position._fifty_moves_ctr << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   36:    ostream << "Threefold repetition counter: " << (uint32_t)position._repetition_history.get_repetition_number(position._hash) << "\n";
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:   37:
+    #####:   38:    ostream << ANSI::End;
+call    0 never executed
+        -:   39:
+    #####:   40:    return ostream;
+        -:   41:}
+function _ZN8Position4moveE4Move called 93012 returned 100% blocks executed 72%
+    93012:   42:void Position::move(Move move) {
+    93012:   43:    this->_remove_piece(move._from, move._attacker_type, move._attacker_side);
+    93012:   43-block  0
+call    0 returned 93012
+   186024:   44:    this->_add_piece(move._to, move._attacker_type, move._attacker_side);
+    93012:   45:    if (move._defender_type != 255) this->_remove_piece(move._to, move._defender_type, move._defender_side);
+    93012:   45-block  0
+branch  0 taken 9367 (fallthrough)
+branch  1 taken 83645
+     9367:   45-block  1
+call    2 returned 9367
+        -:   46:
+    93012:   47:    switch (move._flag) {
+    93012:   47-block  0
+branch  0 taken 24000
+branch  1 taken 1
+branch  2 taken 7
+branch  3 taken 1858
+branch  4 taken 0
+branch  5 taken 1625
+branch  6 taken 0
+branch  7 taken 0
+branch  8 taken 0
+branch  9 taken 0
+branch 10 taken 65521
+        -:   48:        case Move::Flag::Default:
+        -:   49:            break;
+        -:   50:
+    24000:   51:        case Move::Flag::PawnLongMove:
+   117012:   52:            this->_change_en_passant((move._from + move._to) / 2);
+        -:   53:            break;
+        1:   54:        case Move::Flag::EnPassantCapture:
+        1:   55:            if (move._attacker_side == Pieces::White) this->_remove_piece(move._to - 8, Pieces::Pawn, Pieces::Black);
+        1:   55-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:   55-block  1
+call    2 returned 1
+    #####:   56:            else this->_remove_piece(move._to + 8, Pieces::Pawn, Pieces::White);
+    %%%%%:   56-block  0
+call    0 never executed
+        -:   57:            break;
+        -:   58:
+        7:   59:        case Move::Flag::WhiteLongCastling:
+       14:   60:            this->_remove_piece(0, Pieces::Rook, Pieces::White);
+       14:   61:            this->_add_piece(3, Pieces::Rook, Pieces::White);
+        7:   62:            this->_white_castling_happened = true;
+        7:   63:            break;
+        7:   63-block  0
+     1858:   64:        case Move::Flag::WhiteShortCastling:
+     3716:   65:            this->_remove_piece(7, Pieces::Rook, Pieces::White);
+     3716:   66:            this->_add_piece(5, Pieces::Rook, Pieces::White);
+     1858:   67:            this->_white_castling_happened = true;
+     1858:   68:            break;
+     1858:   68-block  0
+    #####:   69:        case Move::Flag::BlackLongCastling:
+    #####:   70:            this->_remove_piece(56, Pieces::Rook, Pieces::Black);
+    #####:   71:            this->_add_piece(59, Pieces::Rook, Pieces::Black);
+    #####:   72:            this->_black_castling_happened = true;
+    #####:   73:            break;
+    %%%%%:   73-block  0
+     1625:   74:        case Move::Flag::BlackShortCastling:
+     3250:   75:            this->_remove_piece(63, Pieces::Rook, Pieces::Black);
+     3250:   76:            this->_add_piece(61, Pieces::Rook, Pieces::Black);
+     1625:   77:            this->_black_castling_happened = true;
+     1625:   78:            break;
+     1625:   78-block  0
+        -:   79:
+    #####:   80:        case Move::Flag::PromoteToKnight:
+    #####:   81:            this->_remove_piece(move._to, Pieces::Pawn, move._attacker_side);
+    %%%%%:   81-block  0
+call    0 never executed
+   93012*:   82:            this->_add_piece(move._to, Pieces::Knight, move._attacker_side);
+        -:   83:            break;
+    #####:   84:        case Move::Flag::PromoteToBishop:
+    #####:   85:            this->_remove_piece(move._to, Pieces::Pawn, move._attacker_side);
+    %%%%%:   85-block  0
+call    0 never executed
+   93012*:   86:            this->_add_piece(move._to, Pieces::Bishop, move._attacker_side);
+        -:   87:            break;
+    #####:   88:        case Move::Flag::PromoteToRook:
+    #####:   89:            this->_remove_piece(move._to, Pieces::Pawn, move._attacker_side);
+    %%%%%:   89-block  0
+call    0 never executed
+   93012*:   90:            this->_add_piece(move._to, Pieces::Rook, move._attacker_side);
+        -:   91:            break;
+    #####:   92:        case Move::Flag::PromoteToQueen:
+    #####:   93:            this->_remove_piece(move._to, Pieces::Pawn, move._attacker_side);
+    %%%%%:   93-block  0
+call    0 never executed
+   93012*:   94:            this->_add_piece(move._to, Pieces::Queen, move._attacker_side);
+        -:   95:            break;
+        -:   96:    }
+        -:   97:
+    93012:   98:    this->_pieces.update_bitboards();
+    93012:   98-block  0
+call    0 returned 93012
+        -:   99:
+    93012:  100:    if (move._flag != Move::Flag::PawnLongMove) this->_change_en_passant(255);
+branch  0 taken 69012 (fallthrough)
+branch  1 taken 24000
+        -:  101:
+    93012:  102:    switch (move._from) {
+    93012:  102-block  0
+branch  0 taken 29
+branch  1 taken 1870
+branch  2 taken 1
+branch  3 taken 8
+branch  4 taken 1631
+branch  5 taken 0
+branch  6 taken 89473
+       29:  103:        case 0:
+    93041:  104:            this->_remove_w_l_castling();
+        -:  105:            break;
+     1870:  106:        case 4:
+     3740:  107:            this->_remove_w_l_castling();
+    94882:  108:            this->_remove_w_s_castling();
+        -:  109:            break;
+        1:  110:        case 7:
+    93013:  111:            this->_remove_w_s_castling();
+        -:  112:            break;
+        8:  113:        case 56:
+    93020:  114:            this->_remove_b_l_castling();
+        -:  115:            break;
+     1631:  116:        case 60:
+     3262:  117:            this->_remove_b_l_castling();
+    94643:  118:            this->_remove_b_s_castling();
+        -:  119:            break;
+    #####:  120:        case 63:
+   93012*:  121:            this->_remove_b_s_castling();
+        -:  122:            break;
+        -:  123:    }
+        -:  124:
+   186024:  125:    this->_update_move_ctr();
+        -:  126:
+    93012:  127:    this->_update_fifty_moves_ctr(move._attacker_type == Pieces::Pawn or move._defender_type != 255);
+branch  0 taken 46745 (fallthrough)
+branch  1 taken 46267
+    46745:  127-block  0
+branch  2 taken 42132 (fallthrough)
+branch  3 taken 4613
+        -:  128:
+    93012:  129:    if (move._attacker_type == Pieces::Pawn or move._defender_type != 255) this->_repetition_history.clear();
+    93012:  129-block  0
+branch  0 taken 46745 (fallthrough)
+branch  1 taken 46267
+    46745:  129-block  1
+branch  2 taken 4613 (fallthrough)
+branch  3 taken 42132
+    50880:  129-block  2
+call    4 returned 50880
+    93012:  130:    this->_repetition_history.add_position(this->_hash);
+    93012:  130-block  0
+call    0 returned 93012
+    93012:  131:}
+function _ZN8Position10_add_pieceEhhh called 0 returned 0% blocks executed 0%
+   96502*:  132:void Position::_add_piece(uint8_t square, uint8_t type, uint8_t side) {
+   96502*:  133:    if (!BitboardOperations::get_bit(this->_pieces._piece_bitboards[side][type], square)) {
+    %%%%%:  133-block  0
+branch  0 never executed
+branch  1 never executed
+branch  2 taken 93012 (fallthrough)
+branch  3 taken 0
+        7:  133-block  1
+branch  4 taken 7 (fallthrough)
+branch  5 taken 0
+     1858:  133-block  2
+branch  6 taken 1858 (fallthrough)
+branch  7 taken 0
+    %%%%%:  133-block  3
+branch  8 never executed
+branch  9 never executed
+     1625:  133-block  4
+branch 10 taken 1625 (fallthrough)
+branch 11 taken 0
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+   96502*:  134:        BitboardOperations::set_1(this->_pieces._piece_bitboards[side][type], square);
+    %%%%%:  134-block  0
+call    0 never executed
+    93012:  134-block  1
+call    1 returned 93012
+        7:  134-block  2
+call    2 returned 7
+     1858:  134-block  3
+call    3 returned 1858
+    %%%%%:  134-block  4
+call    4 never executed
+     1625:  134-block  5
+call    5 returned 1625
+    %%%%%:  134-block  6
+call    6 never executed
+    %%%%%:  134-block  7
+call    7 never executed
+    %%%%%:  134-block  8
+call    8 never executed
+    %%%%%:  134-block  9
+call    9 never executed
+   96502*:  135:        this->_hash.invert_piece(square, type, side);
+    %%%%%:  135-block  0
+call    0 never executed
+    93012:  135-block  1
+call    1 returned 93012
+        7:  135-block  2
+call    2 returned 7
+     1858:  135-block  3
+call    3 returned 1858
+    %%%%%:  135-block  4
+call    4 never executed
+     1625:  135-block  5
+call    5 returned 1625
+    %%%%%:  135-block  6
+call    6 never executed
+    %%%%%:  135-block  7
+call    7 never executed
+    %%%%%:  135-block  8
+call    8 never executed
+    %%%%%:  135-block  9
+call    9 never executed
+        -:  136:    }
+    #####:  137:}
+function _ZN8Position13_remove_pieceEhhh called 102380 returned 100% blocks executed 100%
+  105870*:  138:void Position::_remove_piece(uint8_t square, uint8_t type, uint8_t side) {
+  105870*:  139:    if (BitboardOperations::get_bit(this->_pieces._piece_bitboards[side][type], square)) {
+   102380:  139-block  0
+branch  0 taken 102380 (fallthrough)
+branch  1 taken 0
+        7:  139-block  1
+branch  2 taken 7 (fallthrough)
+branch  3 taken 0
+     1858:  139-block  2
+branch  4 taken 1858 (fallthrough)
+branch  5 taken 0
+    %%%%%:  139-block  3
+branch  6 never executed
+branch  7 never executed
+     1625:  139-block  4
+branch  8 taken 1625 (fallthrough)
+branch  9 taken 0
+  105870*:  140:        BitboardOperations::set_0(this->_pieces._piece_bitboards[side][type], square);
+   102380:  140-block  0
+call    0 returned 102380
+        7:  140-block  1
+call    1 returned 7
+     1858:  140-block  2
+call    2 returned 1858
+    %%%%%:  140-block  3
+call    3 never executed
+     1625:  140-block  4
+call    4 returned 1625
+  105870*:  141:        this->_hash.invert_piece(square, type, side);
+   102380:  141-block  0
+call    0 returned 102380
+        7:  141-block  1
+call    1 returned 7
+     1858:  141-block  2
+call    2 returned 1858
+    %%%%%:  141-block  3
+call    3 never executed
+     1625:  141-block  4
+call    4 returned 1625
+        -:  142:    }
+   102380:  143:}
+function _ZN8Position18_change_en_passantEh called 0 returned 0% blocks executed 0%
+   93012*:  144:void Position::_change_en_passant(uint8_t en_passant) {
+   93012*:  145:    this->_en_passant = en_passant;
+   93012*:  146:}
+    24000:  146-block  0
+    69012:  146-block  1
+function _ZN8Position20_remove_w_l_castlingEv called 0 returned 0% blocks executed 0%
+    1899*:  147:void Position::_remove_w_l_castling() {
+    1899*:  148:    if (this->_w_l_castling) {
+    %%%%%:  148-block  0
+branch  0 never executed
+branch  1 never executed
+       29:  148-block  1
+branch  2 taken 29 (fallthrough)
+branch  3 taken 0
+     1870:  148-block  2
+branch  4 taken 1870 (fallthrough)
+branch  5 taken 0
+    1899*:  149:        this->_w_l_castling = false;
+    1899*:  150:        this->_hash.invert_w_l_castling();
+    %%%%%:  150-block  0
+call    0 never executed
+       29:  150-block  1
+call    1 returned 29
+     1870:  150-block  2
+call    2 returned 1870
+        -:  151:    }
+    #####:  152:}
+function _ZN8Position20_remove_w_s_castlingEv called 0 returned 0% blocks executed 0%
+    1871*:  153:void Position::_remove_w_s_castling() {
+    1871*:  154:    if (this->_w_s_castling) {
+    %%%%%:  154-block  0
+branch  0 never executed
+branch  1 never executed
+     1870:  154-block  1
+branch  2 taken 1870 (fallthrough)
+branch  3 taken 0
+        1:  154-block  2
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0
+    1871*:  155:        this->_w_s_castling = false;
+    1871*:  156:        this->_hash.invert_w_s_castling();
+    %%%%%:  156-block  0
+call    0 never executed
+     1870:  156-block  1
+call    1 returned 1870
+        1:  156-block  2
+call    2 returned 1
+        -:  157:    }
+    #####:  158:}
+function _ZN8Position20_remove_b_l_castlingEv called 0 returned 0% blocks executed 0%
+    1639*:  159:void Position::_remove_b_l_castling() {
+    1639*:  160:    if (this->_b_l_castling) {
+    %%%%%:  160-block  0
+branch  0 never executed
+branch  1 never executed
+        8:  160-block  1
+branch  2 taken 8 (fallthrough)
+branch  3 taken 0
+     1631:  160-block  2
+branch  4 taken 1631 (fallthrough)
+branch  5 taken 0
+    1639*:  161:        this->_b_l_castling = false;
+    1639*:  162:        this->_hash.invert_b_l_castling();
+    %%%%%:  162-block  0
+call    0 never executed
+        8:  162-block  1
+call    1 returned 8
+     1631:  162-block  2
+call    2 returned 1631
+        -:  163:    }
+    #####:  164:}
+function _ZN8Position20_remove_b_s_castlingEv called 0 returned 0% blocks executed 0%
+    1631*:  165:void Position::_remove_b_s_castling() {
+    1631*:  166:    if (this->_b_s_castling) {
+    %%%%%:  166-block  0
+branch  0 never executed
+branch  1 never executed
+     1631:  166-block  1
+branch  2 taken 1631 (fallthrough)
+branch  3 taken 0
+    %%%%%:  166-block  2
+branch  4 never executed
+branch  5 never executed
+    1631*:  167:        this->_b_s_castling = false;
+    1631*:  168:        this->_hash.invert_b_s_castling();
+    %%%%%:  168-block  0
+call    0 never executed
+     1631:  168-block  1
+call    1 returned 1631
+    %%%%%:  168-block  2
+call    2 never executed
+        -:  169:    }
+    #####:  170:}
+function _ZN8Position16_update_move_ctrEv called 0 returned 0% blocks executed 0%
+   93012*:  171:void Position::_update_move_ctr() {
+   93012*:  172:    this->_move_ctr = this->_move_ctr + 0.5f;
+   93012*:  173:    this->_hash.invert_move();
+    %%%%%:  173-block  0
+call    0 never executed
+    93012:  173-block  1
+call    1 returned 93012
+    #####:  174:}
+function _ZN8Position23_update_fifty_moves_ctrEb called 0 returned 0% blocks executed 0%
+   42132*:  175:void Position::_update_fifty_moves_ctr(bool break_event) {
+   50880*:  176:    if (break_event) this->_fifty_moves_ctr = 0;
+    %%%%%:  176-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  176-block  1
+    50880:  176-block  2
+   42132*:  177:    else this->_fifty_moves_ctr = this->_fifty_moves_ctr + 0.5f;
+    %%%%%:  177-block  0
+    42132:  177-block  1
+    #####:  178:}

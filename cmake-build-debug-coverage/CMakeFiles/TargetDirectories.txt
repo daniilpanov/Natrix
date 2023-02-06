@@ -1,0 +1,3 @@
+/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir
+/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir

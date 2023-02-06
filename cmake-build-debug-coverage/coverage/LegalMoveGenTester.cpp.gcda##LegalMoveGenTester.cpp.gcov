@@ -1,0 +1,234 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "LegalMoveGenTester.hpp"
+        -:    2:
+        -:    3:
+        -:    4:#define nsecs std::chrono::high_resolution_clock::now().time_since_epoch().count()
+        -:    5:
+        -:    6:
+function _ZN18LegalMoveGenTester4testEv called 0 returned 0% blocks executed 0%
+    #####:    7:void LegalMoveGenTester::test() {
+    #####:    8:    Position position = {(std::string)LegalMoveGenTester::Fen, LegalMoveGenTester::EnPassant, LegalMoveGenTester::WLCastling, LegalMoveGenTester::WSCastling, LegalMoveGenTester::BLCastling, LegalMoveGenTester::BSCastling, 1};
+    %%%%%:    8-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:    8-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:    8-block  2
+call    6 never executed
+        -:    9:
+    #####:   10:    uint64_t correct;
+    #####:   11:    uint64_t got;
+        -:   12:
+    #####:   13:    uint64_t time_start;
+    #####:   14:    float speed;
+        -:   15:
+    #####:   16:    for (uint32_t i = 0; i < 6; i = i + 1) {
+    %%%%%:   16-block  0
+    %%%%%:   16-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:   17:        time_start = nsecs;
+    %%%%%:   17-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   18:
+    #####:   19:        correct = LegalMoveGenTester::Nodes[i];
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   20:        got = LegalMoveGenTester::_get_nodes_number(position, Pieces::White, i);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   21:
+    #####:   22:        speed = (float)got / ((float)(nsecs - time_start) / (float)1e+9) / (float)1e+6;
+    %%%%%:   22-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   23:
+    #####:   24:        if (correct == got) std::cout << ANSI::Green << "Depth " << std::setw(4) << i << ". Correct: " << std::setw(18) << correct << ". Got: " << std::setw(18) << got << ". Speed: " << std::setw(10) << speed << " MNPS. OK." << ANSI::End << std::endl;
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   24-block  0
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   24-block  1
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    %%%%%:   24-block  2
+call    8 never executed
+branch  9 never executed
+branch 10 never executed
+    %%%%%:   24-block  3
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   24-block  4
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   24-block  5
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+    %%%%%:   24-block  6
+call   20 never executed
+branch 21 never executed
+branch 22 never executed
+    %%%%%:   24-block  7
+call   23 never executed
+branch 24 never executed
+branch 25 never executed
+    %%%%%:   24-block  8
+call   26 never executed
+branch 27 never executed
+branch 28 never executed
+    %%%%%:   24-block  9
+call   29 never executed
+branch 30 never executed
+branch 31 never executed
+    %%%%%:   24-block 10
+call   32 never executed
+branch 33 never executed
+branch 34 never executed
+    %%%%%:   24-block 11
+call   35 never executed
+branch 36 never executed
+branch 37 never executed
+    #####:   25:        else std::cout << ANSI::Red << "Depth " << std::setw(4) << i << ". Correct: " << std::setw(18) << correct << ". Got: " << std::setw(18) << got << ". Speed: " << std::setw(10) << speed << " MNPS. Error." << ANSI::End << std::endl;
+    %%%%%:   25-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   25-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   25-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   25-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   25-block  4
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   25-block  5
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+    %%%%%:   25-block  6
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+    %%%%%:   25-block  7
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+    %%%%%:   25-block  8
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+    %%%%%:   25-block  9
+call   27 never executed
+branch 28 never executed
+branch 29 never executed
+    %%%%%:   25-block 10
+call   30 never executed
+branch 31 never executed
+branch 32 never executed
+    %%%%%:   25-block 11
+call   33 never executed
+branch 34 never executed
+branch 35 never executed
+    %%%%%:   25-block 12
+        -:   26:    }
+    #####:   27:}
+    %%%%%:   27-block  0
+function _ZN18LegalMoveGenTester17_get_nodes_numberERK8Positionhj called 0 returned 0% blocks executed 0%
+    #####:   28:uint64_t LegalMoveGenTester::_get_nodes_number(const Position& position, uint8_t side, uint32_t depth) {
+    #####:   29:    if (depth == 0) return 1;
+    %%%%%:   29-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   30:
+    #####:   31:    uint64_t ctr = 0;
+        -:   32:
+    #####:   33:    Position copy = position;
+    %%%%%:   33-block  0
+call    0 never executed
+    %%%%%:   33-block  1
+        -:   34:
+    #####:   35:    MoveList moves = LegalMoveGen::generate(copy, side);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   35-block  0
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    $$$$$:   35-block  1
+    $$$$$:   35-block  2
+branch  6 never executed
+branch  7 never executed
+    #####:   36:    Move move;
+    %%%%%:   36-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   37:
+    #####:   38:    for (uint8_t i = 0; i < moves.size(); i = i + 1) {
+    %%%%%:   38-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   38-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:   39:        move = moves[i];
+    %%%%%:   39-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   40:
+    #####:   41:        copy = position;
+    %%%%%:   41-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   42:        copy.move(move);
+    %%%%%:   42-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   43:        ctr = ctr + LegalMoveGenTester::_get_nodes_number(copy, Pieces::inverse(side), depth - 1);
+    %%%%%:   43-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   43-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   43-block  2
+        -:   44:    }
+        -:   45:
+    #####:   46:    return ctr;
+    %%%%%:   46-block  0
+branch  0 never executed
+branch  1 never executed
+        -:   47:}

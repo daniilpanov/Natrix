@@ -1,0 +1,40 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Pieces.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <ostream>
+        -:    2:#include <cctype>
+        -:    3:#include "Bitboard.hpp"
+        -:    4:
+        -:    5:
+        -:    6:#pragma once
+        -:    7:
+        -:    8:
+function _ZN6PiecesC2Ev called 7753 returned 100% blocks executed 100%
+     7753:    9:struct Pieces {
+        -:   10:    Pieces();
+        -:   11:    Pieces(const std::string& short_fen);
+        -:   12:
+        -:   13:    friend std::ostream& operator <<(std::ostream& ostream, Pieces pieces);
+        -:   14:    friend bool operator ==(Pieces left, Pieces right);
+        -:   15:
+        -:   16:    void update_bitboards();
+        -:   17:
+        -:   18:    static uint8_t inverse(uint8_t side);
+        -:   19:
+        -:   20:    std::array<std::array<Bitboard, 6>, 2> _piece_bitboards{};
+        -:   21:    std::array<Bitboard, 2> _side_bitboards{};
+        -:   22:    std::array<Bitboard, 2> _inversion_side_bitboards{};
+        -:   23:    Bitboard _all;
+        -:   24:    Bitboard _empty;
+        -:   25:
+        -:   26:    static constexpr uint8_t Pawn = 0;
+        -:   27:    static constexpr uint8_t Knight = 1;
+        -:   28:    static constexpr uint8_t Bishop = 2;
+        -:   29:    static constexpr uint8_t Rook = 3;
+        -:   30:    static constexpr uint8_t Queen = 4;
+        -:   31:    static constexpr uint8_t King = 5;
+        -:   32:
+        -:   33:    static constexpr uint8_t White = 0;
+        -:   34:    static constexpr uint8_t Black = 1;
+        -:   35:};

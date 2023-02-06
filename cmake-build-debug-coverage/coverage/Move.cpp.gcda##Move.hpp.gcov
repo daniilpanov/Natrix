@@ -1,0 +1,45 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Move.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <cstdint>
+        -:    2:
+        -:    3:
+        -:    4:#pragma once
+        -:    5:
+        -:    6:
+function _ZN4MoveC2Ev called 21413056 returned 100% blocks executed 100%
+ 21413056:    7:struct Move {
+        -:    8:    Move();
+        -:    9:    Move(uint8_t from, uint8_t to, uint8_t attacker_type, uint8_t attacker_side, uint8_t defender_type, uint8_t defender_side, uint8_t flag = Move::Flag::Default);
+        -:   10:
+        -:   11:    friend bool operator ==(Move left, Move right);
+        -:   12:
+        -:   13:    uint8_t _from;
+        -:   14:    uint8_t _to;
+        -:   15:
+        -:   16:    uint8_t _attacker_type;
+        -:   17:    uint8_t _attacker_side;
+        -:   18:
+        -:   19:    uint8_t _defender_type;
+        -:   20:    uint8_t _defender_side;
+        -:   21:
+        -:   22:    uint8_t _flag;
+        -:   23:
+        -:   24:    struct Flag {
+        -:   25:        static constexpr uint8_t Default = 0;
+        -:   26:
+        -:   27:        static constexpr uint8_t PawnLongMove = 1;
+        -:   28:        static constexpr uint8_t EnPassantCapture = 2;
+        -:   29:
+        -:   30:        static constexpr uint8_t WhiteLongCastling = 3;
+        -:   31:        static constexpr uint8_t WhiteShortCastling = 4;
+        -:   32:        static constexpr uint8_t BlackLongCastling = 5;
+        -:   33:        static constexpr uint8_t BlackShortCastling = 6;
+        -:   34:
+        -:   35:        static constexpr uint8_t PromoteToKnight = 7;
+        -:   36:        static constexpr uint8_t PromoteToBishop = 8;
+        -:   37:        static constexpr uint8_t PromoteToRook = 9;
+        -:   38:        static constexpr uint8_t PromoteToQueen = 10;
+        -:   39:    };
+        -:   40:};

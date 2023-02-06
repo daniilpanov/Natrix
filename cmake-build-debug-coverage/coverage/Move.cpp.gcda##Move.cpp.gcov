@@ -1,0 +1,46 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Move.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Move.hpp"
+        -:    2:
+        -:    3:
+        -:    4:Move::Move() = default;
+function _ZN4MoveC2Ehhhhhhh called 2688947 returned 100% blocks executed 100%
+  2688947:    5:Move::Move(uint8_t from, uint8_t to, uint8_t attacker_type, uint8_t attacker_side, uint8_t defender_type, uint8_t defender_side, uint8_t flag) {
+  2688947:    6:    this->_from = from;
+  2688947:    7:    this->_to = to;
+        -:    8:
+  2688947:    9:    this->_attacker_type = attacker_type;
+  2688947:   10:    this->_attacker_side = attacker_side;
+        -:   11:
+  2688947:   12:    this->_defender_type = defender_type;
+  2688947:   13:    this->_defender_side = defender_side;
+        -:   14:
+  2688947:   15:    this->_flag = flag;
+  2688947:   16:}
+function _Zeq4MoveS_ called 0 returned 0% blocks executed 0%
+    #####:   17:bool operator ==(Move left, Move right) {
+    #####:   18:    return (left._from == right._from and left._to == right._to and left._attacker_type == right._attacker_type and left._attacker_side == right._attacker_side and left._defender_type == right._defender_type and left._defender_side == right._defender_side and left._flag == right._flag);
+    %%%%%:   18-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   18-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   18-block  2
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   18-block  3
+branch  6 never executed
+branch  7 never executed
+    %%%%%:   18-block  4
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   18-block  5
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   18-block  6
+branch 12 never executed
+branch 13 never executed
+        -:   19:}

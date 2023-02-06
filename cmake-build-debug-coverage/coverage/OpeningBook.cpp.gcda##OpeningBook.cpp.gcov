@@ -1,0 +1,404 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/OpeningBook.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "OpeningBook.hpp"
+        -:    2:
+        -:    3:
+        -:    4:OpeningBook::OpeningBook() = default;
+function _ZN11OpeningBookC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 55%
+        1:    5:OpeningBook::OpeningBook(const std::string& path) {
+        1:    5-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:    5-block  1
+call    3 never executed
+        1:    6:    std::ifstream file(path);
+        1:    6-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:    6-block  1
+call    3 never executed
+        1:    7:    if (!file.is_open()) {
+        1:    7-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:    8:        std::cout << ANSI::Red << "Could not find the opening book." << ANSI::End << std::endl;
+    %%%%%:    8-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:    8-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:    8-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:    8-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    #####:    9:        std::exit(255);
+    %%%%%:    9-block  0
+call    0 never executed
+        -:   10:    }
+        -:   11:
+        2:   12:    std::string game;
+        1:   12-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   12-block  1
+call    3 returned 1
+    $$$$$:   12-block  2
+        2:   13:    std::stringstream game_thread;
+        1:   13-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0
+    $$$$$:   13-block  1
+call    5 never executed
+        -:   14:
+        2:   15:    std::string string_move;
+        1:   15-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   15-block  1
+call    3 returned 1
+    $$$$$:   15-block  2
+        1:   16:    uint8_t from;
+        1:   17:    uint8_t to;
+        -:   18:
+        1:   19:    MoveList possible_moves;
+        1:   19-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   20:    bool move_found;
+        -:   21:
+        2:   22:    Position buff;
+        1:   22-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   22-block  1
+branch  3 taken 0 (fallthrough)
+branch  4 taken 1
+    $$$$$:   22-block  2
+        -:   23:
+     7752:   24:    while (std::getline(file, game)) {
+     7752:   24-block  0
+call    0 returned 7752
+branch  1 taken 7752 (fallthrough)
+branch  2 taken 0 (throw)
+     7752:   24-block  1
+branch  3 taken 7751 (fallthrough)
+branch  4 taken 1
+     7751:   25:        game_thread = std::stringstream(game);
+     7751:   25-block  0
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+     7751:   25-block  1
+call    3 returned 7751
+branch  4 taken 7751 (fallthrough)
+branch  5 taken 0 (throw)
+     7751:   25-block  2
+call    6 returned 7751
+    $$$$$:   25-block  3
+call    7 never executed
+     7751:   26:        this->_moves.resize(this->_moves.size() + 1);
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   27:
+    15502:   28:        buff = {"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 255, true, true, true, true, 1};
+     7751:   28-block  0
+call    0 returned 7751
+branch  1 taken 7751 (fallthrough)
+branch  2 taken 0 (throw)
+     7751:   28-block  1
+call    3 returned 7751
+branch  4 taken 7751 (fallthrough)
+branch  5 taken 0 (throw)
+     7751:   28-block  2
+call    6 returned 7751
+branch  7 taken 0 (fallthrough)
+branch  8 taken 7751
+     7751:   28-block  3
+branch  9 taken 7751 (fallthrough)
+branch 10 taken 0
+     7751:   28-block  4
+    $$$$$:   28-block  5
+    $$$$$:   28-block  6
+        -:   29:
+   100763:   30:        while (game_thread >> string_move and game_thread.good()) {
+   100763:   30-block  0
+call    0 returned 100763
+branch  1 taken 100763 (fallthrough)
+branch  2 taken 0 (throw)
+   100763:   30-block  1
+branch  3 taken 7751
+branch  4 taken 93012 (fallthrough)
+    93012:   30-block  2
+branch  5 taken 0
+branch  6 taken 93012 (fallthrough)
+    93012:   31:            from = (string_move[1] - '1') * 8 + string_move[0] - 'a';
+    93012:   31-block  0
+call    0 returned 93012
+branch  1 taken 93012 (fallthrough)
+branch  2 taken 0 (throw)
+    93012:   32:            to = (string_move[3] - '1') * 8 + string_move[2] - 'a';
+        -:   33:
+    93012:   34:            possible_moves = LegalMoveGen::generate(buff, buff._move_ctr - std::floor(buff._move_ctr) > 1e-7);
+    93012:   34-block  0
+call    0 returned 93012
+branch  1 taken 93012 (fallthrough)
+branch  2 taken 0 (throw)
+    93012:   34-block  1
+call    3 returned 93012
+branch  4 taken 93012 (fallthrough)
+branch  5 taken 0 (throw)
+    $$$$$:   34-block  2
+    $$$$$:   34-block  3
+branch  6 never executed
+branch  7 never executed
+    93012:   35:            move_found = false;
+  1298033:   36:            for (uint8_t i = 0; i < possible_moves.size(); i = i + 1) {
+    93012:   36-block  0
+  1298033:   36-block  1
+call    0 returned 1298033
+branch  1 taken 1298033 (fallthrough)
+branch  2 taken 0 (throw)
+  1298033:   36-block  2
+branch  3 taken 1298033 (fallthrough)
+branch  4 taken 0
+  1205021:   36-block  3
+  1298033:   37:                if (possible_moves[i]._from == from and possible_moves[i]._to == to) {
+  1298033:   37-block  0
+call    0 returned 1298033
+branch  1 taken 1298033 (fallthrough)
+branch  2 taken 0 (throw)
+  1298033:   37-block  1
+branch  3 taken 180504 (fallthrough)
+branch  4 taken 1117529
+   180504:   37-block  2
+call    5 returned 180504
+branch  6 taken 180504 (fallthrough)
+branch  7 taken 0 (throw)
+   180504:   37-block  3
+branch  8 taken 87492 (fallthrough)
+branch  9 taken 93012
+    93012:   38:                    this->_moves.back().push_back(possible_moves[i]);
+    93012:   38-block  0
+call    0 returned 93012
+branch  1 taken 93012 (fallthrough)
+branch  2 taken 0 (throw)
+    93012:   38-block  1
+call    3 returned 93012
+branch  4 taken 93012 (fallthrough)
+branch  5 taken 0 (throw)
+    93012:   39:                    buff.move(possible_moves[i]);
+    93012:   39-block  0
+call    0 returned 93012
+branch  1 taken 93012 (fallthrough)
+branch  2 taken 0 (throw)
+    93012:   39-block  1
+call    3 returned 93012
+branch  4 taken 93012 (fallthrough)
+branch  5 taken 0 (throw)
+        -:   40:                    move_found = true;
+        -:   41:                    break;
+        -:   42:                }
+        -:   43:            }
+    #####:   44:            if (!move_found) {
+    #####:   45:                std::cout << ANSI::Red << "Error in the opening book." << ANSI::End << std::endl;
+    %%%%%:   45-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   45-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   45-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   45-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    #####:   46:                std::exit(255);
+    %%%%%:   46-block  0
+call    0 never executed
+        -:   47:            }
+        -:   48:        }
+        -:   49:    }
+        -:   50:
+        1:   51:    file.close();
+        1:   51-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   52:}
+function _ZN11OpeningBook16try_to_find_moveERK8Position called 0 returned 0% blocks executed 0%
+    #####:   53:std::tuple<Move, int32_t> OpeningBook::try_to_find_move(const Position& position) {
+    #####:   54:    Position buff;
+    %%%%%:   54-block  0
+call    0 never executed
+    %%%%%:   54-block  1
+        -:   55:
+    #####:   56:    std::vector<Move> possible_moves;
+    %%%%%:   56-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:   56-block  1
+    #####:   57:    bool move_exist;
+        -:   58:
+    #####:   59:    for (int32_t game = 0; game < this->_moves.size(); game = game + 1) {
+    %%%%%:   59-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   59-block  1
+    #####:   60:        buff = {"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 255, true, true, true, true, 1};
+    %%%%%:   60-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   60-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+    %%%%%:   60-block  2
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    %%%%%:   60-block  3
+branch  9 never executed
+branch 10 never executed
+    $$$$$:   60-block  4
+    $$$$$:   60-block  5
+        -:   61:
+    #####:   62:        if (buff._pieces == position._pieces) {
+    %%%%%:   62-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   62-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:   63:            move_exist = false;
+    #####:   64:            for (auto added_move : possible_moves) {
+    %%%%%:   64-block  0
+    %%%%%:   64-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   64-block  2
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   64-block  3
+    #####:   65:                if (added_move == this->_moves[game][0]) {
+    %%%%%:   65-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   65-block  1
+branch  3 never executed
+branch  4 never executed
+        -:   66:                    move_exist = true;
+        -:   67:                    break;
+        -:   68:                }
+        -:   69:            }
+        -:   70:
+    #####:   71:            if (!move_exist) possible_moves.push_back(this->_moves[game][0]);
+    %%%%%:   71-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   71-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    #####:   72:            continue;
+    %%%%%:   72-block  0
+        -:   73:        }
+        -:   74:
+    #####:   75:        for (int32_t move = 0; move < this->_moves[game].size() - 1; move = move + 1) {
+    %%%%%:   75-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   75-block  1
+    #####:   76:            buff.move(this->_moves[game][move]);
+    %%%%%:   76-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   77:
+    #####:   78:            if (buff._pieces == position._pieces) {
+    %%%%%:   78-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   78-block  1
+branch  3 never executed
+branch  4 never executed
+    #####:   79:                move_exist = false;
+    #####:   80:                for (auto added_move : possible_moves) {
+    %%%%%:   80-block  0
+    %%%%%:   80-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   80-block  2
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   80-block  3
+    #####:   81:                    if (added_move == this->_moves[game][move + 1]) {
+    %%%%%:   81-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   81-block  1
+branch  3 never executed
+branch  4 never executed
+        -:   82:                        move_exist = true;
+        -:   83:                        break;
+        -:   84:                    }
+        -:   85:                }
+        -:   86:
+    #####:   87:                if (!move_exist) possible_moves.push_back(this->_moves[game][move + 1]);
+    %%%%%:   87-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   87-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+        -:   88:            }
+        -:   89:        }
+        -:   90:    }
+        -:   91:
+    #####:   92:    if (possible_moves.empty()) {
+    %%%%%:   92-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   93:        return std::make_tuple(Move(), 0);
+    %%%%%:   93-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   93-block  1
+        -:   94:    }
+        -:   95:
+    #####:   96:    return std::make_tuple(possible_moves[time(nullptr) % possible_moves.size()], possible_moves.size());
+    %%%%%:   96-block  0
+call    0 never executed
+        -:   97:}

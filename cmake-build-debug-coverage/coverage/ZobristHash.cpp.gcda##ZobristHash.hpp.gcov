@@ -1,0 +1,28 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/ZobristHash.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Pieces.hpp"
+        -:    2:#include "ZobristHashConstants.hpp"
+        -:    3:
+        -:    4:
+        -:    5:#pragma once
+        -:    6:
+        -:    7:
+function _ZN11ZobristHashC2Ev called 7753 returned 100% blocks executed 100%
+     7753:    8:struct ZobristHash {
+        -:    9:    ZobristHash();
+        -:   10:    ZobristHash(Pieces pieces, bool black_move, bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling);
+        -:   11:
+        -:   12:    friend bool operator ==(ZobristHash left, ZobristHash right);
+        -:   13:    friend bool operator <(ZobristHash left, ZobristHash right);
+        -:   14:
+        -:   15:    void invert_piece(uint8_t square, uint8_t type, uint8_t side);
+        -:   16:    void invert_move();
+        -:   17:    void invert_w_l_castling();
+        -:   18:    void invert_w_s_castling();
+        -:   19:    void invert_b_l_castling();
+        -:   20:    void invert_b_s_castling();
+        -:   21:
+        -:   22:    uint64_t _hash;
+        -:   23:};

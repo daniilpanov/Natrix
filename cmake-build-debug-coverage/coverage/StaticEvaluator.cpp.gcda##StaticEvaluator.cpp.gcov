@@ -1,0 +1,610 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/StaticEvaluator.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "StaticEvaluator.hpp"
+        -:    2:
+        -:    3:
+function _ZN15StaticEvaluator8evaluateE6Piecesbbbbbbb called 0 returned 0% blocks executed 0%
+    #####:    4:int32_t StaticEvaluator::evaluate(Pieces pieces, bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling, bool white_castling_happened, bool black_castling_happened, bool show_debug_info) {
+    #####:    5:    int32_t evaluation = 0;
+        -:    6:
+    #####:    7:    int32_t material = StaticEvaluator::_material(pieces);
+    #####:    8:    int32_t mobility = StaticEvaluator::_mobility(pieces);
+    %%%%%:    8-block  0
+call    0 never executed
+    #####:    9:    int32_t double_pawn = StaticEvaluator::_pawn_structure_double_pawn(pieces);
+    #####:   10:    int32_t connected_pawn = StaticEvaluator::_pawn_structure_connected_pawn(pieces);
+call    0 never executed
+    #####:   11:    int32_t pawn_promotion = StaticEvaluator::_pawn_structure_pawn_promotion(pieces);
+call    0 never executed
+    #####:   12:    int32_t crashed_castling = StaticEvaluator::_king_safety_crashed_castling(w_l_castling, w_s_castling, b_l_castling, b_s_castling, white_castling_happened, black_castling_happened);
+    #####:   13:    int32_t pawn_shield = StaticEvaluator::_king_safety_pawn_shield(pieces, white_castling_happened, black_castling_happened);
+    #####:   14:    int32_t two_bishops = StaticEvaluator::_two_bishops(pieces);
+    #####:   15:    int32_t endgame = StaticEvaluator::_endgame(pieces, material >= 0);
+        -:   16:
+    #####:   17:    evaluation = evaluation + material;
+    #####:   18:    evaluation = evaluation + mobility;
+    #####:   19:    evaluation = evaluation + double_pawn;
+    #####:   20:    evaluation = evaluation + connected_pawn;
+    #####:   21:    evaluation = evaluation + pawn_promotion;
+    #####:   22:    evaluation = evaluation + crashed_castling;
+    #####:   23:    evaluation = evaluation + pawn_shield;
+    #####:   24:    evaluation = evaluation + two_bishops;
+    #####:   25:    evaluation = evaluation + endgame;
+        -:   26:
+    #####:   27:    if (show_debug_info) {
+    #####:   28:        std::cout << ANSI::Green << "Details of static evaluation of current position." << std::endl;
+    %%%%%:   28-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:   29:        std::cout << "Material: " << (float)material / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   30:        std::cout << "Mobility: " << (float)mobility / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   31:        std::cout << "Double pawn: " << (float)double_pawn / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   32:        std::cout << "Connected pawn: " << (float)connected_pawn / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   33:        std::cout << "Pawn promotion: " << (float)pawn_promotion / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   34:        std::cout << "Crashed castling: " << (float)crashed_castling / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   35:        std::cout << "Pawn shield: " << (float)pawn_shield / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   36:        std::cout << "Two bishops: " << (float)two_bishops / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   37:        std::cout << "Endgame: " << (float)endgame / 100.0f << " pawns." << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+    #####:   38:        std::cout << "Sum: " << (float)evaluation / 100.0f << " pawns." << ANSI::End << std::endl;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+        -:   39:    }
+        -:   40:
+    #####:   41:    return evaluation;
+        -:   42:}
+function _ZN15StaticEvaluator9_materialE6Pieces called 0 returned 0% blocks executed 0%
+    #####:   43:int32_t StaticEvaluator::_material(Pieces pieces) {
+    #####:   44:    int32_t material = 0;
+        -:   45:
+    #####:   46:    material = material + StaticEvaluator::Material::Pawn * (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Pawn]) - BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn]));
+    %%%%%:   46-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   46-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   47:    material = material + StaticEvaluator::Material::Knight * (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Knight]) - BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Knight]));
+    %%%%%:   47-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   47-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   48:    material = material + StaticEvaluator::Material::Bishop * (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Bishop]) - BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Bishop]));
+    %%%%%:   48-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   49:    material = material + StaticEvaluator::Material::Rook * (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Rook]) - BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Rook]));
+    %%%%%:   49-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   49-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:   50:    material = material + StaticEvaluator::Material::Queen * (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Queen]) - BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Queen]));
+    %%%%%:   50-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   50-block  1
+branch  2 never executed
+branch  3 never executed
+        -:   51:
+    #####:   52:    return material;
+        -:   53:}
+function _ZN15StaticEvaluator9_mobilityE6Pieces called 0 returned 0% blocks executed 0%
+    #####:   54:int32_t StaticEvaluator::_mobility(Pieces pieces) {
+    #####:   55:    int32_t mobility = 0;
+        -:   56:
+    #####:   57:    std::array<std::array<Bitboard, 6>, 2> iteration_masks = pieces._piece_bitboards;
+    #####:   58:    uint8_t index;
+        -:   59:
+    #####:   60:    int32_t knight_moves = 0;
+    #####:   61:    int32_t bishop_moves = 0;
+    #####:   62:    int32_t rook_moves = 0;
+    #####:   63:    int32_t queen_moves = 0;
+    %%%%%:   63-block  0
+        -:   64:
+    #####:   65:    while (iteration_masks[Pieces::White][Pieces::Knight]) {
+    %%%%%:   65-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   66:        index = BitboardOperations::bsf(iteration_masks[Pieces::White][Pieces::Knight]);
+    %%%%%:   66-block  0
+call    0 never executed
+    #####:   67:        BitboardOperations::set_0(iteration_masks[Pieces::White][Pieces::Knight], index);
+    %%%%%:   67-block  0
+call    0 never executed
+    #####:   68:        knight_moves = knight_moves + BitboardOperations::count_1(PsLegalMoveMaskGen::generate_knight_mask(pieces, index, Pieces::White, false));
+    %%%%%:   68-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   68-block  1
+        -:   69:    }
+    #####:   70:    while (iteration_masks[Pieces::White][Pieces::Bishop]) {
+    %%%%%:   70-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   71:        index = BitboardOperations::bsf(iteration_masks[Pieces::White][Pieces::Bishop]);
+    %%%%%:   71-block  0
+call    0 never executed
+    #####:   72:        BitboardOperations::set_0(iteration_masks[Pieces::White][Pieces::Bishop], index);
+    %%%%%:   72-block  0
+call    0 never executed
+    #####:   73:        bishop_moves = bishop_moves + BitboardOperations::count_1(PsLegalMoveMaskGen::generate_bishop_mask(pieces, index, Pieces::White, false));
+    %%%%%:   73-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   73-block  1
+        -:   74:    }
+    #####:   75:    while (iteration_masks[Pieces::White][Pieces::Rook]) {
+    %%%%%:   75-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   76:        index = BitboardOperations::bsf(iteration_masks[Pieces::White][Pieces::Rook]);
+    %%%%%:   76-block  0
+call    0 never executed
+    #####:   77:        BitboardOperations::set_0(iteration_masks[Pieces::White][Pieces::Rook], index);
+    %%%%%:   77-block  0
+call    0 never executed
+    #####:   78:        rook_moves = rook_moves + BitboardOperations::count_1(PsLegalMoveMaskGen::generate_rook_mask(pieces, index, Pieces::White, false));
+    %%%%%:   78-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   78-block  1
+        -:   79:    }
+    #####:   80:    while (iteration_masks[Pieces::White][Pieces::Queen]) {
+    %%%%%:   80-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   81:        index = BitboardOperations::bsf(iteration_masks[Pieces::White][Pieces::Queen]);
+    %%%%%:   81-block  0
+call    0 never executed
+    #####:   82:        BitboardOperations::set_0(iteration_masks[Pieces::White][Pieces::Queen], index);
+    %%%%%:   82-block  0
+call    0 never executed
+    #####:   83:        queen_moves = queen_moves + BitboardOperations::count_1(PsLegalMoveMaskGen::generate_queen_mask(pieces, index, Pieces::White, false));
+    %%%%%:   83-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   83-block  1
+        -:   84:    }
+        -:   85:
+    #####:   86:    while (iteration_masks[Pieces::Black][Pieces::Knight]) {
+    %%%%%:   86-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   87:        index = BitboardOperations::bsf(iteration_masks[Pieces::Black][Pieces::Knight]);
+    %%%%%:   87-block  0
+call    0 never executed
+    #####:   88:        BitboardOperations::set_0(iteration_masks[Pieces::Black][Pieces::Knight], index);
+    %%%%%:   88-block  0
+call    0 never executed
+    #####:   89:        knight_moves = knight_moves - BitboardOperations::count_1(PsLegalMoveMaskGen::generate_knight_mask(pieces, index, Pieces::Black, false));
+    %%%%%:   89-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   89-block  1
+        -:   90:    }
+    #####:   91:    while (iteration_masks[Pieces::Black][Pieces::Bishop]) {
+    %%%%%:   91-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   92:        index = BitboardOperations::bsf(iteration_masks[Pieces::Black][Pieces::Bishop]);
+    %%%%%:   92-block  0
+call    0 never executed
+    #####:   93:        BitboardOperations::set_0(iteration_masks[Pieces::Black][Pieces::Bishop], index);
+    %%%%%:   93-block  0
+call    0 never executed
+    #####:   94:        bishop_moves = bishop_moves - BitboardOperations::count_1(PsLegalMoveMaskGen::generate_bishop_mask(pieces, index, Pieces::Black, false));
+    %%%%%:   94-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   94-block  1
+        -:   95:    }
+    #####:   96:    while (iteration_masks[Pieces::Black][Pieces::Rook]) {
+    %%%%%:   96-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   97:        index = BitboardOperations::bsf(iteration_masks[Pieces::Black][Pieces::Rook]);
+    %%%%%:   97-block  0
+call    0 never executed
+    #####:   98:        BitboardOperations::set_0(iteration_masks[Pieces::Black][Pieces::Rook], index);
+    %%%%%:   98-block  0
+call    0 never executed
+    #####:   99:        rook_moves = rook_moves - BitboardOperations::count_1(PsLegalMoveMaskGen::generate_rook_mask(pieces, index, Pieces::Black, false));
+    %%%%%:   99-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   99-block  1
+        -:  100:    }
+    #####:  101:    while (iteration_masks[Pieces::Black][Pieces::Queen]) {
+    %%%%%:  101-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  102:        index = BitboardOperations::bsf(iteration_masks[Pieces::Black][Pieces::Queen]);
+    %%%%%:  102-block  0
+call    0 never executed
+    #####:  103:        BitboardOperations::set_0(iteration_masks[Pieces::Black][Pieces::Queen], index);
+    %%%%%:  103-block  0
+call    0 never executed
+    #####:  104:        queen_moves = queen_moves - BitboardOperations::count_1(PsLegalMoveMaskGen::generate_queen_mask(pieces, index, Pieces::Black, false));
+    %%%%%:  104-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  104-block  1
+        -:  105:    }
+        -:  106:
+    #####:  107:    mobility = mobility + StaticEvaluator::Mobility::Knight * knight_moves;
+    #####:  108:    mobility = mobility + StaticEvaluator::Mobility::Bishop * bishop_moves;
+    #####:  109:    mobility = mobility + StaticEvaluator::Mobility::Rook * rook_moves;
+    #####:  110:    mobility = mobility + StaticEvaluator::Mobility::Queen * queen_moves;
+        -:  111:
+    #####:  112:    return mobility;
+        -:  113:}
+function _ZN15StaticEvaluator27_pawn_structure_double_pawnE6Pieces called 0 returned 0% blocks executed 0%
+    #####:  114:int32_t StaticEvaluator::_pawn_structure_double_pawn(Pieces pieces) {
+    #####:  115:    int32_t double_pawn = 0;
+        -:  116:
+    #####:  117:    int32_t double_pawn_ctr = 0;
+        -:  118:
+    #####:  119:    uint8_t white_pawns;
+    #####:  120:    uint8_t black_pawns;
+        -:  121:
+    #####:  122:    for (uint8_t x = 0; x < 8; x = x + 1) {
+    %%%%%:  122-block  0
+    %%%%%:  122-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:  123:        white_pawns = BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Pawn] & BitboardColumns::Columns[x]);
+    %%%%%:  123-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  124:        black_pawns = BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn] & BitboardColumns::Columns[x]);
+    %%%%%:  124-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  125:
+    #####:  126:        double_pawn_ctr = double_pawn_ctr + std::max(0, white_pawns - 1);
+    %%%%%:  126-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  127:        double_pawn_ctr = double_pawn_ctr - std::max(0, black_pawns - 1);
+    %%%%%:  127-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  127-block  1
+        -:  128:    }
+        -:  129:
+    #####:  130:    double_pawn = double_pawn + StaticEvaluator::PawnStructure::DoublePawn * double_pawn_ctr;
+        -:  131:
+    #####:  132:    return double_pawn;
+        -:  133:}
+function _ZN15StaticEvaluator30_pawn_structure_connected_pawnE6Pieces called 0 returned 0% blocks executed 0%
+    #####:  134:int32_t StaticEvaluator::_pawn_structure_connected_pawn(Pieces pieces) {
+    #####:  135:    int32_t connected_pawn = 0;
+        -:  136:
+    #####:  137:    int32_t connected_pawn_ctr = 0;
+        -:  138:
+    #####:  139:    Bitboard white_captures = PsLegalMoveMaskGen::generate_pawn_left_captures_mask(pieces, Pieces::White, true) | PsLegalMoveMaskGen::generate_pawn_right_captures_mask(pieces, Pieces::White, true);
+    %%%%%:  139-block  0
+call    0 never executed
+call    1 never executed
+    #####:  140:    Bitboard black_captures = PsLegalMoveMaskGen::generate_pawn_left_captures_mask(pieces, Pieces::Black, true) | PsLegalMoveMaskGen::generate_pawn_right_captures_mask(pieces, Pieces::Black, true);
+call    0 never executed
+call    1 never executed
+        -:  141:
+    #####:  142:    connected_pawn_ctr = connected_pawn_ctr + BitboardOperations::count_1(white_captures & pieces._piece_bitboards[Pieces::White][Pieces::Pawn]);
+branch  0 never executed
+branch  1 never executed
+    #####:  143:    connected_pawn_ctr = connected_pawn_ctr - BitboardOperations::count_1(black_captures & pieces._piece_bitboards[Pieces::Black][Pieces::Pawn]);
+    %%%%%:  143-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  144:
+    #####:  145:    connected_pawn = connected_pawn + StaticEvaluator::PawnStructure::ConnectedPawn * connected_pawn_ctr;
+        -:  146:
+    #####:  147:    return connected_pawn;
+        -:  148:}
+function _ZN15StaticEvaluator30_pawn_structure_pawn_promotionE6Pieces called 0 returned 0% blocks executed 0%
+    #####:  149:int32_t StaticEvaluator::_pawn_structure_pawn_promotion(Pieces pieces) {
+    #####:  150:    int32_t pawn_promotion = 0;
+        -:  151:
+    #####:  152:    Bitboard white_pawns = pieces._piece_bitboards[Pieces::White][Pieces::Pawn];
+    %%%%%:  152-block  0
+    #####:  153:    Bitboard black_pawns = pieces._piece_bitboards[Pieces::Black][Pieces::Pawn];
+    %%%%%:  153-block  0
+        -:  154:
+    #####:  155:    uint8_t index;
+        -:  156:
+    #####:  157:    while (white_pawns) {
+    %%%%%:  157-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  158:        index = BitboardOperations::bsf(white_pawns);
+    %%%%%:  158-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  159:        BitboardOperations::set_0(white_pawns, index);
+    %%%%%:  159-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  160:
+    #####:  161:        if (PassedPawnMasks::WhitePassedPawnMasks[index] & pieces._piece_bitboards[Pieces::Black][Pieces::Pawn]) pawn_promotion = pawn_promotion + StaticEvaluator::PawnStructure::DefaultPawnPromotion[index / 8];
+    %%%%%:  161-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  161-block  1
+    #####:  162:        else pawn_promotion = pawn_promotion + StaticEvaluator::PawnStructure::PassedPawnPromotion[index / 8];
+    %%%%%:  162-block  0
+        -:  163:    }
+    #####:  164:    while (black_pawns) {
+    %%%%%:  164-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  165:        index = BitboardOperations::bsf(black_pawns);
+    %%%%%:  165-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  166:        BitboardOperations::set_0(black_pawns, index);
+    %%%%%:  166-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  167:
+    #####:  168:        if (PassedPawnMasks::BlackPassedPawnMasks[index] & pieces._piece_bitboards[Pieces::White][Pieces::Pawn]) pawn_promotion = pawn_promotion - StaticEvaluator::PawnStructure::DefaultPawnPromotion[7 - index / 8];
+    %%%%%:  168-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  168-block  1
+    #####:  169:        else pawn_promotion = pawn_promotion - StaticEvaluator::PawnStructure::PassedPawnPromotion[7 - index / 8];
+    %%%%%:  169-block  0
+        -:  170:    }
+        -:  171:
+    #####:  172:    return pawn_promotion;
+        -:  173:}
+function _ZN15StaticEvaluator29_king_safety_crashed_castlingEbbbbbb called 0 returned 0% blocks executed 0%
+    #####:  174:int32_t StaticEvaluator::_king_safety_crashed_castling(bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling, bool white_castling_happened, bool black_castling_happened) {
+    #####:  175:    int32_t crashed_castling = 0;
+        -:  176:
+    #####:  177:    if (!white_castling_happened) {
+    %%%%%:  177-block  0
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  178:        if (!w_l_castling) crashed_castling = crashed_castling + StaticEvaluator::KingSafety::CrashedCastling;
+    %%%%%:  178-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  178-block  1
+    %%%%%:  178-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  178-block  3
+    #####:  179:        if (!w_s_castling) crashed_castling = crashed_castling + StaticEvaluator::KingSafety::CrashedCastling;
+    %%%%%:  179-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  179-block  1
+    %%%%%:  179-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  179-block  3
+        -:  180:    }
+        -:  181:
+    #####:  182:    if (!black_castling_happened) {
+    %%%%%:  182-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  182-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  183:        if (!b_l_castling) crashed_castling = crashed_castling - StaticEvaluator::KingSafety::CrashedCastling;
+    %%%%%:  183-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  183-block  1
+    %%%%%:  183-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  183-block  3
+    #####:  184:        if (!b_s_castling) crashed_castling = crashed_castling - StaticEvaluator::KingSafety::CrashedCastling;
+    %%%%%:  184-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  184-block  1
+    %%%%%:  184-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  184-block  3
+        -:  185:    }
+        -:  186:
+    #####:  187:    return crashed_castling;
+        -:  188:}
+function _ZN15StaticEvaluator24_king_safety_pawn_shieldE6Piecesbb called 0 returned 0% blocks executed 0%
+    #####:  189:int32_t StaticEvaluator::_king_safety_pawn_shield(Pieces pieces, bool white_castling_happened, bool black_castling_happened) {
+    #####:  190:    int32_t pawn_shield = 0;
+        -:  191:
+    #####:  192:    int32_t pawn_shield_ctr = 0;
+        -:  193:
+    #####:  194:    if (white_castling_happened) {
+    %%%%%:  194-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  195:        Bitboard white_pawns = pieces._piece_bitboards[Pieces::White][Pieces::Pawn];
+    %%%%%:  195-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  196:        Bitboard white_pawn_shield = PawnShieldMasks::WhitePawnShieldMasks[BitboardOperations::bsf(pieces._piece_bitboards[Pieces::White][Pieces::King])];
+    %%%%%:  196-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  197:        pawn_shield_ctr = pawn_shield_ctr + BitboardOperations::count_1(white_pawns & white_pawn_shield);
+    %%%%%:  197-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  197-block  1
+        -:  198:    }
+        -:  199:
+    #####:  200:    if (black_castling_happened) {
+    %%%%%:  200-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  201:        Bitboard black_pawns = pieces._piece_bitboards[Pieces::Black][Pieces::Pawn];
+    %%%%%:  201-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  202:        Bitboard black_pawn_shield = PawnShieldMasks::BlackPawnShieldMasks[BitboardOperations::bsf(pieces._piece_bitboards[Pieces::Black][Pieces::King])];
+    %%%%%:  202-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  203:        pawn_shield_ctr = pawn_shield_ctr - BitboardOperations::count_1(black_pawns & black_pawn_shield);
+    %%%%%:  203-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  203-block  1
+        -:  204:    }
+        -:  205:
+    #####:  206:    pawn_shield = pawn_shield + StaticEvaluator::KingSafety::PawnShield * pawn_shield_ctr;
+        -:  207:
+    #####:  208:    return pawn_shield;
+        -:  209:}
+function _ZN15StaticEvaluator12_two_bishopsE6Pieces called 0 returned 0% blocks executed 0%
+    #####:  210:int32_t StaticEvaluator::_two_bishops(Pieces pieces) {
+    #####:  211:    int32_t two_bishops = 0;
+        -:  212:
+    #####:  213:    if (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::White][Pieces::Bishop]) >= 2) two_bishops = two_bishops + StaticEvaluator::TwoBishops;
+    %%%%%:  213-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  213-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  213-block  2
+    %%%%%:  213-block  3
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  213-block  4
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  213-block  5
+    #####:  214:    if (BitboardOperations::count_1(pieces._piece_bitboards[Pieces::Black][Pieces::Bishop]) >= 2) two_bishops = two_bishops - StaticEvaluator::TwoBishops;
+    %%%%%:  214-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  214-block  1
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  214-block  2
+    %%%%%:  214-block  3
+branch  4 never executed
+branch  5 never executed
+    %%%%%:  214-block  4
+branch  6 never executed
+branch  7 never executed
+    %%%%%:  214-block  5
+        -:  215:
+    #####:  216:    return two_bishops;
+    %%%%%:  216-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  217:}
+function _ZN15StaticEvaluator8_endgameE6Piecesb called 0 returned 0% blocks executed 0%
+    #####:  218:int32_t StaticEvaluator::_endgame(Pieces pieces, bool white_leading) {
+    #####:  219:    int32_t endgame = 0;
+        -:  220:
+    #####:  221:    if (BitboardOperations::count_1(pieces._all) > StaticEvaluator::Endgame::MaximumPiecesForEndgame) return endgame;
+    %%%%%:  221-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  221-block  1
+branch  2 never executed
+branch  3 never executed
+        -:  222:
+    #####:  223:    uint8_t attacker_side;
+    #####:  224:    uint8_t defender_side;
+        -:  225:
+    #####:  226:    if (white_leading) {
+    %%%%%:  226-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  227:        attacker_side = Pieces::White;
+        -:  228:        defender_side = Pieces::Black;
+        -:  229:    }
+        -:  230:    else {
+    #####:  231:        attacker_side = Pieces::Black;
+    #####:  232:        defender_side = Pieces::White;
+    %%%%%:  232-block  0
+        -:  233:    }
+        -:  234:
+    #####:  235:    uint8_t attacker_king_p = BitboardOperations::bsf(pieces._piece_bitboards[attacker_side][Pieces::King]);
+    %%%%%:  235-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  236:    uint8_t attacker_king_x = attacker_king_p % 8;
+    #####:  237:    uint8_t attacker_king_y = attacker_king_p / 8;
+        -:  238:
+    #####:  239:    uint8_t defender_king_p = BitboardOperations::bsf(pieces._piece_bitboards[defender_side][Pieces::King]);
+    #####:  240:    uint8_t defender_king_x = defender_king_p % 8;
+    #####:  241:    uint8_t defender_king_y = defender_king_p / 8;
+        -:  242:
+    #####:  243:    endgame = endgame + StaticEvaluator::Endgame::AttackerKingProximityToDefenderKing * (16 - std::abs(attacker_king_x - defender_king_x) - std::abs(attacker_king_y - defender_king_y));
+    #####:  244:    endgame = endgame + StaticEvaluator::Endgame::DistanceBetweenDefenderKingAndMiddle * (std::abs(defender_king_x - 3) + std::abs(defender_king_y - 4));
+        -:  245:
+    #####:  246:    if (!white_leading) endgame = -endgame;
+    %%%%%:  246-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  246-block  1
+        -:  247:
+        -:  248:    return endgame;
+        -:  249:}

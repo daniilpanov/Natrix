@@ -1,0 +1,445 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/UI/UICore.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/UI/UICore.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/UI/UICore.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "UICore.hpp"
+        -:    2:
+        -:    3:
+        -:    4:#define OBJECT (0)
+        -:    5:#define NAME (1)
+        -:    6:
+        -:    7:
+        -:    8:UICore::UICore() = default;
+function _ZN6UICoreC2Eiiiitii called 1 returned 0% blocks executed 60%
+        1:    9:UICore::UICore(int sdl_init_code, int sdl_image_init_code, int sdl_mixer_init_code, int audio_frequency, Uint16 audio_format, int audio_channels, int audio_chunk_size) {
+        1:    9-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+    $$$$$:    9-block  1
+call    3 never executed
+    $$$$$:    9-block  2
+call    4 never executed
+    $$$$$:    9-block  3
+call    5 never executed
+        1:   10:    int sdl_init_result = SDL_Init(sdl_init_code);
+        1:   10-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   11:    int sdl_image_init_result = IMG_Init(sdl_image_init_code);
+        1:   11-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   12:    int sdl_mixer_init_result = Mix_Init(sdl_mixer_init_code);
+        1:   12-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   13:    int sdl_ttf_init_result = TTF_Init();
+        1:   13-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   14:
+       1*:   15:    if (sdl_init_result != 0 or sdl_image_init_result != sdl_image_init_code or sdl_mixer_init_result != sdl_mixer_init_code or sdl_ttf_init_result != 0) {
+        1:   15-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   15-block  1
+branch  2 never executed
+branch  3 never executed
+        1:   16:        std::cout << ANSI::Red << SDL_GetError() << ANSI::Green << std::endl;
+        1:   16-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   16-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   16-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:   16-block  3
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:   16-block  4
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:   17:        this->quit(255);
+        1:   17-block  0
+call    0 returned 0
+        -:   18:    }
+        -:   19:
+    #####:   20:    Mix_OpenAudio(audio_frequency, audio_format, audio_channels, audio_chunk_size);
+    %%%%%:   20-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   21:}
+    %%%%%:   21-block  0
+function _ZN6UICore10set_windowEiiiiiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_ called 0 returned 0% blocks executed 0%
+    #####:   22:void UICore::set_window(int type, int x, int y, int width, int height, const std::string& title, const std::string& logotype_path) {
+    #####:   23:    this->_window = SDL_CreateWindow(title.c_str(), x, y, width, height, type);
+    %%%%%:   23-block  0
+call    0 never executed
+        -:   24:
+    #####:   25:    SDL_Surface *logotype = IMG_Load(logotype_path.c_str());
+call    0 never executed
+    #####:   26:    if (logotype == nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   27:        std::cout << ANSI::Red << "Loading logotype " << logotype_path << "... Error." << ANSI::End << std::endl;
+    %%%%%:   27-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+    #####:   28:        this->quit(255);
+call    0 never executed
+        -:   29:    }
+    #####:   30:    std::cout << ANSI::Green << "Loading logotype " << logotype_path << "... OK." << ANSI::End << std::endl;
+    %%%%%:   30-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+    #####:   31:    SDL_SetWindowIcon(this->_window, logotype);
+call    0 never executed
+    #####:   32:}
+function _ZN6UICore12set_rendererEiff called 0 returned 0% blocks executed 0%
+    #####:   33:void UICore::set_renderer(int renderer_type, float global_scale_x, float global_scale_y) {
+    #####:   34:    this->_renderer = SDL_CreateRenderer(this->_window, -1, renderer_type);
+    %%%%%:   34-block  0
+call    0 never executed
+    #####:   35:    SDL_SetRenderDrawBlendMode(this->_renderer, SDL_BLENDMODE_BLEND);
+call    0 never executed
+        -:   36:
+    #####:   37:    this->_global_scale_x = global_scale_x;
+    #####:   38:    this->_global_scale_y = global_scale_y;
+    #####:   39:}
+function _ZN6UICore12load_textureERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_ called 0 returned 0% blocks executed 0%
+    #####:   40:void UICore::load_texture(const std::string& path, const std::string& name) {
+    #####:   41:    SDL_Texture *texture = IMG_LoadTexture(this->_renderer, path.c_str());
+    %%%%%:   41-block  0
+call    0 never executed
+    #####:   42:    if (texture == nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   43:        std::cout << ANSI::Red << "Loading " << path << " as " << name << "... Error." << ANSI::End << std::endl;
+    %%%%%:   43-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+    #####:   44:        this->quit(255);
+call    0 never executed
+        -:   45:    }
+        -:   46:
+    #####:   47:    std::cout << ANSI::Green << "Loading " << path << " as " << name << "... OK." << ANSI::End << std::endl;
+    %%%%%:   47-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   48:
+    #####:   49:    this->_textures.emplace_back(texture, name);
+call    0 never executed
+    #####:   50:}
+function _ZN6UICore10load_soundERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_ called 0 returned 0% blocks executed 0%
+    #####:   51:void UICore::load_sound(const std::string& path, const std::string& name) {
+    #####:   52:    Mix_Chunk* sound = Mix_LoadWAV(path.c_str());
+    %%%%%:   52-block  0
+call    0 never executed
+    #####:   53:    if (sound == nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   54:        std::cout << ANSI::Red << "Loading " << path << " as " << name << "... Error." << ANSI::End << std::endl;
+    %%%%%:   54-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+    #####:   55:        this->quit(255);
+call    0 never executed
+        -:   56:    }
+        -:   57:
+    #####:   58:    std::cout << ANSI::Green << "Loading " << path << " as " << name << "... OK." << ANSI::End << std::endl;
+    %%%%%:   58-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   59:
+    #####:   60:    this->_sounds.emplace_back(sound, name);
+call    0 never executed
+    #####:   61:}
+function _ZN6UICore9load_fontERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiS7_ called 0 returned 0% blocks executed 0%
+    #####:   62:void UICore::load_font(const std::string& path, int size, const std::string& name) {
+    #####:   63:    TTF_Font *font = TTF_OpenFont(path.c_str(), size);
+    %%%%%:   63-block  0
+call    0 never executed
+    #####:   64:    if (font == nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   65:        std::cout << ANSI::Red << "Loading " << path << " as " << name << "... Error." << ANSI::End << std::endl;
+    %%%%%:   65-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+    #####:   66:        this->quit(255);
+call    0 never executed
+        -:   67:    }
+        -:   68:
+    #####:   69:    std::cout << ANSI::Green << "Loading " << path << " as " << name << "... OK." << ANSI::End << std::endl;
+    %%%%%:   69-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+        -:   70:
+    #####:   71:    this->_fonts.emplace_back(font, name);
+call    0 never executed
+    #####:   72:}
+function _ZN6UICore5clearEv called 0 returned 0% blocks executed 0%
+    #####:   73:void UICore::clear() {
+    #####:   74:    SDL_RenderClear(this->_renderer);
+    %%%%%:   74-block  0
+call    0 never executed
+    #####:   75:}
+function _ZN6UICore12draw_textureERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiibff called 0 returned 0% blocks executed 0%
+    #####:   76:void UICore::draw_texture(const std::string& name, int x, int y, bool correct_pos, float scale, float alpha) {
+    #####:   77:    int texture_number = -1;
+    #####:   78:    for (int i = 0; i < this->_textures.size(); i = i + 1) if (std::get<NAME>(this->_textures[i]) == name) texture_number = i;
+    %%%%%:   78-block  0
+    %%%%%:   78-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   78-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:   78-block  3
+    %%%%%:   78-block  4
+        -:   79:
+    #####:   80:    SDL_SetTextureAlphaMod(std::get<OBJECT>(this->_textures[texture_number]), (int)(255 * alpha));
+    %%%%%:   80-block  0
+call    0 never executed
+        -:   81:
+    #####:   82:    this->_rect = {x, y};
+    #####:   83:    SDL_QueryTexture(std::get<OBJECT>(this->_textures[texture_number]), nullptr, nullptr, &this->_rect.w, &this->_rect.h);
+call    0 never executed
+        -:   84:
+    #####:   85:    this->_rect.w = (int)((float)this->_rect.w * this->_global_scale_x);
+    #####:   86:    this->_rect.h = (int)((float)this->_rect.h * this->_global_scale_y);
+    #####:   87:    this->_rect.x = (int)((float)this->_rect.x * this->_global_scale_x);
+    #####:   88:    this->_rect.y = (int)((float)this->_rect.y * this->_global_scale_y);
+        -:   89:
+    #####:   90:    int old_rect_w = this->_rect.w;
+    #####:   91:    int old_rect_h = this->_rect.h;
+    #####:   92:    this->_rect.w = (int)((float)this->_rect.w * scale);
+    #####:   93:    this->_rect.h = (int)((float)this->_rect.h * scale);
+    #####:   94:    if (correct_pos) {
+branch  0 never executed
+branch  1 never executed
+    #####:   95:        this->_rect.x = this->_rect.x - (this->_rect.w - old_rect_w) / 2;
+    #####:   96:        this->_rect.y = this->_rect.y - (this->_rect.h - old_rect_h) / 2;
+    %%%%%:   96-block  0
+        -:   97:    }
+        -:   98:
+    #####:   99:    SDL_RenderCopy(this->_renderer, std::get<OBJECT>(this->_textures[texture_number]), nullptr, &this->_rect);
+    %%%%%:   99-block  0
+call    0 never executed
+    #####:  100:}
+function _ZN6UICore14draw_rectangleEiiiiiiii called 0 returned 0% blocks executed 0%
+    #####:  101:void UICore::draw_rectangle(int x, int y, int width, int height, int red, int green, int blue, int alpha) {
+    #####:  102:    SDL_SetRenderDrawColor(this->_renderer, red, green, blue, alpha);
+    %%%%%:  102-block  0
+call    0 never executed
+        -:  103:
+    #####:  104:    this->_rect = {x, y, width, height};
+        -:  105:
+    #####:  106:    this->_rect.w = (int)((float)this->_rect.w * this->_global_scale_x);
+    #####:  107:    this->_rect.h = (int)((float)this->_rect.h * this->_global_scale_y);
+    #####:  108:    this->_rect.x = (int)((float)this->_rect.x * this->_global_scale_x);
+    #####:  109:    this->_rect.y = (int)((float)this->_rect.y * this->_global_scale_y);
+        -:  110:
+    #####:  111:    SDL_RenderFillRect(this->_renderer, &this->_rect);
+call    0 never executed
+    #####:  112:}
+function _ZN6UICore9draw_textERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_iihhhh called 0 returned 0% blocks executed 0%
+    #####:  113:void UICore::draw_text(const std::string& name, const std::string& text, int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) {
+    #####:  114:    int font_number = -1;
+    #####:  115:    for (int i = 0; i < this->_fonts.size(); i = i + 1) if (std::get<NAME>(this->_fonts[i]) == name) font_number = i;
+    %%%%%:  115-block  0
+    %%%%%:  115-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  115-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  115-block  3
+    %%%%%:  115-block  4
+        -:  116:
+    #####:  117:    SDL_Surface *surface = TTF_RenderUTF8_Blended(std::get<OBJECT>(this->_fonts[font_number]), text.c_str(), {red, green, blue, alpha});
+    %%%%%:  117-block  0
+call    0 never executed
+    #####:  118:    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->_renderer, surface);
+call    0 never executed
+        -:  119:
+    #####:  120:    this->_rect = {x, y};
+        -:  121:
+    #####:  122:    SDL_QueryTexture(texture, nullptr, nullptr, &this->_rect.w, &this->_rect.h);
+call    0 never executed
+        -:  123:
+    #####:  124:    this->_rect.w = (int)((float)this->_rect.w * this->_global_scale_x);
+    #####:  125:    this->_rect.h = (int)((float)this->_rect.h * this->_global_scale_y);
+    #####:  126:    this->_rect.x = (int)((float)this->_rect.x * this->_global_scale_x);
+    #####:  127:    this->_rect.y = (int)((float)this->_rect.y * this->_global_scale_y);
+        -:  128:
+    #####:  129:    SDL_RenderCopy(this->_renderer, texture, nullptr, &this->_rect);
+call    0 never executed
+        -:  130:
+    #####:  131:    SDL_FreeSurface(surface);
+call    0 never executed
+    #####:  132:    SDL_DestroyTexture(texture);
+call    0 never executed
+    #####:  133:}
+function _ZN6UICore6updateEv called 0 returned 0% blocks executed 0%
+    #####:  134:void UICore::update() {
+    #####:  135:    SDL_RenderPresent(this->_renderer);
+    %%%%%:  135-block  0
+call    0 never executed
+    #####:  136:}
+function _ZN6UICore10play_soundERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii called 0 returned 0% blocks executed 0%
+    #####:  137:void UICore::play_sound(const std::string& name, int channel, int loops) {
+    #####:  138:    int sound_number = -1;
+    #####:  139:    for (int i = 0; i < this->_sounds.size(); i = i + 1) if (std::get<NAME>(this->_sounds[i]) == name) sound_number = i;
+    %%%%%:  139-block  0
+    %%%%%:  139-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:  139-block  2
+branch  2 never executed
+branch  3 never executed
+    %%%%%:  139-block  3
+    %%%%%:  139-block  4
+        -:  140:
+    #####:  141:    Mix_PlayChannel(channel, std::get<OBJECT>(this->_sounds[sound_number]), loops);
+    %%%%%:  141-block  0
+call    0 never executed
+    #####:  142:}
+function _ZN6UICore13remove_eventsEv called 0 returned 0% blocks executed 0%
+    #####:  143:void UICore::remove_events() {
+    #####:  144:    SDL_PumpEvents();
+    %%%%%:  144-block  0
+call    0 never executed
+    #####:  145:    SDL_FlushEvents(0, UINT32_MAX);
+call    0 never executed
+    #####:  146:}
+function _ZN6UICore22get_display_resolutionEv called 0 returned 0% blocks executed 0%
+    #####:  147:std::tuple<int, int> UICore::get_display_resolution() {
+    #####:  148:    SDL_DisplayMode display_mode;
+    #####:  149:    SDL_GetDesktopDisplayMode(0, &display_mode);
+    %%%%%:  149-block  0
+call    0 never executed
+        -:  150:
+    #####:  151:    return std::make_tuple(display_mode.w, display_mode.h);
+        -:  152:}
+function _ZNK6UICore18get_mouse_positionEv called 0 returned 0% blocks executed 0%
+    #####:  153:std::tuple<int, int> UICore::get_mouse_position() const {
+    #####:  154:    int mouse_x, mouse_y;
+    #####:  155:    SDL_GetMouseState(&mouse_x, &mouse_y);
+    %%%%%:  155-block  0
+call    0 never executed
+        -:  156:
+    #####:  157:    mouse_x = (int)((float)mouse_x * std::pow(this->get_global_scale_x(), -1));
+    #####:  158:    mouse_y = (int)((float)mouse_y * std::pow(this->get_global_scale_y(), -1));
+        -:  159:
+    #####:  160:    return std::make_tuple(mouse_x, mouse_y);
+        -:  161:}
+function _ZNK6UICore18get_global_scale_xEv called 0 returned 0% blocks executed 0%
+    #####:  162:float UICore::get_global_scale_x() const {
+    #####:  163:    return this->_global_scale_x;
+        -:  164:}
+function _ZNK6UICore18get_global_scale_yEv called 0 returned 0% blocks executed 0%
+    #####:  165:float UICore::get_global_scale_y() const {
+    #####:  166:    return this->_global_scale_y;
+        -:  167:}
+function _ZN6UICore4quitEi called 1 returned 0% blocks executed 70%
+        1:  168:void UICore::quit(int code) {
+        1:  169:    SDL_DestroyWindow(this->_window);
+        1:  169-block  0
+call    0 returned 1
+        1:  170:    SDL_DestroyRenderer(this->_renderer);
+call    0 returned 1
+        -:  171:
+        1:  172:    Mix_CloseAudio();
+call    0 returned 1
+        -:  173:
+       1*:  174:    for (auto & tuple : this->_textures) SDL_DestroyTexture(std::get<OBJECT>(tuple));
+        1:  174-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  174-block  1
+call    2 never executed
+       1*:  175:    for (auto & tuple : this->_sounds) Mix_FreeChunk(std::get<OBJECT>(tuple));
+        1:  175-block  0
+        1:  175-block  1
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  175-block  2
+call    2 never executed
+       1*:  176:    for (auto & tuple : this->_fonts) TTF_CloseFont(std::get<OBJECT>(tuple));
+        1:  176-block  0
+        1:  176-block  1
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  176-block  2
+call    2 never executed
+        -:  177:
+        1:  178:    TTF_Quit();
+        1:  178-block  0
+call    0 returned 1
+        1:  179:    Mix_Quit();
+call    0 returned 1
+        1:  180:    IMG_Quit();
+call    0 returned 1
+        1:  181:    SDL_Quit();
+call    0 returned 1
+        -:  182:
+        1:  183:    std::exit(code);
+        -:  184:}

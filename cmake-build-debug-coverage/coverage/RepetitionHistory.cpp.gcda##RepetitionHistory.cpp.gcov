@@ -1,0 +1,39 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/RepetitionHistory.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/RepetitionHistory.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/RepetitionHistory.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "RepetitionHistory.hpp"
+        -:    2:
+        -:    3:
+        -:    4:RepetitionHistory::RepetitionHistory() = default;
+function _ZN17RepetitionHistory12add_positionE11ZobristHash called 100763 returned 100% blocks executed 100%
+   100763:    5:void RepetitionHistory::add_position(ZobristHash hash) {
+   100763:    6:    this->_hashes.push_back(hash);
+   100763:    6-block  0
+call    0 returned 100763
+   100763:    7:}
+function _ZN17RepetitionHistory5clearEv called 50880 returned 100% blocks executed 100%
+    50880:    8:void RepetitionHistory::clear() {
+    50880:    9:    this->_hashes.clear();
+    50880:    9-block  0
+branch  0 taken 50880 (fallthrough)
+branch  1 taken 0
+    50880:   10:}
+function _ZN17RepetitionHistory21get_repetition_numberE11ZobristHash called 0 returned 0% blocks executed 0%
+    #####:   11:uint8_t RepetitionHistory::get_repetition_number(ZobristHash hash) {
+    #####:   12:    uint8_t ctr = 0;
+        -:   13:
+    #####:   14:    for (auto hash1 : this->_hashes) if (hash == hash1) ctr = ctr + 1;
+    %%%%%:   14-block  0
+    %%%%%:   14-block  1
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   14-block  2
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:   14-block  3
+    %%%%%:   14-block  4
+        -:   15:
+    #####:   16:    return ctr;
+        -:   17:}

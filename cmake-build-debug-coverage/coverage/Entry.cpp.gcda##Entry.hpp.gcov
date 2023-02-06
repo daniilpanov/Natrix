@@ -1,0 +1,23 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/Entry.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "../Base/PositionRepresentation/ZobristHash.hpp"
+        -:    2:
+        -:    3:
+        -:    4:#pragma once
+        -:    5:
+        -:    6:
+function _ZN5EntryC2Ev called 0 returned 0% blocks executed 0%
+    #####:    7:struct Entry {
+    %%%%%:    7-block  0
+call    0 never executed
+        -:    8:    Entry();
+        -:    9:    Entry(ZobristHash hash, int32_t depth, uint8_t best_move_index);
+        -:   10:
+        -:   11:    friend bool operator <(Entry left, Entry right);
+        -:   12:
+        -:   13:    ZobristHash _hash;
+        -:   14:    int32_t _depth;
+        -:   15:    uint8_t _best_move_index;
+        -:   16:};

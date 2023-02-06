@@ -1,0 +1,21 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/TranspositionTable.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/TranspositionTable.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/TranspositionTable.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <set>
+        -:    2:#include "Entry.hpp"
+        -:    3:
+        -:    4:
+        -:    5:#pragma one
+        -:    6:
+        -:    7:
+function _ZN18TranspositionTableC2Ev called 0 returned 0% blocks executed 0%
+    #####:    8:class TranspositionTable {
+        -:    9:public:
+        -:   10:    TranspositionTable();
+        -:   11:
+        -:   12:    void add_entry(Entry entry);
+        -:   13:    uint8_t try_to_find_best_move_index(ZobristHash hash);
+        -:   14:private:
+        -:   15:    std::set<Entry> _set;
+        -:   16:};

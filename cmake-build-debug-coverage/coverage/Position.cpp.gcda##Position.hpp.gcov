@@ -1,0 +1,54 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Position.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <cmath>
+        -:    2:#include "RepetitionHistory.hpp"
+        -:    3:#include "Move.hpp"
+        -:    4:
+        -:    5:
+        -:    6:#pragma once
+        -:    7:
+        -:    8:
+function _ZN8PositionC2Ev called 2 returned 100% blocks executed 100%
+        2:    9:class Position {
+        2:    9-block  0
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+        -:   10:public:
+        -:   11:    Position();
+        -:   12:    Position(const std::string& short_fen, uint8_t en_passant, bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling, float move_ctr);
+        -:   13:
+        -:   14:    friend std::ostream& operator <<(std::ostream& ostream, Position position);
+        -:   15:
+        -:   16:    void move(Move move);
+        -:   17:
+        -:   18:    Pieces _pieces;
+        -:   19:    uint8_t _en_passant;
+        -:   20:
+        -:   21:    bool _w_l_castling;
+        -:   22:    bool _w_s_castling;
+        -:   23:    bool _b_l_castling;
+        -:   24:    bool _b_s_castling;
+        -:   25:
+        -:   26:    bool _white_castling_happened;
+        -:   27:    bool _black_castling_happened;
+        -:   28:
+        -:   29:    float _move_ctr;
+        -:   30:    ZobristHash _hash;
+        -:   31:    float _fifty_moves_ctr;
+        -:   32:    RepetitionHistory _repetition_history;
+        -:   33:private:
+        -:   34:    void _add_piece(uint8_t square, uint8_t type, uint8_t side);
+        -:   35:    void _remove_piece(uint8_t square, uint8_t type, uint8_t side);
+        -:   36:    void _change_en_passant(uint8_t en_passant);
+        -:   37:
+        -:   38:    void _remove_w_l_castling();
+        -:   39:    void _remove_w_s_castling();
+        -:   40:    void _remove_b_l_castling();
+        -:   41:    void _remove_b_s_castling();
+        -:   42:
+        -:   43:    void _update_move_ctr();
+        -:   44:    void _update_fifty_moves_ctr(bool break_event);
+        -:   45:};

@@ -1,0 +1,105 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/ZobristHash.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "ZobristHash.hpp"
+        -:    2:
+        -:    3:
+        -:    4:ZobristHash::ZobristHash() = default;
+function _ZN11ZobristHashC2E6Piecesbbbbb called 7751 returned 100% blocks executed 95%
+     7751:    5:ZobristHash::ZobristHash(Pieces pieces, bool black_move, bool w_l_castling, bool w_s_castling, bool b_l_castling, bool b_s_castling) {
+     7751:    6:    this->_hash = 0;
+        -:    7:
+    7751*:    8:    if (black_move) this->invert_move();
+     7751:    8-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 7751
+     7751:    9:    if (w_l_castling) this->invert_w_l_castling();
+     7751:    9-block  0
+branch  0 taken 7751 (fallthrough)
+branch  1 taken 0
+     7751:   10:    if (w_s_castling) this->invert_w_s_castling();
+     7751:   10-block  0
+branch  0 taken 7751 (fallthrough)
+branch  1 taken 0
+     7751:   11:    if (b_l_castling) this->invert_b_l_castling();
+     7751:   11-block  0
+branch  0 taken 7751 (fallthrough)
+branch  1 taken 0
+     7751:   12:    if (b_s_castling) this->invert_b_s_castling();
+     7751:   12-block  0
+branch  0 taken 7751 (fallthrough)
+branch  1 taken 0
+        -:   13:
+        -:   14:    uint8_t side;
+   503815:   15:    for (uint8_t square = 0; square < 64; square = square + 1) {
+   503815:   15-block  0
+branch  0 taken 496064 (fallthrough)
+branch  1 taken 7751
+   496064:   16:        if (BitboardOperations::get_bit(pieces._side_bitboards[Pieces::White], square)) side = Pieces::White;
+   496064:   16-block  0
+branch  0 taken 372048 (fallthrough)
+branch  1 taken 124016
+   372048:   17:        else if (BitboardOperations::get_bit(pieces._side_bitboards[Pieces::Black], square)) side = Pieces::Black;
+   372048:   17-block  0
+branch  0 taken 248032 (fallthrough)
+branch  1 taken 124016
+   248032:   18:        else continue;
+   248032:   18-block  0
+        -:   19:
+   573574:   20:        for (uint8_t type = 0; type < 6; type = type + 1) {
+   248032:   20-block  0
+   573574:   20-block  1
+branch  0 taken 573574 (fallthrough)
+branch  1 taken 0
+   325542:   20-block  2
+   573574:   21:            if (BitboardOperations::get_bit(pieces._piece_bitboards[side][type], square)) {
+   573574:   21-block  0
+branch  0 taken 248032 (fallthrough)
+branch  1 taken 325542
+   496064:   22:                this->invert_piece(square, type, side);
+   496064:   22-block  0
+        -:   23:                break;
+        -:   24:            }
+        -:   25:        }
+        -:   26:    }
+     7751:   27:}
+function _Zeq11ZobristHashS_ called 0 returned 0% blocks executed 0%
+    #####:   28:bool operator ==(ZobristHash left, ZobristHash right) {
+    #####:   29:    return (left._hash == right._hash);
+        -:   30:}
+function _Zlt11ZobristHashS_ called 0 returned 0% blocks executed 0%
+    #####:   31:bool operator <(ZobristHash left, ZobristHash right) {
+    #####:   32:    return (left._hash < right._hash);
+        -:   33:}
+function _ZN11ZobristHash12invert_pieceEhhh called 202372 returned 100% blocks executed 100%
+   450404:   34:void ZobristHash::invert_piece(uint8_t square, uint8_t type, uint8_t side) {
+   248032:   35:    this->_hash = this->_hash ^ ZobristHashconstexpr::Constants[square][side][type];
+   248032:   35-block  0
+   248032:   36:}
+   248032:   36-block  0
+function _ZN11ZobristHash11invert_moveEv called 93012 returned 100% blocks executed 100%
+   93012*:   37:void ZobristHash::invert_move() {
+   93012*:   38:    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackMove;
+    #####:   39:}
+    %%%%%:   39-block  0
+function _ZN11ZobristHash19invert_w_l_castlingEv called 1899 returned 100% blocks executed 100%
+     9650:   40:void ZobristHash::invert_w_l_castling() {
+     9650:   41:    this->_hash = this->_hash ^ ZobristHashconstexpr::WhiteLongCastling;
+     7751:   42:}
+     7751:   42-block  0
+function _ZN11ZobristHash19invert_w_s_castlingEv called 1871 returned 100% blocks executed 100%
+     9622:   43:void ZobristHash::invert_w_s_castling() {
+     9622:   44:    this->_hash = this->_hash ^ ZobristHashconstexpr::WhiteShortCastling;
+     7751:   45:}
+     7751:   45-block  0
+function _ZN11ZobristHash19invert_b_l_castlingEv called 1639 returned 100% blocks executed 100%
+     9390:   46:void ZobristHash::invert_b_l_castling() {
+     9390:   47:    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackLongCastling;
+     7751:   48:}
+     7751:   48-block  0
+function _ZN11ZobristHash19invert_b_s_castlingEv called 1631 returned 100% blocks executed 100%
+     9382:   49:void ZobristHash::invert_b_s_castling() {
+     9382:   50:    this->_hash = this->_hash ^ ZobristHashconstexpr::BlackShortCastling;
+     7751:   51:}
+     7751:   51-block  0

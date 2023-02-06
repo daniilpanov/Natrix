@@ -1,0 +1,224 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/Bitboard.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <iostream>
+        -:    2:#include <cstdint>
+        -:    3:#include <bit>
+        -:    4:#include <array>
+        -:    5:#include "../../../ANSI.hpp"
+        -:    6:
+        -:    7:
+        -:    8:#pragma once
+        -:    9:
+        -:   10:
+        -:   11:typedef uint64_t Bitboard;
+        -:   12:
+        -:   13:
+        -:   14:namespace BitboardOperations {
+  2680076:   15:    static constexpr void set_1(Bitboard &bb, uint8_t square) {
+  2680076:   16:        bb = bb | (1ull << square);
+  2680076:   16-block  0
+branch  0 taken 66003 (fallthrough)
+branch  1 taken 2614073
+        -:   17:    }
+  6074786:   18:    static constexpr void set_0(Bitboard &bb, uint8_t square) {
+  6008747:   19:        bb = bb & (~(1ull << square));
+  2680076:   19-block  0
+branch  0 taken 66003 (fallthrough)
+branch  1 taken 2614073
+  1218845:   19-block  1
+branch  2 taken 20493 (fallthrough)
+branch  3 taken 1198352
+  1461213:   19-block  2
+   184300:   19-block  3
+call    4 returned 184300
+   185293:   19-block  4
+call    5 returned 185293
+   186024:   19-block  5
+call    6 returned 186024
+    92996:   19-block  6
+call    7 returned 92996
+    66021:   20:    }
+    66003:   20-block  0
+       18:   20-block  1
+       18:   20-block  2
+        -:   21:
+        -:   22:
+  9011122:   23:    static constexpr bool get_bit(Bitboard bb, uint8_t square) {
+  8799917:   24:        return (bb & (1ull << square));
+    89880:   24-block  0
+branch  0 taken 89880 (fallthrough)
+branch  1 taken 0
+    89880:   24-block  1
+branch  2 taken 19151 (fallthrough)
+branch  3 taken 70729
+    19151:   24-block  2
+branch  4 taken 1116 (fallthrough)
+branch  5 taken 18035
+     1116:   24-block  3
+branch  6 taken 45 (fallthrough)
+branch  7 taken 1071
+    89882:   24-block  4
+branch  8 taken 89882 (fallthrough)
+branch  9 taken 0
+    89882:   24-block  5
+branch 10 taken 11176 (fallthrough)
+branch 11 taken 78706
+    11176:   24-block  6
+branch 12 taken 8918 (fallthrough)
+branch 13 taken 2258
+     8202:   24-block  7
+branch 14 taken 12 (fallthrough)
+branch 15 taken 8190
+     8185:   24-block  8
+branch 16 taken 6 (fallthrough)
+branch 17 taken 8179
+    14149:   24-block  9
+branch 18 taken 0 (fallthrough)
+branch 19 taken 14149
+    14260:   24-block 10
+branch 20 taken 0 (fallthrough)
+branch 21 taken 14260
+branch 22 taken 2561 (fallthrough)
+branch 23 taken 20493
+branch 24 taken 8506795 (fallthrough)
+branch 25 taken 45510
+        -:   25:    }
+        -:   26:
+        -:   27:
+        -:   28:    static void print(Bitboard bb) {
+        -:   29:        std::cout << ANSI::Green;
+        -:   30:
+        -:   31:        for (int8_t y = 7; y >= 0; y = y - 1) {
+        -:   32:            for (uint8_t x = 0; x < 8; x = x + 1) {
+        -:   33:                std::cout << "|  ";
+        -:   34:
+        -:   35:                if (BitboardOperations::get_bit(bb, y * 8 + x)) std::cout << "1";
+        -:   36:                else std::cout << "0";
+        -:   37:
+        -:   38:                std::cout << "  ";
+        -:   39:            }
+        -:   40:            std::cout << "|\n";
+        -:   41:        }
+        -:   42:
+        -:   43:        std::cout << ANSI::End;
+        -:   44:    }
+        -:   45:
+        -:   46:
+        -:   47:    static constexpr uint8_t count_1(Bitboard bb) {
+        -:   48:        return std::popcount(bb);
+        -:   49:    }
+        -:   50:
+        -:   51:
+        -:   52:    static constexpr std::array<uint8_t, 64> BitScanTable = {
+        -:   53:            0, 47,  1, 56, 48, 27,  2, 60,
+        -:   54:            57, 49, 41, 37, 28, 16,  3, 61,
+        -:   55:            54, 58, 35, 52, 50, 42, 21, 44,
+        -:   56:            38, 32, 29, 23, 17, 11,  4, 62,
+        -:   57:            46, 55, 26, 59, 40, 36, 15, 53,
+        -:   58:            34, 51, 20, 43, 31, 22, 10, 45,
+        -:   59:            25, 39, 14, 33, 19, 30,  9, 24,
+        -:   60:            13, 18,  8, 12,  7,  6,  5, 63
+        -:   61:    };
+        -:   62:
+        -:   63:
+  6110722:   64:    static constexpr uint8_t bsf(Bitboard bb) {
+        -:   65:        /* Не используется специальные инструкции процессора для переносимости скомпилированного кода.
+        -:   66:         * Тесты показали, что BSFR инструкции у Intel не дают ощутимой производительности по сравнению с оптимизированным подходом.
+        -:   67:         * Ниже оставлен код, позволяющий использовать BSFR инструкции (при наличии).*/
+        -:   68:
+        -:   69:        // return __builtin_ctzll(bb);
+        -:   70:
+  6110722:   71:        return BitboardOperations::BitScanTable[((bb ^ (bb - 1)) * 0x03f79d71b4cb0a89) >> 58];
+       45:   71-block  0
+call    0 returned 45
+     8918:   71-block  1
+call    1 returned 8918
+call    2 returned 2680076
+  1218845:   71-block  2
+branch  3 taken 20493 (fallthrough)
+branch  4 taken 1198352
+  1461213:   71-block  3
+   184300:   71-block  4
+call    5 returned 184300
+   185293:   71-block  5
+call    6 returned 185293
+   186024:   71-block  6
+call    7 returned 186024
+    92996:   71-block  7
+call    8 returned 92996
+    93012:   71-block  8
+call    9 returned 93012
+        -:   72:    }
+        -:   73:    static constexpr uint8_t bsr(Bitboard bb) {
+        -:   74:        // См. комментарий к функции выше.
+        -:   75:
+        -:   76:        // return 63 - __builtin_clzll(bb);
+        -:   77:
+        -:   78:        bb = bb | (bb >> 1);
+        -:   79:        bb = bb | (bb >> 2);
+        -:   80:        bb = bb | (bb >> 4);
+        -:   81:        bb = bb | (bb >> 8);
+        -:   82:        bb = bb | (bb >> 16);
+        -:   83:        bb = bb | (bb >> 32);
+        -:   84:
+        -:   85:        return BitboardOperations::BitScanTable[(bb * 0x03f79d71b4cb0a89) >> 58];
+        -:   86:    }
+        -:   87:}
+        -:   88:
+        -:   89:
+        -:   90:namespace BitboardRows {
+        -:   91:    static constexpr std::array<Bitboard, 8> calc_rows() {
+        -:   92:        std::array<Bitboard, 8> rows{};
+        -:   93:
+        -:   94:        for (uint8_t y = 0; y < 8; y = y + 1) {
+        -:   95:            for (uint8_t x = 0; x < 8; x = x + 1) BitboardOperations::set_1(rows[y], y * 8 + x);
+        -:   96:        }
+        -:   97:
+        -:   98:        return rows;
+        -:   99:    }
+        -:  100:
+        -:  101:
+        -:  102:    static constexpr std::array<Bitboard, 8> Rows = BitboardRows::calc_rows();
+        -:  103:
+        -:  104:
+        -:  105:    static constexpr std::array<Bitboard, 8> calc_inversion_rows() {
+        -:  106:        std::array<Bitboard, 8> inversion_rows{};
+        -:  107:
+        -:  108:        for (uint8_t i = 0; i < 8; i = i + 1) inversion_rows[i] = ~Rows[i];
+        -:  109:
+        -:  110:        return inversion_rows;
+        -:  111:    }
+        -:  112:
+        -:  113:
+        -:  114:    static constexpr std::array<Bitboard, 8> InversionRows = BitboardRows::calc_inversion_rows();
+        -:  115:}
+        -:  116:
+        -:  117:
+        -:  118:namespace BitboardColumns {
+        -:  119:    static constexpr std::array<Bitboard, 8> calc_columns() {
+        -:  120:        std::array<Bitboard, 8> columns{};
+        -:  121:
+        -:  122:        for (uint8_t x = 0; x < 8; x = x + 1) {
+        -:  123:            for (uint8_t y = 0; y < 8; y = y + 1) BitboardOperations::set_1(columns[x], y * 8 + x);
+        -:  124:        }
+        -:  125:
+        -:  126:        return columns;
+        -:  127:    }
+        -:  128:
+        -:  129:
+        -:  130:    static constexpr std::array<Bitboard, 8> Columns = BitboardColumns::calc_columns();
+        -:  131:
+        -:  132:
+        -:  133:    static constexpr std::array<Bitboard, 8> calc_inversion_columns() {
+        -:  134:        std::array<Bitboard, 8> inversion_columns{};
+        -:  135:
+        -:  136:        for (uint8_t i = 0; i < 8; i = i + 1) inversion_columns[i] = ~Columns[i];
+        -:  137:
+        -:  138:        return inversion_columns;
+        -:  139:    }
+        -:  140:
+        -:  141:
+        -:  142:    static constexpr std::array<Bitboard, 8> InversionColumns = BitboardColumns::calc_inversion_columns();
+        -:  143:}

@@ -1,0 +1,48 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/PositionRepresentation/RepetitionHistory.hpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <vector>
+        -:    2:#include "ZobristHash.hpp"
+        -:    3:
+        -:    4:
+        -:    5:#pragma once
+        -:    6:
+        -:    7:
+    #####:    8:class RepetitionHistory {
+    %%%%%:    8-block  0
+branch  0 never executed
+branch  1 never executed
+    %%%%%:    8-block  1
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    %%%%%:    8-block  2
+branch  5 never executed
+branch  6 never executed
+    %%%%%:    8-block  3
+    $$$$$:    8-block  4
+branch  7 never executed
+branch  8 never executed
+    $$$$$:    8-block  5
+    $$$$$:    8-block  6
+branch  9 never executed
+branch 10 never executed
+    %%%%%:    8-block  7
+branch 11 never executed
+branch 12 never executed
+    %%%%%:    8-block  8
+    $$$$$:    8-block  9
+branch 13 never executed
+branch 14 never executed
+        -:    9:public:
+        -:   10:    RepetitionHistory();
+        -:   11:
+        -:   12:    void add_position(ZobristHash hash);
+        -:   13:
+        -:   14:    void clear();
+        -:   15:
+        -:   16:    uint8_t get_repetition_number(ZobristHash hash);
+        -:   17:private:
+        -:   18:    std::vector<ZobristHash> _hashes;
+        -:   19:};

@@ -1,0 +1,55 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/main.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/main.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#define TEST_LEGAL_MOVE_GENERATION false
+        -:    2:#define TEST_AI false
+        -:    3:#define SHOW_UI true
+        -:    4:
+        -:    5:
+        -:    6:#if TEST_LEGAL_MOVE_GENERATION
+        -:    7:    #include "Engine/Base/MoveGeneration/LegalMoveGenTester.hpp"
+        -:    8:#endif
+        -:    9:
+        -:   10:
+        -:   11:#if TEST_AI
+        -:   12:    #include "Engine/AI/AI.hpp"
+        -:   13:#endif
+        -:   14:
+        -:   15:
+        -:   16:#if SHOW_UI
+        -:   17:    #include "Natrix.hpp"
+        -:   18:#endif
+        -:   19:
+        -:   20:
+function main called 1 returned 0% blocks executed 33%
+        1:   21:int main() {
+        -:   22:    #if TEST_LEGAL_MOVE_GENERATION
+        -:   23:        LegalMoveGenTester::test();
+        -:   24:    #endif
+        -:   25:
+        -:   26:
+        -:   27:    #if TEST_AI
+        -:   28:        Position position = {"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 255, true, true, true, true, 1};
+        -:   29:        AI ai;
+        -:   30:        ai.best_move(position, Pieces::White, 0, 60000);
+        -:   31:    #endif
+        -:   32:
+        -:   33:
+        -:   34:    #if SHOW_UI
+       1*:   35:        Natrix natrix;
+        1:   35-block  0
+call    0 returned 0
+    $$$$$:   35-block  1
+call    1 never executed
+    #####:   36:        natrix.start();
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   37:    #endif
+        -:   38:
+        -:   39:
+    #####:   40:    return 0;
+    %%%%%:   40-block  0
+call    0 never executed
+        -:   41:}

@@ -5,15 +5,15 @@
 
 
 namespace KingMasks {
-    static consteval uint8_t abs_subtract(uint8_t left, uint8_t right) {
+    static constexpr uint8_t abs_subtract(uint8_t left, uint8_t right) {
         if (left >= right) return left - right;
         return right - left;
     }
-    static consteval std::array<Bitboard, 64> calc_masks() {
+    static constexpr std::array<Bitboard, 64> calc_masks() {
         std::array<Bitboard, 64> masks{};
 
-        uint8_t dx;
-        uint8_t dy;
+        uint8_t dx = 0;
+        uint8_t dy = 0;
 
         for (uint8_t x0 = 0; x0 < 8; x0 = x0 + 1) {
             for (uint8_t y0 = 0; y0 < 8; y0 = y0 + 1) {

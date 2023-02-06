@@ -1,0 +1,247 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/MoveGeneration/MoveList.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/MoveList.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/MoveList.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "MoveList.hpp"
+        -:    2:
+        -:    3:
+function _ZN8MoveListC2Ev called 93013 returned 100% blocks executed 100%
+    93013:    4:MoveList::MoveList() {
+    93013:    4-block  0
+call    0 returned 93013
+call    1 returned 93013
+call    2 returned 93013
+call    3 returned 93013
+call    4 returned 93013
+call    5 returned 93013
+call    6 returned 93013
+call    7 returned 93013
+call    8 returned 93013
+call    9 returned 93013
+call   10 returned 93013
+call   11 returned 93013
+call   12 returned 93013
+call   13 returned 93013
+call   14 returned 93013
+call   15 returned 93013
+call   16 returned 93013
+call   17 returned 93013
+call   18 returned 93013
+call   19 returned 93013
+call   20 returned 93013
+call   21 returned 93013
+call   22 returned 93013
+call   23 returned 93013
+call   24 returned 93013
+call   25 returned 93013
+call   26 returned 93013
+call   27 returned 93013
+call   28 returned 93013
+call   29 returned 93013
+call   30 returned 93013
+call   31 returned 93013
+call   32 returned 93013
+call   33 returned 93013
+call   34 returned 93013
+call   35 returned 93013
+call   36 returned 93013
+call   37 returned 93013
+call   38 returned 93013
+call   39 returned 93013
+call   40 returned 93013
+call   41 returned 93013
+call   42 returned 93013
+call   43 returned 93013
+call   44 returned 93013
+call   45 returned 93013
+call   46 returned 93013
+call   47 returned 93013
+call   48 returned 93013
+call   49 returned 93013
+call   50 returned 93013
+call   51 returned 93013
+call   52 returned 93013
+call   53 returned 93013
+call   54 returned 93013
+call   55 returned 93013
+call   56 returned 93013
+call   57 returned 93013
+call   58 returned 93013
+call   59 returned 93013
+call   60 returned 93013
+call   61 returned 93013
+call   62 returned 93013
+call   63 returned 93013
+call   64 returned 93013
+call   65 returned 93013
+call   66 returned 93013
+call   67 returned 93013
+call   68 returned 93013
+call   69 returned 93013
+call   70 returned 93013
+call   71 returned 93013
+call   72 returned 93013
+call   73 returned 93013
+call   74 returned 93013
+call   75 returned 93013
+call   76 returned 93013
+call   77 returned 93013
+call   78 returned 93013
+call   79 returned 93013
+call   80 returned 93013
+call   81 returned 93013
+call   82 returned 93013
+call   83 returned 93013
+call   84 returned 93013
+call   85 returned 93013
+call   86 returned 93013
+call   87 returned 93013
+call   88 returned 93013
+call   89 returned 93013
+call   90 returned 93013
+call   91 returned 93013
+call   92 returned 93013
+call   93 returned 93013
+call   94 returned 93013
+call   95 returned 93013
+call   96 returned 93013
+call   97 returned 93013
+call   98 returned 93013
+call   99 returned 93013
+call   100 returned 93013
+call   101 returned 93013
+call   102 returned 93013
+call   103 returned 93013
+call   104 returned 93013
+call   105 returned 93013
+call   106 returned 93013
+call   107 returned 93013
+call   108 returned 93013
+call   109 returned 93013
+call   110 returned 93013
+call   111 returned 93013
+call   112 returned 93013
+call   113 returned 93013
+call   114 returned 93013
+call   115 returned 93013
+call   116 returned 93013
+call   117 returned 93013
+call   118 returned 93013
+call   119 returned 93013
+call   120 returned 93013
+call   121 returned 93013
+call   122 returned 93013
+call   123 returned 93013
+call   124 returned 93013
+call   125 returned 93013
+call   126 returned 93013
+call   127 returned 93013
+call   128 returned 93013
+call   129 returned 93013
+call   130 returned 93013
+call   131 returned 93013
+call   132 returned 93013
+call   133 returned 93013
+call   134 returned 93013
+call   135 returned 93013
+call   136 returned 93013
+call   137 returned 93013
+call   138 returned 93013
+call   139 returned 93013
+call   140 returned 93013
+call   141 returned 93013
+call   142 returned 93013
+call   143 returned 93013
+call   144 returned 93013
+call   145 returned 93013
+call   146 returned 93013
+call   147 returned 93013
+call   148 returned 93013
+call   149 returned 93013
+call   150 returned 93013
+call   151 returned 93013
+call   152 returned 93013
+call   153 returned 93013
+call   154 returned 93013
+call   155 returned 93013
+call   156 returned 93013
+call   157 returned 93013
+call   158 returned 93013
+call   159 returned 93013
+call   160 returned 93013
+call   161 returned 93013
+call   162 returned 93013
+call   163 returned 93013
+call   164 returned 93013
+call   165 returned 93013
+call   166 returned 93013
+call   167 returned 93013
+call   168 returned 93013
+call   169 returned 93013
+call   170 returned 93013
+call   171 returned 93013
+call   172 returned 93013
+call   173 returned 93013
+call   174 returned 93013
+call   175 returned 93013
+call   176 returned 93013
+call   177 returned 93013
+call   178 returned 93013
+call   179 returned 93013
+call   180 returned 93013
+call   181 returned 93013
+call   182 returned 93013
+call   183 returned 93013
+call   184 returned 93013
+call   185 returned 93013
+call   186 returned 93013
+call   187 returned 93013
+call   188 returned 93013
+call   189 returned 93013
+call   190 returned 93013
+call   191 returned 93013
+call   192 returned 93013
+call   193 returned 93013
+call   194 returned 93013
+call   195 returned 93013
+call   196 returned 93013
+call   197 returned 93013
+call   198 returned 93013
+call   199 returned 93013
+call   200 returned 93013
+call   201 returned 93013
+call   202 returned 93013
+call   203 returned 93013
+call   204 returned 93013
+call   205 returned 93013
+call   206 returned 93013
+call   207 returned 93013
+call   208 returned 93013
+call   209 returned 93013
+call   210 returned 93013
+call   211 returned 93013
+call   212 returned 93013
+call   213 returned 93013
+call   214 returned 93013
+call   215 returned 93013
+call   216 returned 93013
+call   217 returned 93013
+    93013:    5:    this->_size = 0;
+    93013:    6:}
+function _ZN8MoveListixEh called 1664561 returned 100% blocks executed 100%
+  1664561:    7:Move &MoveList::operator[](uint8_t index) {
+  1664561:    8:    return this->_moves[index];
+        -:    9:}
+function _ZNK8MoveListixEh called 0 returned 0% blocks executed 0%
+    #####:   10:Move MoveList::operator[](uint8_t index) const {
+    #####:   11:    return this->_moves[index];
+        -:   12:}
+function _ZN8MoveList9push_backE4Move called 2658095 returned 100% blocks executed 100%
+  2658095:   13:void MoveList::push_back(Move move) {
+  2658095:   14:    this->_moves[this->_size] = move;
+  2658095:   15:    this->_size = this->_size + 1;
+  2658095:   16:}
+function _ZNK8MoveList4sizeEv called 1298033 returned 100% blocks executed 100%
+  1298033:   17:uint8_t MoveList::size() const {
+  1298033:   18:    return this->_size;
+        -:   19:}

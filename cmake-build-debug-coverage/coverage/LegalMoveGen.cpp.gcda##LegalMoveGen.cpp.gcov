@@ -1,0 +1,518 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "LegalMoveGen.hpp"
+        -:    2:
+        -:    3:
+function _ZN12LegalMoveGen8generateE8Positionhb called 93012 returned 100% blocks executed 100%
+    93012:    4:MoveList LegalMoveGen::generate(Position position, uint8_t side, bool only_captures) {
+        -:    5:    /* TODO: Постараться оптимизировать функцию.
+        -:    6:     * На моем ноутбуке генерация ходов без проверки на легальность в начальной позиции на глубине 6 работает со скоростью 30 MNPS,
+        -:    7:     * когда как с включенной проверкой - со скоростью 6 MNPS. Возможно, стоит подумать не только об оптимизации проверки
+        -:    8:     * хода на легальность, но и об оптимизации генерации перемещений скользящих фигур, ведь долгая проверка на легальность
+        -:    9:     * наивным алгоритмом - следствие долгой генерации ходов. Запись от 28 июля.
+        -:   10:     * */
+        -:   11:
+    93012:   12:    MoveList moves;
+    93012:   12-block  0
+call    0 returned 93012
+        -:   13:
+    93012:   14:    Bitboard pawn_left_captures_mask = PsLegalMoveMaskGen::generate_pawn_left_captures_mask(position._pieces, side, false);
+call    0 returned 93012
+    93012:   15:    Bitboard pawn_right_captures_mask = PsLegalMoveMaskGen::generate_pawn_right_captures_mask(position._pieces, side, false);
+call    0 returned 93012
+        -:   16:
+    93012:   17:    int8_t pawn_left_capture;
+    93012:   18:    int8_t pawn_right_capture;
+        -:   19:
+    93012:   20:    if (side == Pieces::White) {
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+        -:   21:        pawn_left_capture = -7;
+        -:   22:        pawn_right_capture = -9;
+        -:   23:    }
+        -:   24:    else {
+    46506:   25:        pawn_left_capture = 9;
+    46506:   26:        pawn_right_capture = 7;
+    46506:   26-block  0
+        -:   27:    }
+        -:   28:
+    93012:   29:    LegalMoveGen::_pawn_mask_to_moves(position._pieces, pawn_left_captures_mask, side, pawn_left_capture, true,Move::Flag::Default, moves);
+    93012:   29-block  0
+call    0 returned 93012
+    93012:   30:    LegalMoveGen::_pawn_mask_to_moves(position._pieces, pawn_right_captures_mask, side, pawn_right_capture, true,Move::Flag::Default, moves);
+call    0 returned 93012
+        -:   31:
+    93012:   32:    if (!only_captures) {
+branch  0 taken 93012 (fallthrough)
+branch  1 taken 0
+    93012:   33:        Bitboard pawn_default_mask = PsLegalMoveMaskGen::generate_pawn_default_mask(position._pieces, side);
+    93012:   33-block  0
+call    0 returned 93012
+    93012:   34:        Bitboard pawn_long_mask = PsLegalMoveMaskGen::generate_pawn_long_mask(position._pieces, side);
+call    0 returned 93012
+        -:   35:
+    93012:   36:        int8_t pawn_default_move;
+    93012:   37:        int8_t pawn_long_move;
+        -:   38:
+    93012:   39:        if (side == Pieces::White) {
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+        -:   40:            pawn_default_move = -8;
+        -:   41:            pawn_long_move = -16;
+        -:   42:        }
+        -:   43:        else {
+    46506:   44:            pawn_default_move = 8;
+    46506:   45:            pawn_long_move = 16;
+    46506:   45-block  0
+        -:   46:        }
+        -:   47:
+    93012:   48:        LegalMoveGen::_pawn_mask_to_moves(position._pieces, pawn_default_mask, side, pawn_default_move, false,Move::Flag::Default, moves);
+    93012:   48-block  0
+call    0 returned 93012
+    93012:   49:        LegalMoveGen::_pawn_mask_to_moves(position._pieces, pawn_long_mask, side, pawn_long_move, false,Move::Flag::PawnLongMove, moves);
+call    0 returned 93012
+        -:   50:    }
+        -:   51:
+    93012:   52:    Bitboard all_knights = position._pieces._piece_bitboards[side][Pieces::Knight];
+    93012:   52-block  0
+    93012:   53:    Bitboard all_bishops = position._pieces._piece_bitboards[side][Pieces::Bishop];
+    93012:   54:    Bitboard all_rooks = position._pieces._piece_bitboards[side][Pieces::Rook];
+    93012:   55:    Bitboard all_queens = position._pieces._piece_bitboards[side][Pieces::Queen];
+    93012:   55-block  0
+        -:   56:
+   277312:   57:    uint8_t attacker_p;
+   277312:   58:    Bitboard mask;
+        -:   59:
+   277312:   60:    while (all_knights) {
+   277312:   60-block  0
+branch  0 taken 93012 (fallthrough)
+branch  1 taken 184300
+   184300:   61:        attacker_p = BitboardOperations::bsf(all_knights);
+   184300:   61-block  0
+call    0 returned 184300
+   184300:   62:        BitboardOperations::set_0(all_knights, attacker_p);
+   184300:   62-block  0
+call    0 returned 184300
+   184300:   63:        mask = PsLegalMoveMaskGen::generate_knight_mask(position._pieces, attacker_p, side, only_captures);
+   184300:   63-block  0
+call    0 returned 184300
+   184300:   64:        LegalMoveGen::_piece_mask_to_moves(position._pieces, mask, attacker_p, Pieces::Knight, side, moves);
+call    0 returned 184300
+        -:   65:    }
+   278305:   66:    while (all_bishops) {
+   278305:   66-block  0
+branch  0 taken 93012 (fallthrough)
+branch  1 taken 185293
+   185293:   67:        attacker_p = BitboardOperations::bsf(all_bishops);
+   185293:   67-block  0
+call    0 returned 185293
+   185293:   68:        BitboardOperations::set_0(all_bishops, attacker_p);
+   185293:   68-block  0
+call    0 returned 185293
+   185293:   69:        mask = PsLegalMoveMaskGen::generate_bishop_mask(position._pieces, attacker_p, side, only_captures);
+   185293:   69-block  0
+call    0 returned 185293
+   185293:   70:        LegalMoveGen::_piece_mask_to_moves(position._pieces, mask, attacker_p, Pieces::Bishop, side, moves);
+call    0 returned 185293
+        -:   71:    }
+   279036:   72:    while (all_rooks) {
+   279036:   72-block  0
+branch  0 taken 93012 (fallthrough)
+branch  1 taken 186024
+   186024:   73:        attacker_p = BitboardOperations::bsf(all_rooks);
+   186024:   73-block  0
+call    0 returned 186024
+   186024:   74:        BitboardOperations::set_0(all_rooks, attacker_p);
+   186024:   74-block  0
+call    0 returned 186024
+   186024:   75:        mask = PsLegalMoveMaskGen::generate_rook_mask(position._pieces, attacker_p, side, only_captures);
+   186024:   75-block  0
+call    0 returned 186024
+   186024:   76:        LegalMoveGen::_piece_mask_to_moves(position._pieces, mask, attacker_p, Pieces::Rook, side, moves);
+call    0 returned 186024
+        -:   77:    }
+   186008:   78:    while (all_queens) {
+   186008:   78-block  0
+branch  0 taken 92996 (fallthrough)
+branch  1 taken 93012
+    92996:   79:        attacker_p = BitboardOperations::bsf(all_queens);
+    92996:   79-block  0
+call    0 returned 92996
+    92996:   80:        BitboardOperations::set_0(all_queens, attacker_p);
+    92996:   80-block  0
+call    0 returned 92996
+    92996:   81:        mask = PsLegalMoveMaskGen::generate_queen_mask(position._pieces, attacker_p, side, only_captures);
+    92996:   81-block  0
+call    0 returned 92996
+    92996:   82:        LegalMoveGen::_piece_mask_to_moves(position._pieces, mask, attacker_p, Pieces::Queen, side, moves);
+call    0 returned 92996
+        -:   83:    }
+        -:   84:
+    93012:   85:    attacker_p = BitboardOperations::bsf(position._pieces._piece_bitboards[side][Pieces::King]);
+    93012:   85-block  0
+call    0 returned 93012
+    93012:   86:    mask = PsLegalMoveMaskGen::generate_king_mask(position._pieces, attacker_p, side, only_captures);
+    93012:   86-block  0
+call    0 returned 93012
+    93012:   87:    LegalMoveGen::_piece_mask_to_moves(position._pieces, mask, attacker_p, Pieces::King, side, moves);
+call    0 returned 93012
+        -:   88:
+    93012:   89:    LegalMoveGen::_add_en_passant_captures(position._pieces, side, position._en_passant, moves);
+call    0 returned 93012
+    93012:   90:    if (!only_captures) {
+branch  0 taken 93012 (fallthrough)
+branch  1 taken 0
+    93012:   91:        if (side == Pieces::White) LegalMoveGen::_add_castling_moves(position._pieces, Pieces::White, position._w_l_castling,position._w_s_castling, moves);
+    93012:   91-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+    46506:   91-block  1
+call    2 returned 46506
+    46506:   92:        else LegalMoveGen::_add_castling_moves(position._pieces, Pieces::Black, position._b_l_castling,position._b_s_castling, moves);
+    46506:   92-block  0
+call    0 returned 46506
+        -:   93:    }
+        -:   94:
+    93012:   95:    return moves;
+        -:   96:}
+function _ZN12LegalMoveGen20_piece_mask_to_movesE6PiecesmhhhR8MoveList called 741625 returned 100% blocks executed 100%
+   741625:   97:void LegalMoveGen::_piece_mask_to_moves(Pieces pieces, Bitboard mask, uint8_t attacker_p, uint8_t attacker_type, uint8_t attacker_side, MoveList &moves) {
+   741625:   98:    uint8_t defender_p;
+   741625:   99:    uint8_t defender_type;
+        -:  100:
+   741625:  101:    Move move;
+   741625:  101-block  0
+call    0 returned 741625
+        -:  102:
+  2202838:  103:    while (mask) {
+  2202838:  103-block  0
+branch  0 taken 1461213 (fallthrough)
+branch  1 taken 741625
+  1461213:  104:        defender_p = BitboardOperations::bsf(mask);
+  1461213:  104-block  0
+  1461213:  105:        BitboardOperations::set_0(mask, defender_p);
+  1461213:  105-block  0
+        -:  106:
+  1461213:  107:        defender_type = 255;
+  9968008:  108:        for (uint8_t i = 0; i < 6; i = i + 1) {
+  1461213:  108-block  0
+  9968008:  108-block  1
+branch  0 taken 8552305 (fallthrough)
+branch  1 taken 1415703
+  8506795:  108-block  2
+  8552305:  109:            if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::inverse(attacker_side)][i], defender_p)) {
+  8552305:  109-block  0
+call    0 returned 8552305
+branch  1 taken 8506795 (fallthrough)
+branch  2 taken 45510
+        -:  110:                defender_type = i;
+        -:  111:                break;
+        -:  112:            }
+        -:  113:        }
+        -:  114:
+  1461213:  115:        move = {attacker_p, defender_p, attacker_type, attacker_side, defender_type, Pieces::inverse(attacker_side)};
+  1461213:  115-block  0
+call    0 returned 1461213
+call    1 returned 1461213
+        -:  116:
+  1461213:  117:        if (LegalMoveGen::_is_legal(pieces, move, false)) moves.push_back(move);
+call    0 returned 1461213
+branch  1 taken 21715
+branch  2 taken 1439498 (fallthrough)
+  1439498:  117-block  0
+call    3 returned 1439498
+        -:  118:    }
+   741625:  119:}
+function _ZN12LegalMoveGen19_pawn_mask_to_movesE6PiecesmhabhR8MoveList called 372048 returned 100% blocks executed 55%
+   372048:  120:void LegalMoveGen::_pawn_mask_to_moves(Pieces pieces, Bitboard mask, uint8_t attacker_side, int8_t attacker_index, bool look_for_defender, uint8_t flag, MoveList &moves) {
+   372048:  121:    uint8_t defender_p;
+   372048:  122:    uint8_t defender_type = 255;
+        -:  123:
+   372048:  124:    Move move;
+   372048:  124-block  0
+call    0 returned 372048
+        -:  125:
+  1590893:  126:    while (mask) {
+  1590893:  126-block  0
+branch  0 taken 1218845 (fallthrough)
+branch  1 taken 372048
+  1218845:  127:        defender_p = BitboardOperations::bsf(mask);
+  1218845:  127-block  0
+branch  0 taken 20493 (fallthrough)
+branch  1 taken 1198352
+  1218845:  128:        BitboardOperations::set_0(mask, defender_p);
+  1218845:  128-block  0
+branch  0 taken 20493 (fallthrough)
+branch  1 taken 1198352
+        -:  129:
+  1218845:  130:        if (look_for_defender) {
+  1218845:  130-block  0
+branch  0 taken 20493 (fallthrough)
+branch  1 taken 1198352
+    23054:  131:            defender_type = 255;
+    23054:  132:            for (uint8_t i = 0; i < 6; i = i + 1) {
+    23054:  132-block  0
+branch  0 taken 23054 (fallthrough)
+branch  1 taken 0
+     2561:  132-block  1
+    23054:  133:                if (BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::inverse(attacker_side)][i], defender_p)) {
+    23054:  133-block  0
+call    0 returned 23054
+branch  1 taken 2561 (fallthrough)
+branch  2 taken 20493
+        -:  134:                    defender_type = i;
+        -:  135:                    break;
+        -:  136:                }
+        -:  137:            }
+        -:  138:        }
+        -:  139:
+  1218845:  140:        move = {(uint8_t)(defender_p + attacker_index), defender_p, Pieces::Pawn, attacker_side, defender_type, Pieces::inverse(attacker_side), flag};
+  1218845:  140-block  0
+call    0 returned 1218845
+call    1 returned 1218845
+        -:  141:
+  1218845:  142:        if (LegalMoveGen::_is_legal(pieces, move, false)) {
+call    0 returned 1218845
+branch  1 taken 9137
+branch  2 taken 1209708 (fallthrough)
+  1209708:  143:            if (defender_p < 8 or defender_p > 55) {
+  1209708:  143-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1209708
+    #####:  144:                moves.push_back({(uint8_t)(defender_p + attacker_index), defender_p, 0, attacker_side, defender_type, Pieces::inverse(attacker_side), Move::Flag::PromoteToKnight});
+    %%%%%:  144-block  0
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:  145:                moves.push_back({(uint8_t)(defender_p + attacker_index), defender_p, 0, attacker_side, defender_type, Pieces::inverse(attacker_side), Move::Flag::PromoteToBishop});
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:  146:                moves.push_back({(uint8_t)(defender_p + attacker_index), defender_p, 0, attacker_side, defender_type, Pieces::inverse(attacker_side), Move::Flag::PromoteToRook});
+call    0 never executed
+call    1 never executed
+call    2 never executed
+    #####:  147:                moves.push_back({(uint8_t)(defender_p + attacker_index), defender_p, 0, attacker_side, defender_type, Pieces::inverse(attacker_side), Move::Flag::PromoteToQueen});
+call    0 never executed
+call    1 never executed
+call    2 never executed
+        -:  148:            }
+  1209708:  149:            else moves.push_back(move);
+  1209708:  149-block  0
+call    0 returned 1209708
+        -:  150:        }
+        -:  151:    }
+   372048:  152:}
+function _ZN12LegalMoveGen9_is_legalE6Pieces4Moveb called 2680076 returned 100% blocks executed 100%
+  2680076:  153:bool LegalMoveGen::_is_legal(Pieces pieces, Move move, bool en_passant_capture) {
+  2680076:  154:    BitboardOperations::set_0(pieces._piece_bitboards[move._attacker_side][move._attacker_type], move._from);
+  2680076:  154-block  0
+branch  0 taken 66003 (fallthrough)
+branch  1 taken 2614073
+  2680076:  155:    BitboardOperations::set_1(pieces._piece_bitboards[move._attacker_side][move._attacker_type], move._to);
+  2680076:  155-block  0
+branch  0 taken 66003 (fallthrough)
+branch  1 taken 2614073
+  2680076:  156:    if (move._defender_type != 255) BitboardOperations::set_0(pieces._piece_bitboards[move._defender_side][move._defender_type], move._to);
+  2680076:  156-block  0
+branch  0 taken 66003 (fallthrough)
+branch  1 taken 2614073
+    66003:  156-block  1
+  2680076:  157:    if (en_passant_capture) {
+  2680076:  157-block  0
+branch  0 taken 18 (fallthrough)
+branch  1 taken 2680058
+       18:  158:        if (move._attacker_side == Pieces::White) BitboardOperations::set_0(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn], move._to - 8);
+       18:  158-block  0
+branch  0 taken 18 (fallthrough)
+branch  1 taken 0
+       18:  158-block  1
+       18:  159:        BitboardOperations::set_0(pieces._piece_bitboards[Pieces::White][Pieces::Pawn], move._to + 8);
+       18:  159-block  0
+        -:  160:    }
+        -:  161:
+  2680076:  162:    pieces.update_bitboards();
+  2680076:  162-block  0
+call    0 returned 2680076
+        -:  163:
+  2680076:  164:    if (PsLegalMoveMaskGen::in_danger(pieces, BitboardOperations::bsf(pieces._piece_bitboards[move._attacker_side][Pieces::King]), move._attacker_side)) return false;
+call    0 returned 2680076
+branch  1 taken 30852 (fallthrough)
+branch  2 taken 2649224
+    30852:  164-block  0
+        -:  165:
+        -:  166:    return true;
+        -:  167:}
+function _ZN12LegalMoveGen24_add_en_passant_capturesE6PieceshhR8MoveList called 93012 returned 100% blocks executed 73%
+    93012:  168:void LegalMoveGen::_add_en_passant_captures(Pieces pieces, uint8_t side, uint8_t en_passant, MoveList &moves) {
+    93012:  169:    if (en_passant == 255) return;
+    93012:  169-block  0
+branch  0 taken 70463 (fallthrough)
+branch  1 taken 22549
+    70463:  169-block  1
+        -:  170:
+    22549:  171:    Move move;
+    22549:  171-block  0
+call    0 returned 22549
+        -:  172:
+    22549:  173:    if (side == Pieces::White) {
+branch  0 taken 8214 (fallthrough)
+branch  1 taken 14335
+     8214:  174:        if (en_passant % 8 != 7 and BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Pawn], en_passant - 7)) {
+     8214:  174-block  0
+branch  0 taken 8202 (fallthrough)
+branch  1 taken 12
+     8202:  174-block  1
+branch  2 taken 12 (fallthrough)
+branch  3 taken 8190
+       12:  175:            move = {(uint8_t)(en_passant - 7), en_passant, Pieces::Pawn, Pieces::White, 255, 255, Move::Flag::EnPassantCapture};
+       12:  175-block  0
+call    0 returned 12
+       12:  176:            if (LegalMoveGen::_is_legal(pieces, move, true)) moves.push_back(move);
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0
+       12:  176-block  0
+call    3 returned 12
+        -:  177:        }
+     8214:  178:        if (en_passant % 8 != 0 and BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::White][Pieces::Pawn], en_passant - 9)) {
+     8214:  178-block  0
+branch  0 taken 8185 (fallthrough)
+branch  1 taken 29
+     8185:  178-block  1
+branch  2 taken 6 (fallthrough)
+branch  3 taken 8179
+        6:  179:            move = {(uint8_t)(en_passant - 9), en_passant, Pieces::Pawn, Pieces::White, 255, 255, Move::Flag::EnPassantCapture};
+        6:  179-block  0
+call    0 returned 6
+        6:  180:            if (LegalMoveGen::_is_legal(pieces, move, true)) moves.push_back(move);
+call    0 returned 6
+branch  1 taken 6 (fallthrough)
+branch  2 taken 0
+        6:  180-block  0
+call    3 returned 6
+        -:  181:        }
+        -:  182:    }
+        -:  183:    else {
+    14335:  184:        if (en_passant % 8 != 0 and BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn], en_passant + 7)) {
+    14335:  184-block  0
+branch  0 taken 14149 (fallthrough)
+branch  1 taken 186
+    14149:  184-block  1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 14149
+    #####:  185:            move = {(uint8_t)(en_passant + 7), en_passant, Pieces::Pawn, Pieces::Black, 255, 255, Move::Flag::EnPassantCapture};
+    %%%%%:  185-block  0
+call    0 never executed
+    #####:  186:            if (LegalMoveGen::_is_legal(pieces, move, true)) moves.push_back(move);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  186-block  0
+call    3 never executed
+        -:  187:        }
+    14335:  188:        if (en_passant % 8 != 7 and BitboardOperations::get_bit(pieces._piece_bitboards[Pieces::Black][Pieces::Pawn], en_passant + 9)) {
+    14335:  188-block  0
+branch  0 taken 14260 (fallthrough)
+branch  1 taken 75
+    14260:  188-block  1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 14260
+    #####:  189:            move = {(uint8_t)(en_passant + 9), en_passant, Pieces::Pawn, Pieces::Black, 255, 255, Move::Flag::EnPassantCapture};
+    %%%%%:  189-block  0
+call    0 never executed
+    #####:  190:            if (LegalMoveGen::_is_legal(pieces, move, true)) moves.push_back(move);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:  190-block  0
+call    3 never executed
+        -:  191:        }
+        -:  192:    }
+        -:  193:}
+function _ZN12LegalMoveGen19_add_castling_movesE6PieceshbbR8MoveList called 93012 returned 100% blocks executed 100%
+    93012:  194:void LegalMoveGen::_add_castling_moves(Pieces pieces, uint8_t side, bool long_castling, bool short_castling, MoveList &moves) {
+    93012:  195:    uint8_t index;
+    93012:  196:    uint8_t long_castling_flag;
+    93012:  197:    uint8_t short_castling_flag;
+    93012:  198:    if (side == Pieces::White) {
+    93012:  198-block  0
+branch  0 taken 46506 (fallthrough)
+branch  1 taken 46506
+        -:  199:        index = 0;
+        -:  200:        long_castling_flag = Move::Flag::WhiteLongCastling;
+        -:  201:        short_castling_flag = Move::Flag::WhiteShortCastling;
+        -:  202:    }
+        -:  203:    else {
+    46506:  204:        index = 56;
+    46506:  205:        long_castling_flag = Move::Flag::BlackLongCastling;
+    46506:  206:        short_castling_flag = Move::Flag::BlackShortCastling;
+    46506:  206-block  0
+        -:  207:    }
+        -:  208:
+    93012:  209:    if (long_castling and BitboardOperations::get_bit(pieces._piece_bitboards[side][Pieces::Rook], 0 + index) and BitboardOperations::get_bit(pieces._empty, 1 + index) and BitboardOperations::get_bit(pieces._empty, 2 + index) and BitboardOperations::get_bit(pieces._empty, 3 + index)) {
+    93012:  209-block  0
+branch  0 taken 89880 (fallthrough)
+branch  1 taken 3132
+    89880:  209-block  1
+branch  2 taken 89880 (fallthrough)
+branch  3 taken 0
+    89880:  209-block  2
+branch  4 taken 19151 (fallthrough)
+branch  5 taken 70729
+    19151:  209-block  3
+branch  6 taken 1116 (fallthrough)
+branch  7 taken 18035
+     1116:  209-block  4
+branch  8 taken 45 (fallthrough)
+branch  9 taken 1071
+       45:  210:        if (!PsLegalMoveMaskGen::in_danger(pieces, BitboardOperations::bsf(pieces._piece_bitboards[side][Pieces::King]), side) and !PsLegalMoveMaskGen::in_danger(pieces, 2 + index, side) and !PsLegalMoveMaskGen::in_danger(pieces, 3 + index, side)) moves.push_back({(uint8_t)(4 + index), (uint8_t)(2 + index), Pieces::King, side, 255, 255, long_castling_flag});
+       45:  210-block  0
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0
+       45:  210-block  1
+call    3 returned 45
+branch  4 taken 45 (fallthrough)
+branch  5 taken 0
+       45:  210-block  2
+call    6 returned 45
+branch  7 taken 45 (fallthrough)
+branch  8 taken 0
+       45:  210-block  3
+call    9 returned 45
+call   10 returned 45
+        -:  211:    }
+    93012:  212:    if (short_castling and BitboardOperations::get_bit(pieces._piece_bitboards[side][Pieces::Rook], 7 + index) and BitboardOperations::get_bit(pieces._empty, 5 + index) and BitboardOperations::get_bit(pieces._empty, 6 + index)) {
+    93012:  212-block  0
+branch  0 taken 89882 (fallthrough)
+branch  1 taken 3130
+    89882:  212-block  1
+branch  2 taken 89882 (fallthrough)
+branch  3 taken 0
+    89882:  212-block  2
+branch  4 taken 11176 (fallthrough)
+branch  5 taken 78706
+    11176:  212-block  3
+branch  6 taken 8918 (fallthrough)
+branch  7 taken 2258
+     8918:  213:        if (!PsLegalMoveMaskGen::in_danger(pieces, BitboardOperations::bsf(pieces._piece_bitboards[side][Pieces::King]), side) and !PsLegalMoveMaskGen::in_danger(pieces, 5 + index, side) and !PsLegalMoveMaskGen::in_danger(pieces, 6 + index, side)) moves.push_back({(uint8_t)(4 + index), (uint8_t)(6 + index), Pieces::King, side, 255, 255, short_castling_flag});
+     8918:  213-block  0
+call    0 returned 8918
+branch  1 taken 8832 (fallthrough)
+branch  2 taken 86
+     8832:  213-block  1
+call    3 returned 8832
+branch  4 taken 8828 (fallthrough)
+branch  5 taken 4
+     8828:  213-block  2
+call    6 returned 8828
+branch  7 taken 8826 (fallthrough)
+branch  8 taken 2
+     8826:  213-block  3
+call    9 returned 8826
+call   10 returned 8826
+        -:  214:    }
+    93012:  215:}

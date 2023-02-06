@@ -1,0 +1,22 @@
+        -:    0:Source:/home/daniel/Projects/C++/Natrix/src/Engine/AI/Entry.cpp
+        -:    0:Graph:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.gcno
+        -:    0:Data:/home/daniel/Projects/C++/Natrix/cmake-build-debug-coverage/CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Entry.hpp"
+        -:    2:
+        -:    3:
+        -:    4:Entry::Entry() = default;
+function _ZN5EntryC2E11ZobristHashih called 0 returned 0% blocks executed 0%
+    #####:    5:Entry::Entry(ZobristHash hash, int32_t depth, uint8_t best_move_index) {
+    %%%%%:    5-block  0
+call    0 never executed
+    #####:    6:    this->_hash = hash;
+    #####:    7:    this->_depth = depth;
+    #####:    8:    this->_best_move_index = best_move_index;
+    #####:    9:}
+function _Zlt5EntryS_ called 0 returned 0% blocks executed 0%
+    #####:   10:bool operator <(Entry left, Entry right) {
+    #####:   11:    return (left._hash < right._hash);
+    %%%%%:   11-block  0
+call    0 never executed
+        -:   12:}

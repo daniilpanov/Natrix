@@ -12,6 +12,11 @@ UICore::UICore(int sdl_init_code, int sdl_image_init_code, int sdl_mixer_init_co
     int sdl_mixer_init_result = Mix_Init(sdl_mixer_init_code);
     int sdl_ttf_init_result = TTF_Init();
 
+    std::cout << sdl_init_result << std::endl;
+    std::cout << sdl_image_init_result << std::endl;
+    std::cout << sdl_mixer_init_result << std::endl;
+    std::cout << sdl_ttf_init_result << std::endl;
+
     if (sdl_init_result != 0 or sdl_image_init_result != sdl_image_init_code or sdl_mixer_init_result != sdl_mixer_init_code or sdl_ttf_init_result != 0) {
         std::cout << ANSI::Red << SDL_GetError() << ANSI::Green << std::endl;
         this->quit(255);

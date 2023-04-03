@@ -13,10 +13,10 @@ namespace ZobristHashConsteval {
     }
 
 
-    static consteval uint64_t next_random(uint64_t previous) {
+    static constexpr uint64_t next_random(uint64_t previous) {
         return ZobristHashConsteval::PRNG::Multiplier * previous + ZobristHashConsteval::PRNG::Summand;
     }
-    static consteval std::array<std::array<std::array<uint64_t, 6>, 2>, 64> calc_constants() {
+    static constexpr std::array<std::array<std::array<uint64_t, 6>, 2>, 64> calc_constants() {
         std::array<std::array<std::array<uint64_t, 6>, 2>, 64> constants{};
 
         uint64_t previous = ZobristHashConsteval::PRNG::Seed;

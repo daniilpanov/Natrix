@@ -6,7 +6,7 @@
 
 
 namespace PawnShieldMasks {
-    static consteval std::array<Bitboard, 64> calc_white_pawn_shield_masks() {
+    static constexpr std::array<Bitboard, 64> calc_white_pawn_shield_masks() {
         std::array<Bitboard, 64> white_pawn_shield_masks{};
 
         for (uint8_t x = 0; x < 8; x = x + 1) {
@@ -27,7 +27,7 @@ namespace PawnShieldMasks {
     }
 
 
-    static consteval std::array<Bitboard, 64> calc_black_pawn_shield_masks() {
+    static constexpr std::array<Bitboard, 64> calc_black_pawn_shield_masks() {
         std::array<Bitboard, 64> black_pawn_shield_masks{};
 
         for (uint8_t x = 0; x < 8; x = x + 1) {

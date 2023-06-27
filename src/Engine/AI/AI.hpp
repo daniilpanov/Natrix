@@ -17,6 +17,7 @@ public:
     AI(const std::string& opening_book_path);
 
     Move best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms);
+    Move best_move_special(const Position& position, uint8_t side, uint8_t base_depth);
 private:
     OpeningBook _opening_book;
 

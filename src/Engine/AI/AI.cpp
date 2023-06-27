@@ -72,6 +72,21 @@ Move AI::best_move(const Position& position, uint8_t side, int32_t min_ms, int32
 
     return best_move;
 }
+Move AI::best_move_special(const Position& position, uint8_t side, uint8_t base_depth) {
+    std::cout << std::endl;
+    StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened, true);
+
+    stop_search = false;
+    TranspositionTable tt;
+
+    evaluated = 0;
+    maximal_depth = 0;
+    tt_cutoffs = 0;
+    std::tuple<int32_t, Move> best_move_res = AI::_best_move(position, side, base_depth, std::ref(tt));
+    Move best_move = std::get<1>(best_move_res);
+
+    return best_move;
+}
 std::tuple<int32_t, Move> AI::_best_move(const Position& position, uint8_t side, int32_t depth, TranspositionTable &tt) {
     if (side == Pieces::White) return AI::_alpha_beta_max(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);
     return AI::_alpha_beta_min(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);

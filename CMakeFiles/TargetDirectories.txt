@@ -1,0 +1,3 @@
+/home/daniel/projects/table-games/lib/natrix/CMakeFiles/Natrix.dir
+/home/daniel/projects/table-games/lib/natrix/CMakeFiles/edit_cache.dir
+/home/daniel/projects/table-games/lib/natrix/CMakeFiles/rebuild_cache.dir

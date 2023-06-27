@@ -1,0 +1,20 @@
+# ninja log v5
+1	1035	1687875274436538703	CMakeFiles/Natrix.dir/src/Engine/AI/AI.cpp.o	fd19885c96f84510
+1613	1936	1687872848389628388	CMakeFiles/Natrix.dir/src/Engine/AI/MoveSorter.cpp.o	7c05a888a7f94626
+546	1207	1687872847661632513	CMakeFiles/Natrix.dir/src/Engine/AI/StaticEvaluator.cpp.o	c652d1cb571c835f
+1	543	1687872846993636306	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/RepetitionHistory.cpp.o	bd3bb21bacbb3255
+3	546	1687872846997636283	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Pieces.cpp.o	387b8a711574d564
+1296	1712	1687872848165629665	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGenTester.cpp.o	1a279675e473e6bb
+850	940	1687872847393634039	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Move.cpp.o	400f7d066b380507
+918	1286	1687872847741632065	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/Position.cpp.o	f2aa5db7dbd13671
+2	35	1687875273392526621	build.ninja	1bed3f2d207ca97c
+1712	1915	1687872848185629554	CMakeFiles/Natrix.dir/src/Engine/AI/Entry.cpp.o	c697f3b983d5d202
+543	850	1687872847301634561	CMakeFiles/Natrix.dir/src/Engine/Base/PositionRepresentation/ZobristHash.cpp.o	21147e420640e57c
+1	649	1687874812055851558	CMakeFiles/Natrix.dir/src/main.cpp.o	28765a5fcd545ed0
+1432	1730	1687872848165629665	CMakeFiles/Natrix.dir/src/Engine/AI/TranspositionTable.cpp.o	5e0c58d1d2399e72
+590	1811	1687875314188980779	Natrix	6215ee95dfc919ab
+2	590	1687875312964967677	CMakeFiles/Natrix.dir/src/Natrix.cpp.o	66f4a93f751ce90f
+940	1296	1687872847749632020	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/PsLegalMoveMaskGen.cpp.o	fee8b49b30e63a20
+1287	1613	1687872848065630225	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/LegalMoveGen.cpp.o	7687a76e9774df58
+1730	2191	1687872848641626971	CMakeFiles/Natrix.dir/src/Engine/AI/OpeningBook.cpp.o	21c78a0f3f1471de
+1207	1432	1687872847881631275	CMakeFiles/Natrix.dir/src/Engine/Base/MoveGeneration/MoveList.cpp.o	79e17c629fcefb07

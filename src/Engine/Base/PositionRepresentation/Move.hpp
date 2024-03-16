@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <string>
 
 
 #pragma once
@@ -37,4 +38,6 @@ struct Move {
         static constexpr uint8_t PromoteToRook = 9;
         static constexpr uint8_t PromoteToQueen = 10;
     };
+
+    std::string toChessNotation() const;
 };

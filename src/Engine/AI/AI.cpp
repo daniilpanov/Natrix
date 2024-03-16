@@ -2,6 +2,8 @@
 
 
 #define nsecs std::chrono::high_resolution_clock::now().time_since_epoch().count()
+// #define DEBUG
+
 
 
 static std::atomic<bool> stop_search;
@@ -10,29 +12,37 @@ static std::atomic<bool> stop_search;
 static int64_t evaluated;
 static int32_t maximal_depth;
 static int32_t tt_cutoffs;
+#ifdef DEBUG
+static bool debug_info = true;
+#else
+static bool debug_info = false;
+#endif
 
 
 AI::AI() = default;
 AI::AI(const std::string& opening_book_path) {
     this->_opening_book = {opening_book_path};
 }
-Move AI::best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms) {
-    std::cout << std::endl;
-    StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened, true);
+Move AI::best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms, int max_depth, bool use_opening_book) {
+    StaticEvaluator::evaluate(position._pieces, position._w_l_castling, position._w_s_castling, position._b_l_castling, position._b_s_castling, position._white_castling_happened, position._black_castling_happened, debug_info);
 
     int64_t time_start = nsecs;
     stop_search = false;
     TranspositionTable tt;
 
-    std::tuple<Move, int32_t> opening_book_result = this->_opening_book.try_to_find_move(position);
-    std::cout << ANSI::Green << "Number of available moves in the opening book: " << std::get<1>(opening_book_result) << "." << ANSI::End << std::endl;
-    if (std::get<1>(opening_book_result)) {
-        usleep(std::max((int64_t)0, (min_ms - (nsecs - time_start) / (int64_t)1e+6) * (int64_t)1e+3));
-        return std::get<0>(opening_book_result);
+    if (use_opening_book) {
+        std::tuple<Move, int32_t> opening_book_result = this->_opening_book.try_to_find_move(position);
+        #ifdef DEBUG
+            std::cout << ANSI::Green << "Number of available moves in the opening book: " << std::get<1>(opening_book_result) << "." << ANSI::End << std::endl;
+        #endif
+        if (std::get<1>(opening_book_result)) {
+            return std::get<0>(opening_book_result);
+        }
     }
 
-    std::cout << ANSI::Green << "Search started." << std::endl;
-
+    #ifdef DEBUG
+        std::cout << ANSI::Green << "Search started." << std::endl;
+    #endif
     int32_t best_move_evaluation;
     Move best_move;
     std::future<std::tuple<int32_t, Move>> best_move_thread;
@@ -61,18 +71,28 @@ Move AI::best_move(const Position& position, uint8_t side, int32_t min_ms, int32
             break;
         }
 
-        std::cout << "Base depth: " << std::setw(4) << i << ". Maximal depth: " << std::setw(4) << maximal_depth << ". Evaluation: " << std::setw(6) << (float)best_move_evaluation / 100.0f << " pawns. Evaluated (this iteration): " << std::setw(10) << evaluated << ". TT cutoffs (this iteration): " << std::setw(10) << tt_cutoffs << ". Time (full search): " << std::setw(10) << (nsecs - time_start) / (int32_t)1e+6 << " ms." << std::endl;
+        #ifdef DEBUG
+            std::cout << "Base depth: " << std::setw(4) << i << ". Maximal depth: " << std::setw(4) << maximal_depth << ". Evaluation: " << std::setw(6) << (float)best_move_evaluation / 100.0f << " pawns. Evaluated (this iteration): " << std::setw(10) << evaluated << ". TT cutoffs (this iteration): " << std::setw(10) << tt_cutoffs << ". Time (full search): " << std::setw(10) << (nsecs - time_start) / (int32_t)1e+6 << " ms." << std::endl;
+        #endif
 
         if (best_move_evaluation > AI::Infinity::Positive - 2000 or best_move_evaluation < AI::Infinity::Negative + 2000) break;
+        if (i >= max_depth) {
+            stop_search = true;
+            break;
+        }
     }
 
     usleep(std::max((int64_t)0, (min_ms - (nsecs - time_start) / (int64_t)1e+6) * (int64_t)1e+3));
 
-    std::cout << "Search finished." << std::endl << ANSI::End;
-
+    #ifdef DEBUG
+        std::cout << "Search finished." << std::endl << ANSI::End;
+    #endif
     return best_move;
 }
 std::tuple<int32_t, Move> AI::_best_move(const Position& position, uint8_t side, int32_t depth, TranspositionTable &tt) {
+    #ifdef DEBUG
+        std::cout << "Started new thread with depth " << depth << std::endl;
+    #endif
     if (side == Pieces::White) return AI::_alpha_beta_max(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);
     return AI::_alpha_beta_min(position, AI::Infinity::Negative, AI::Infinity::Positive, depth, 0, tt);
 }

@@ -14,9 +14,9 @@
 class AI {
 public:
     AI();
-    AI(const std::string& opening_book_path);
+    explicit AI(const std::string& opening_book_path);
 
-    Move best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms);
+    Move best_move(const Position& position, uint8_t side, int32_t min_ms, int32_t max_ms, int max_depth, bool use_opening_book);
 private:
     OpeningBook _opening_book;
 

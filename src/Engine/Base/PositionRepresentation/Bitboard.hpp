@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdint>
 #include <bit>
+#include <bitset>
 #include <array>
 #include "../../../ANSI.hpp"
 
@@ -45,7 +46,13 @@ namespace BitboardOperations {
 
 
     static constexpr uint8_t count_1(Bitboard bb) {
-        return std::popcount(bb);
+        int set_bits = 0;
+        auto bs = std::bitset<64>(bb);
+        for (int i = 0; i < 64; ++i) {
+            if (bs[i] & 1)
+                ++set_bits;
+        }
+        return set_bits;
     }
 
 

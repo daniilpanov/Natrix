@@ -29,7 +29,7 @@ add_executable(Natrix src/main.cpp
         src/Engine/AI/TranspositionTable.hpp src/Engine/AI/TranspositionTable.cpp
         src/Engine/AI/OpeningBook.hpp src/Engine/AI/OpeningBook.cpp
         src/Engine/AI/AI.hpp src/Engine/AI/AI.cpp
-
+        src/opening_book.txt
 )
 include(FindPkgConfig)
 add_definitions(-Werror)

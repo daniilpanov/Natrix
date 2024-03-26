@@ -9,8 +9,36 @@ std::string searchMove(const std::string& position, uint8_t en_passant, bool w_l
     return move.toChessNotation();
 }
 
+
+
 int main(int argc, char *argv[]) {
     if (argc < 12) {
+        std::cout << searchMove(
+                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+                255,
+                1,
+                1,
+                1,
+                1,
+                0,
+                10,
+                0,
+                3000,
+                true
+        );
+        std::cout << searchMove(
+                "rnbqkbnr/pp1ppppp/8/2P5/8/8/PPP1PPPP/RNBQKBNR",
+                255,
+                1,
+                1,
+                1,
+                1,
+                1,
+                10,
+                1.5,
+                3000,
+                true
+        );
         return 1;
     }
 

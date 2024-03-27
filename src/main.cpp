@@ -13,7 +13,7 @@ std::string searchMove(const std::string& position, uint8_t en_passant, bool w_l
 
 int main(int argc, char *argv[]) {
     if (argc < 12) {
-        std::cout << searchMove(
+        /*std::cout << searchMove(
                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
                 255,
                 1,
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
                 1.5,
                 3000,
                 true
-        );
+        );*/
         return 1;
     }
 

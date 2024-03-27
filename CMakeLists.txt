@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(Natrix)
+set(CMAKE_C_COMPILER  "gcc-13")
+set(CMAKE_CXX_COMPILER "g++-13")
 set(CMAKE_CXX_STANDARD 20)
 add_executable(Natrix src/main.cpp
 
